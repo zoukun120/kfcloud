@@ -8,5 +8,6 @@ public class KfcloudApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KfcloudApplication.class, args);
+
 	}
 }
