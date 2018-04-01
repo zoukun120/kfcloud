@@ -1,4 +1,4 @@
-package com.zk.kfcloud;
+package com.zk.kfcloud.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class testThymeleaf {
 
     @GetMapping("/testThymeleaf")
-    public static  String test(){
+    public static String test() {
+
         return "index";
+
     }
 }
