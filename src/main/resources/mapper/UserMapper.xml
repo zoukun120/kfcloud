@@ -17,6 +17,11 @@
     user_id, loginname, password, username, rights, status, role_id, last_login, parent_id, 
     open_id
   </sql>
+  <select id="findAllUsers" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb2_user
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

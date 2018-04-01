@@ -7,4 +7,7 @@
     <typeAliases>
         <typeAlias type="com.zk.kfcloud.Entity.web.User" alias="User"/>
     </typeAliases>
+    <mappers>
+        <mapper resource="/mapper/UserMapper.xml"/>
+    </mappers>
 </configuration>

@@ -1,7 +1,14 @@
 package com.zk.kfcloud.Dao;
 
 import com.zk.kfcloud.Entity.web.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+
+
+@Mapper
+@Component
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 
@@ -14,4 +21,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> findAllUsers();
 }
