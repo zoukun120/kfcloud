@@ -23,7 +23,6 @@ public class testSpringSecurity {
         } catch (UserNotFoundException e) {
             e.printStackTrace();
         }
-
         return user;
     }
 }
