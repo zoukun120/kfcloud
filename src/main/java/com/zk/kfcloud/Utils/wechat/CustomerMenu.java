@@ -16,7 +16,7 @@ public class CustomerMenu {
 	public static final String MENU_CLICK ="click";
 	public static final String MENU_VIEW ="view";
 	public static final String MENU_URL ="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
-	public static final String WXlOGIN_URL = MaterialManage.DOMAIN + "/WeChat/wxLogin";
+	public static final String WXlOGIN_URL = MaterialManage.DOMAIN + "/code";
 
 
 	public static String createMenu() {
