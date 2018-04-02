@@ -1,15 +1,13 @@
 package com.zk.kfcloud.Dao;
 
 import com.zk.kfcloud.Entity.web.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
-@Mapper
-@Component
+@Repository
 public interface UserMapper {
+
     int deleteByPrimaryKey(Integer userId);
 
     int insert(User record);

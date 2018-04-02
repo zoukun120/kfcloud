@@ -33,13 +33,13 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zk.kfcloud.Entity.web.User" >
-    insert into tb2_user (user_id, loginname, password, 
-      username, rights, status, 
-      role_id, last_login, parent_id, 
+    insert into tb2_user (user_id, loginname, password,
+      username, rights, status,
+      role_id, last_login, parent_id,
       open_id)
-    values (#{userId,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{rights,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
-      #{roleId,jdbcType=INTEGER}, #{lastLogin,jdbcType=TIMESTAMP}, #{parentId,jdbcType=INTEGER}, 
+    values (#{userId,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{rights,jdbcType=VARCHAR}, #{status,jdbcType=BIT},
+      #{roleId,jdbcType=INTEGER}, #{lastLogin,jdbcType=TIMESTAMP}, #{parentId,jdbcType=INTEGER},
       #{openId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zk.kfcloud.Entity.web.User" >
