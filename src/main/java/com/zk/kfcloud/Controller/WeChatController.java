@@ -4,11 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.zk.kfcloud.Exception.AccessException;
 import com.zk.kfcloud.Utils.JsonResult;
+import com.zk.kfcloud.Utils.RequestMethod;
 import com.zk.kfcloud.Utils.wechat.AccessGuide;
 import com.zk.kfcloud.Utils.wechat.Authorization;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
@@ -44,7 +44,7 @@ public class WeChatController {
     }
 
     @GetMapping("/redirect_uri")
-    public static JsonResult redirect(HttpServletRequest request) {
+    public static JsonResult redirect(HttpServletRequest request, HttpServletResponse response) {
         try{
 //            获取code
             String code = request.getParameter("code");
@@ -52,11 +52,14 @@ public class WeChatController {
             String tokenAndOpenId = Authorization.getTokenAndOpenId(code);
 //            通过access_token和openid拉取用户信息
             JSONObject tokenJObj = JSON.parseObject(tokenAndOpenId);
-            String userInfo = Authorization.getUserInfo(tokenJObj.getString("openid"), tokenJObj.getString("access_token"));
+            String openid = tokenJObj.getString("openid");
+            String userInfo = Authorization.getUserInfo(openid, tokenJObj.getString("access_token"));
 //            日志
             log.info("code:"+code);
             log.info(tokenAndOpenId);
             log.info("userInfo:"+userInfo);
+            System.err.println(request.getContextPath()+"/isBrother?id="+openid);
+            response.sendRedirect(request.getContextPath()+"/isBrother?openid="+openid);
             return JsonResult.ok("User Authorization Successfully");
         }catch (Exception e){
             new AccessException("用户授权失败！");

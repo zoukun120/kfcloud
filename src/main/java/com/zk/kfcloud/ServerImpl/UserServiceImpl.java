@@ -4,6 +4,7 @@ import com.zk.kfcloud.Dao.UserMapper;
 import com.zk.kfcloud.Entity.web.User;
 import com.zk.kfcloud.Exception.UserNotFoundException;
 import com.zk.kfcloud.Service.UserService;
+import com.zk.kfcloud.Utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,19 @@ public class UserServiceImpl implements UserService  {
 
         @Autowired
         private UserMapper userMapper;
+
+        @Override
+        public User isBrother(String openid) {
+            if (Tools.notEmpty(openid)){
+                List<User> allUsers = userMapper.findAllUsers();
+                for (User user:allUsers) {
+                    if (openid.equals(user.getOpenId())){
+                        return user;
+                    }
+                }
+            }
+            return null;
+        }
 
         @Override
         public List<User> findAllUsers() {

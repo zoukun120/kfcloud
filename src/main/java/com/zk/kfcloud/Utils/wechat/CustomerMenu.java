@@ -20,6 +20,7 @@ public class CustomerMenu {
 
 
 	public static String createMenu() {
+		System.err.println("WXlOGIN_URL:"+WXlOGIN_URL);
 		String url = MENU_URL.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
 		return  RequestMethod.doPost(url, JSON.toJSONString(initMenu()));
 	}
