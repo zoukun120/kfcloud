@@ -2,13 +2,13 @@ package com.zk.kfcloud.Controller;
 
 import com.zk.kfcloud.Entity.web.User;
 import com.zk.kfcloud.Service.UserService;
-import com.zk.kfcloud.Utils.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -22,10 +22,13 @@ public class UserController {
      * @return
      */
     @GetMapping("/isBrother")
-    public JsonResult Brother(@RequestParam("openid") String openid){
-        System.err.println(openid);
+    public String Brother(@RequestParam("openid") String openid){
         User brother = userService.isBrother(openid);
         System.err.println(brother);
-        return  JsonResult.ok(brother);
+        if (brother != null){
+            return "index";
+        }else {
+            return "login";
+        }
     }
 }

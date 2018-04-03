@@ -1,7 +1,9 @@
 package com.zk.kfcloud.ServerImpl;
 
 import com.zk.kfcloud.Dao.UserMapper;
+import com.zk.kfcloud.Dao.WeChatMapper;
 import com.zk.kfcloud.Entity.web.User;
+import com.zk.kfcloud.Entity.web.WeChat;
 import com.zk.kfcloud.Exception.UserNotFoundException;
 import com.zk.kfcloud.Service.UserService;
 import com.zk.kfcloud.Utils.Tools;
@@ -16,13 +18,23 @@ public class UserServiceImpl implements UserService  {
         @Autowired
         private UserMapper userMapper;
 
+        @Autowired
+        private WeChatMapper weChatMapper;
+
+        /*
+            判断当前openid是否已经在数据库，
+            如果存在，返回User对象
+            否则，返回null
+         */
         @Override
         public User isBrother(String openid) {
             if (Tools.notEmpty(openid)){
-                List<User> allUsers = userMapper.findAllUsers();
-                for (User user:allUsers) {
-                    if (openid.equals(user.getOpenId())){
-                        return user;
+                List<WeChat> allWeChatUser = weChatMapper.findAllWeChatUser();
+                if (allWeChatUser != null){
+                    for (WeChat wx:allWeChatUser) {
+                        if (openid.equals(wx.getOpenId())){
+                            return userMapper.selectByPrimaryKey(wx.getUserId());
+                        }
                     }
                 }
             }

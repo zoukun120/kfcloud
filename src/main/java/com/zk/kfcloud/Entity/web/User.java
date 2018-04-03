@@ -21,8 +21,6 @@ public class User {
 
     private Integer parentId;
 
-    private String openId;
-
     public Integer getUserId() {
         return userId;
     }
@@ -95,14 +93,6 @@ public class User {
         this.parentId = parentId;
     }
 
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openId) {
-        this.openId = openId == null ? null : openId.trim();
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -115,7 +105,6 @@ public class User {
                 ", roleId=" + roleId +
                 ", lastLogin=" + lastLogin +
                 ", parentId=" + parentId +
-                ", openId='" + openId + '\'' +
                 '}';
     }
 }
