@@ -14,7 +14,7 @@ import java.net.URL;
 @Slf4j
 public class MaterialManage {
 
-	public static final String DOMAIN ="http://jrzvje.natappfree.cc";
+	public static final String DOMAIN ="http://5jtbdi.natappfree.cc";
 	
 	public static final String APPID ="wxce2ee669cb26eded";
 	public static final String APPSECRET ="a18bfd173767748a08120ae5a8954ae0";
