@@ -26,6 +26,7 @@ public class WeChatController {
             AccessGuide.doGet(request, response);
             return JsonResult.ok("Access to wechat server successfully");
         } catch (Exception e) {
+            e.printStackTrace();
             new AccessException("接入微信服务器异常！");
             return JsonResult.errMsg("接入微信服务器异常!");
         }

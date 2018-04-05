@@ -107,7 +107,6 @@
 			<artifactId>jedis</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-
 		<!-- Spring Security 权限管理	-->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>

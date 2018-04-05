@@ -11,17 +11,23 @@
     <result column="role_id" property="roleId" jdbcType="INTEGER" />
     <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP" />
     <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-    <result column="open_id" property="openId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    user_id, loginname, password, username, rights, status, role_id, last_login, parent_id, 
-    open_id
+    user_id, loginname, password, username, rights, status, role_id, last_login, parent_id
   </sql>
   <select id="findAllUsers" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
     from tb2_user
   </select>
+
+  <select id="selectByNameAndPwd" resultMap="BaseResultMap" parameterType="com.zk.kfcloud.Entity.web.User" >
+    select
+    <include refid="Base_Column_List" />
+    from tb2_user
+    where loginname = #{loginname,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -35,8 +41,7 @@
   <insert id="insert" parameterType="com.zk.kfcloud.Entity.web.User" >
     insert into tb2_user (user_id, loginname, password,
       username, rights, status,
-      role_id, last_login, parent_id,
-      open_id)
+      role_id, last_login, parent_id)
     values (#{userId,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{username,jdbcType=VARCHAR}, #{rights,jdbcType=VARCHAR}, #{status,jdbcType=BIT},
       #{roleId,jdbcType=INTEGER}, #{lastLogin,jdbcType=TIMESTAMP}, #{parentId,jdbcType=INTEGER},
@@ -71,9 +76,6 @@
       </if>
       <if test="parentId != null" >
         parent_id,
-      </if>
-      <if test="openId != null" >
-        open_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -136,9 +138,6 @@
       <if test="parentId != null" >
         parent_id = #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="openId != null" >
-        open_id = #{openId,jdbcType=VARCHAR},
-      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -152,7 +151,6 @@
       role_id = #{roleId,jdbcType=INTEGER},
       last_login = #{lastLogin,jdbcType=TIMESTAMP},
       parent_id = #{parentId,jdbcType=INTEGER},
-      open_id = #{openId,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

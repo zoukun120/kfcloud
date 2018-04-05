@@ -1,11 +1,9 @@
 package com.zk.kfcloud.Dao;
 
 import com.zk.kfcloud.Entity.web.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface UserMapper {
 
     int deleteByPrimaryKey(Integer userId);
@@ -21,4 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     List<User> findAllUsers();
+
+    User selectByNameAndPwd(User user);
 }

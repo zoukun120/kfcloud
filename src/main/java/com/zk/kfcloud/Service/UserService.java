@@ -17,4 +17,6 @@ public interface UserService {
     List<User> findAllUsers();
 
     User selectByPrimaryKey(int id) throws UserNotFoundException;
+
+    Integer selectByNameAndPwd(User user);
 }

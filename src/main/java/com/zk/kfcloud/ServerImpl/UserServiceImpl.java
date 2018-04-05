@@ -55,4 +55,20 @@ public class UserServiceImpl implements UserService  {
                 }
                 return user;
         }
+
+        /**
+         * 用户存在就返回userid，不存在返回0
+         * @param user
+         * @return
+         */
+        @Override
+        public Integer selectByNameAndPwd(User user) {
+            User u = userMapper.selectByNameAndPwd(user);
+            if(u !=null){
+                return u.getUserId();
+            }
+            else {
+                return 0;
+            }
+        }
 }

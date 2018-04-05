@@ -1,14 +1,52 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>登陆</title>
+    <!--<link rel="stylesheet" th:href="@{/resources/bootstrap/css/bootstrap.min.css}" />-->
+    <script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/md5/md5.js}"></script>
+    <script th:inline="javascript">
+        $(function () {
+            $('#openid').val($('#pp').html())
+        })
+        function login(){
+            console.log("login页面")
+            var openid = $("#openid").html();
+            var name = $("#name").val();
+            var pwd =  hex_md5($("#pwd").val());
+            var jsonObj = {"openid":openid,"username":name,"password":pwd};
+            console.log(JSON.stringify(jsonObj))
+            /*
+                Jquery默认Content-Type为application/x-www-form-urlencoded类型
+             */
+            $.ajax({
+                type: 'POST',
+                url: "/login",
+                dataType: "json",
+                data: JSON.stringify(jsonObj),
+                contentType : "application/json",
+                success: function(data) {
+                    console.log(data)
+                },
+                error: function() {
+                    console.log("fucking error")
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-<form action="/login" method="get">
-    <p>用户名: <input type="text" name="fname" /></p>
-    <p>密码: <input type="text" name="lname" /></p>
-    提交<input type="submit" value="Submit" />
-</form>
+    <!--<button th:onclick="'javascript:initopenid()'">给openid赋值</button>-->
+    <form action="/login" method="post">
+        <!--/*@thymesVar id="openid" type=""*/-->
+        <p id="pp" th:text="${openid}" style="visibility:hidden"></p>
+        <p><input id="openid" type="text" name="openid" style="visibility:hidden"/></p>
+        <p>用户名: <input id="name" type="text" name="username" /></p>
+        <p>密码: <input id="pwd" type="password" name="password" /></p>
+        <button type="submit">提交</button>
+    </form>
 </body>
 </html>

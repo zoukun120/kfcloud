@@ -5,6 +5,7 @@ import com.zk.kfcloud.Service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -22,9 +23,10 @@ public class UserController {
      * @return
      */
     @GetMapping("/isBrother")
-    public String Brother(@RequestParam("openid") String openid){
+    public String Brother(@RequestParam("openid") String openid,Model model){
         User brother = userService.isBrother(openid);
-        System.err.println(brother);
+        System.err.println("brother:"+brother);
+        model.addAttribute("openid",openid);
         if (brother != null){
             return "index";
         }else {
