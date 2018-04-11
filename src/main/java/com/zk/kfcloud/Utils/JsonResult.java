@@ -25,7 +25,7 @@ public class JsonResult {
     }
 
     public JsonResult(Object data) {
-        this.status=200;
+        this.status = 200;
         this.msg = "ok";
         this.data = data;
     }
@@ -46,24 +46,25 @@ public class JsonResult {
     }
 
     public static JsonResult errMsg(String msg) {
-        return new JsonResult(500,msg,null);
+        return new JsonResult(500, msg, null);
     }
 
     public static JsonResult errMap(Object obj) {
-        return new JsonResult(501,"error",obj);
+        return new JsonResult(501, "error", obj);
     }
 
     public static JsonResult errTokenMsg(String msg) {
-        return new JsonResult(502,msg,null);
+        return new JsonResult(502, msg, null);
     }
 
     public static JsonResult errException(String msg) {
-        return new JsonResult(555,msg,null);
+        return new JsonResult(555, msg, null);
     }
 
 
     /**
      * getset方法
+     *
      * @return
      */
 

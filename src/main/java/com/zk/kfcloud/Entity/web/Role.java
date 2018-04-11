@@ -1,6 +1,6 @@
 package com.zk.kfcloud.Entity.web;
 
-public class Role {
+public class Role  {
     private Integer roleId;
 
     private String roleName;
@@ -29,5 +29,14 @@ public class Role {
 
     public void setRights(String rights) {
         this.rights = rights == null ? null : rights.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", rights='" + rights + '\'' +
+                '}';
     }
 }

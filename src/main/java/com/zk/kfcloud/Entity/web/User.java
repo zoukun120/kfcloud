@@ -1,8 +1,18 @@
 package com.zk.kfcloud.Entity.web;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
-public class User {
+/**
+ * 实现Serializable：redisTemplate要存放User对象必须先序列化该对象,如RedisTemplate<String,User> userRedisTemplate;
+ * 实现UserDetails：声明该对象为spring-security所用
+ */
+public class User implements Serializable ,UserDetails {
+
     private Integer userId;
 
     private String loginname;
@@ -13,13 +23,22 @@ public class User {
 
     private String rights;
 
-    private Boolean status;
+    private Integer status;
 
     private Integer roleId;
 
     private Date lastLogin;
 
     private Integer parentId;
+
+    private Role role;
+
+    public User() {
+    }
+
+    public User(String loginname) {
+        this.loginname = loginname;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -34,7 +53,12 @@ public class User {
     }
 
     public void setLoginname(String loginname) {
-        this.loginname = loginname == null ? null : loginname.trim();
+        this.loginname = loginname;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {
@@ -42,15 +66,35 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getUsername() {
         return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getRights() {
@@ -58,14 +102,14 @@ public class User {
     }
 
     public void setRights(String rights) {
-        this.rights = rights == null ? null : rights.trim();
+        this.rights = rights;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
@@ -93,6 +137,14 @@ public class User {
         this.parentId = parentId;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -105,6 +157,7 @@ public class User {
                 ", roleId=" + roleId +
                 ", lastLogin=" + lastLogin +
                 ", parentId=" + parentId +
+                ", role=" + role +
                 '}';
     }
 }

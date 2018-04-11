@@ -174,7 +174,6 @@ public class Tools {
 //        }
 //        return "";
 //    }
-
     public static String md5(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -200,6 +199,7 @@ public class Tools {
 
     /**
      * 输出流，文件输出
+     *
      * @param response
      * @param o
      */

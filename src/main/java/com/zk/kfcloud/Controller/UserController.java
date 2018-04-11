@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
@@ -23,13 +24,16 @@ public class UserController {
      * @return
      */
     @GetMapping("/isBrother")
-    public String Brother(@RequestParam("openid") String openid,Model model){
+    public String Brother(@RequestParam("openid") String openid, Model model) {
         User brother = userService.isBrother(openid);
-        System.err.println("brother:"+brother);
-        model.addAttribute("openid",openid);
-        if (brother != null){
-            return "index";
-        }else {
+        System.err.println("brother:" + brother);
+        model.addAttribute("openid", openid);
+        if (brother != null) {
+            System.err.println("自己人，马上进入首页");
+//            session.setAttribute("sessionUser", brother);
+            return "redirect:index";
+        } else {
+            System.err.println("新用户，请进入登陆页");
             return "login";
         }
     }

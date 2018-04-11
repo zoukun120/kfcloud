@@ -8,10 +8,10 @@ import com.zk.kfcloud.Utils.RequestMethod;
 import com.zk.kfcloud.Utils.wechat.AccessGuide;
 import com.zk.kfcloud.Utils.wechat.Authorization;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -20,8 +20,10 @@ import java.io.IOException;
 @RestController
 public class WeChatController {
 
+
     @GetMapping("/access")
     public static JsonResult access(HttpServletRequest request, HttpServletResponse response) {
+        System.err.println("/access");
         try {
             AccessGuide.doGet(request, response);
             return JsonResult.ok("Access to wechat server successfully");
@@ -36,7 +38,7 @@ public class WeChatController {
     public static JsonResult login(HttpServletRequest request, HttpServletResponse response) {
         try {
             String s = Authorization.CodeUrl();
-            log.info("CodeUrl:"+s);
+            log.info("CodeUrl:" + s);
             response.sendRedirect(s);
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +48,7 @@ public class WeChatController {
 
     @GetMapping("/redirect_uri")
     public static JsonResult redirect(HttpServletRequest request, HttpServletResponse response) {
-        try{
+        try {
 //            获取code
             String code = request.getParameter("code");
 //            用code换access_token
@@ -56,13 +58,13 @@ public class WeChatController {
             String openid = tokenJObj.getString("openid");
             String userInfo = Authorization.getUserInfo(openid, tokenJObj.getString("access_token"));
 //            日志
-            log.info("code:"+code);
+            log.info("code:" + code);
             log.info(tokenAndOpenId);
-            log.info("userInfo:"+userInfo);
-            System.err.println(request.getContextPath()+"/isBrother?id="+openid);
-            response.sendRedirect(request.getContextPath()+"/isBrother?openid="+openid);
+            log.info("userInfo:" + userInfo);
+            System.err.println("/isBrother?id=" + openid);
+            response.sendRedirect("/isBrother?openid=" + openid);
             return JsonResult.ok("User Authorization Successfully");
-        }catch (Exception e){
+        } catch (Exception e) {
             new AccessException("用户授权失败！");
             return JsonResult.errMsg("用户授权失败！");
         }

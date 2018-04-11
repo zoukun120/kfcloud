@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zk.kfcloud.Dao.MenuMapper">
+
+	<resultMap id="menuResultMap" type="com.zk.kfcloud.Entity.web.Menu" >
+		<id column="menu_id" property="menuId"/>
+		<result column="menu_name" property="menuName"/>
+		<result column="menu_url" property="menuUrl"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="factory_id" property="factoryId"/>
+	</resultMap>
+	<sql id="menu_Column_List">menu_id, menu_name, menu_url, parent_id, factory_id </sql>
+
+	<select id="listAllParentMenu" resultMap="menuResultMap">
+		select <include refid="menu_Column_List"/> from tb2_menu where parent_id is null
+	</select>
+
+	<select id="listSubMenuByParentId" parameterType="int" resultMap="menuResultMap">
+		select * from tb2_menu where parent_id=#{parentId}
+	</select>
+	<select id="getMenuById" parameterType="int" resultMap="menuResultMap">
+		select * from tb2_menu where menu_id=#{menuId}
+	</select>
+	<select id="listAllSubMenu" resultMap="menuResultMap">
+		select * from tb2_menu where parent_id is not null
+	</select>
+	
+	<insert id="insertMenu" parameterType="com.zk.kfcloud.Entity.web.Menu"  useGeneratedKeys="true" keyProperty="menuId">
+		insert into tb2_menu (menu_name,menu_url,parent_id) values (#{menuName},#{menuUrl},#{parentId})
+	</insert>
+	
+	<update id="updateMenu" parameterType="com.zk.kfcloud.Entity.web.Menu">
+		update tb2_menu set menu_name=#{menuName},menu_url=#{menuUrl},parent_id=#{parentId} where menu_id=#{menuId}
+	</update>
+	
+	<delete id="deleteMenuById" parameterType="int">
+		delete from tb2_menu where menu_id=#{menuId} or parent_id=#{menuId}
+	</delete>
+</mapper>

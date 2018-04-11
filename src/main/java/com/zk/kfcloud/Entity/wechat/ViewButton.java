@@ -1,16 +1,15 @@
 package com.zk.kfcloud.Entity.wechat;
 
-public class ViewButton extends Button{
+public class ViewButton extends Button {
     private String url;
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
-    
-		
-	
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+
 }

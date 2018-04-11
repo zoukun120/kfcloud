@@ -21,7 +21,7 @@ public class testMyBatis {
     private UserService userService;
 
     @GetMapping("/findAll")
-    List<User> findall(){
+    List<User> findall() {
         List<User> allUsers = userService.findAllUsers();
         log.info("info");
         log.debug("debug");
