@@ -1,8 +1,7 @@
 package com.zk.kfcloud.Utils;
 
 
-import com.alibaba.fastjson.JSONObject;
-import org.apache.http.HttpEntity;
+import net.sf.json.JSONObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;

@@ -28,13 +28,14 @@ public class UserController {
         User brother = userService.isBrother(openid);
         System.err.println("brother:" + brother);
         model.addAttribute("openid", openid);
-        if (brother != null) {
-            System.err.println("自己人，马上进入首页");
-//            session.setAttribute("sessionUser", brother);
-            return "redirect:index";
-        } else {
-            System.err.println("新用户，请进入登陆页");
-            return "login";
-        }
+//        if (brother != null) {
+//            System.err.println("自己人，马上进入首页");
+////            session.setAttribute("sessionUser", brother);
+//            return "redirect:index";
+//        } else {
+//            System.err.println("新用户，请进入登陆页");
+//            return "login";
+//        }
+        return "login";
     }
 }

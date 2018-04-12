@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" th:href="@{bootstrap-3.3.7-dist/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{bootstrap-3.3.7-dist/css/signin.css}"/>
+    <script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
     <style type="text/css">
         body {
             padding-top: 50px;
@@ -41,7 +43,7 @@
         <!--<p th:if="${param.logout}" class="bg-warning">已注销</p>-->
         <!--<p th:if="${param.error}" class="bg-danger">有错误，请重试</p>-->
         <h2>空分云系统</h2>
-        <form class="form-signin" role="form" name="form" th:action="@{/login}" method="post">
+        <form class="form-signin" role="form" name="form" th:action="@{/index}" method="post">
             <p id="pp" th:text="${openid}" style="visibility:hidden"></p>
             <p><input id="openid" type="text" name="openid" style="visibility:hidden"/></p>
             <div class="form-group">

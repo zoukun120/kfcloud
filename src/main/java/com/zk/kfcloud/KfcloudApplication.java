@@ -15,20 +15,5 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 public class KfcloudApplication {
     public static void main(String[] args) {
         SpringApplication.run(KfcloudApplication.class, args);
-//        KfcloudApplication.creatMenu();
     }
-
-    /*
-        创建微信菜单
-     */
-    public static void creatMenu() {
-        try {
-            String menu = CustomerMenu.createMenu();
-            log.info(menu);
-        } catch (Exception e) {
-            new MenuCreateException("创建菜单异常！");
-            e.getStackTrace();
-        }
-    }
-
 }

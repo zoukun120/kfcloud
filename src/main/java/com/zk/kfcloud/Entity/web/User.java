@@ -40,6 +40,11 @@ public class User implements Serializable ,UserDetails {
         this.loginname = loginname;
     }
 
+    public User(String loginname, String password) {
+        this.loginname = loginname;
+        this.password = password;
+    }
+
     public Integer getUserId() {
         return userId;
     }

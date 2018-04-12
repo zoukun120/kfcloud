@@ -1,11 +1,10 @@
 package com.zk.kfcloud.Utils.wechat;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.zk.kfcloud.Entity.wechat.AccessToken;
 import com.zk.kfcloud.Utils.RequestMethod;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -14,7 +13,7 @@ import java.net.URL;
 @Slf4j
 public class MaterialManage {
 
-    public static final String DOMAIN = "http://yfuh2g.natappfree.cc";
+    public static final String DOMAIN = "http://r257ku.natappfree.cc";
 
     public static final String APPID = "wxce2ee669cb26eded";
     public static final String APPSECRET = "a18bfd173767748a08120ae5a8954ae0";
@@ -30,11 +29,11 @@ public class MaterialManage {
      * @return
      */
     public static AccessToken getAccessToken() {
-        JSONObject jsonObj = JSON.parseObject(RequestMethod.doGet(AccessTokenUrl));
         AccessToken token = new AccessToken();
+        JSONObject jsonObj =  JSONObject.fromObject(RequestMethod.doGet(AccessTokenUrl));
         if (jsonObj != null) {
             token.setAccess_token(jsonObj.getString("access_token"));
-            token.setExpires_in(jsonObj.getInteger("expires_in"));
+            token.setExpires_in(jsonObj.getInt("expires_in"));
         }
         log.info("AccessToken:" + token);
         return token;

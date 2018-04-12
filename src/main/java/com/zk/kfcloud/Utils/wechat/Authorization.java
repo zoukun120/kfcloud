@@ -1,7 +1,6 @@
 package com.zk.kfcloud.Utils.wechat;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.zk.kfcloud.Utils.RequestMethod;
 
 import java.io.UnsupportedEncodingException;

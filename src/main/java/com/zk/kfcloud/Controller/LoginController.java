@@ -10,8 +10,15 @@ import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -28,49 +35,52 @@ public class LoginController {
     private WeChatMapper weChatMapper;
 
     @Autowired
-    private RedisService redisService;
-
+    private StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    RedisTemplate<String,User> userRedisTemplate;
     /**
-     * 一切请求从get方式的login起，然后再接入微信api，获取到openid传到login.html
+     * 一切请求从get方式的login起(用户点击‘空分云’按钮)，然后再接入微信api，获取到openid传到login.html
      * @return
      */
-    @GetMapping("/login")
-    public String login(){
-
-        return "login";
+    @GetMapping(value = {"/","/login"})
+    public void login(HttpServletResponse response) throws IOException {
+        response.sendRedirect("/code");
     }
 
-    /*
-        只有新微信用户才会登陆
-        登陆成功后，将userid和openid保存在tb2_wechat表中
-        以实现多微信用户登陆。
+    /**
+     * 只有新微信用户才会登陆,登陆成功后，将userid和openid保存在tb2_wechat表中,以实现多微信用户登陆
+     * @param username
+     * @param password
+     * @param openid
+     * @param model
+     * @param session
+     * @return
+     * @throws UserNotFoundException
      */
-
-    @PostMapping("/login")
-    public String login(String username,String password,String openid) throws UserNotFoundException {
-        System.err.println("username:"+username);
-        System.err.println("password:"+Tools.md5(password));
-        System.err.println("openid:"+openid);
-        User u = new User();
-        u.setLoginname(username);
-        u.setPassword(Tools.md5(password));
-        Integer userid = userService.selectByNameAndPwd(u);
+    @PostMapping("/index")
+    public String toIndex(String username, String password, String openid, Model model, HttpSession session) throws UserNotFoundException {
+//        1.将参数openid返回给login和index页面
+        model.addAttribute("openid",openid);
+        log.info("username:"+username+",password:"+Tools.md5(password)+",openid:"+openid);
+//        2.获取登陆表单提交的三个参数，并查询数据库，
+        Integer userid = userService.selectByNameAndPwd(new User(username,Tools.md5(password)));
         System.err.println("userid:"+userid);
-        User user = userService.selectByPrimaryKey(userid);
-        System.err.println("当前用户："+user);
-        if(userid!=0){//表示该用户登陆成功
-            //记录当前用户的登陆状态status=1
+//        3.判断数据库中是否存在该账号（0表示不存在）
+        if(userid!=0){
+            User user = userService.selectByPrimaryKey(userid);
+//           3.1 登陆成功，改变status、最后登录时间、记录session(sessonid和当前登陆用户)
             user.setStatus(1);
-            userService.updateUserLoginStatus(user);
             user.setLastLogin(new Date());
+            userService.updateUserLoginStatus(user);
             userService.updateLastLogin(user);
-            log.info("用户登录状态："+user.getStatus()+",已添加sessionUser");
-            //在tb2_wechat表中插入openid和userid信息
+            stringRedisTemplate.opsForValue().set("JSESSIONID",session.getId());
+            userRedisTemplate.opsForValue().set("SESSIONUSER",user);
+            log.info("当前用户："+user+",已添加 sessionId 和 User");
+//            3.2 一个空分账号可以绑定多个微信号（openid不同），如果是新微信号，则在tb2_wechat表中插入openid和userid信息
             List<WeChat> allWeChatUser = weChatMapper.findAllWeChatUser();
             Boolean flag = true;
-            System.err.println(openid);
             for (WeChat wxUser:allWeChatUser) {
-                System.err.println(wxUser);
+                log.info(wxUser.toString());
                 if (openid.equals(wxUser.getOpenId())) {//openid存在，不插入数据库
                     flag = false;
                 }
@@ -81,49 +91,10 @@ public class LoginController {
                 wx.setOpenId(openid);
                 weChatMapper.insert(wx);
             }
-            return "redirect:index";
+            return "index";
         }else {
-           return "/login";
+           return "login";
         }
     }
 
-    /**
-     * 点击登陆按钮跳转到首页
-     * @return
-     */
-//    @GetMapping("/index")
-//    public String index(HttpSession session, Model model){
-//        User user = (User) session.getAttribute("sessionUser");
-//        System.err.println("user 权限："+user);
-//        user = userService.getUserAndRoleById(user.getUserId());
-//        Role role = user.getRole();
-//        String roleRights = role != null ? role.getRights() : "";
-//        String userRights = user.getRights();
-//        System.err.println("用户权限："+userRights+"，角色权限："+roleRights);
-//        session.setAttribute("sessionRoleRights", roleRights);
-//        session.setAttribute("sessionUserRights", userRights);
-//        List<Menu> menuList = menuService.listAllMenu();
-//        if ((Tools.notEmpty(userRights)) || (Tools.notEmpty(roleRights))) {
-//            for (Menu menu : menuList) {
-//                menu.setHasMenu((RightsHelper.testRights(userRights, menu.getMenuId().intValue()))
-//                        || (RightsHelper.testRights(roleRights, menu.getMenuId().intValue())));
-//                if (menu.isHasMenu()) {
-//                    List<Menu> subMenuList = menu.getSubMenu();
-//                    for (Menu sub : subMenuList) {
-//                        sub.setHasMenu((RightsHelper.testRights(userRights, sub.getMenuId().intValue()))
-//                                || (RightsHelper.testRights(roleRights, sub.getMenuId().intValue())));
-//                    }
-//                }
-//            }
-//        }
-////		System.err.println("goto index.jsp，get sessionUser");
-//		for (Menu menu : menuList) {
-//			log.info("pc菜单列表：" + menu.getMenuId() + "," + menu.getMenuName());
-//		}
-//        JSONArray menuLists = JSONArray.fromObject(menuList);
-////		System.out.println(menuLists);
-//        model.addAttribute("user", user);
-//        model.addAttribute("menuLists", menuLists);
-//        return "index";
-//    }
 }

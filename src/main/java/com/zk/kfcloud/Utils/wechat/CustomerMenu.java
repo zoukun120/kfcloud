@@ -1,12 +1,11 @@
 package com.zk.kfcloud.Utils.wechat;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.zk.kfcloud.Entity.wechat.Button;
 import com.zk.kfcloud.Entity.wechat.Menu;
 import com.zk.kfcloud.Entity.wechat.ViewButton;
 import com.zk.kfcloud.Utils.RequestMethod;
+import net.sf.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,13 +15,14 @@ public class CustomerMenu {
     public static final String MENU_CLICK = "click";
     public static final String MENU_VIEW = "view";
     public static final String MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
-    public static final String WXlOGIN_URL = MaterialManage.DOMAIN + "/code";
+    public static final String WXlOGIN_URL = MaterialManage.DOMAIN + "/login";
 
 
     public static String createMenu() {
         System.err.println("WXlOGIN_URL:" + WXlOGIN_URL);
         String url = MENU_URL.replace("ACCESS_TOKEN", MaterialManage.getAccessToken().getAccess_token());
-        return RequestMethod.doPost(url, JSON.toJSONString(initMenu()));
+        System.err.println("MENU_URL:"+MENU_URL);
+        return RequestMethod.doPost(url, JSONObject.fromObject(initMenu()).toString());
     }
 
     public static Menu initMenu() {

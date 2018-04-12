@@ -1,8 +1,12 @@
 package com.zk.kfcloud.ServerImpl;
 
 
-import com.alibaba.fastjson.JSON;
 import com.zk.kfcloud.Service.RedisService;
+import com.zk.kfcloud.Utils.JSONUtil;
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.util.JSONUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
@@ -11,6 +15,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -54,15 +59,15 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public <T> boolean setList(String key, List<T> list) {
-        String value = JSON.toJSONString(list);
+        String value = JSONArray.fromObject(list).toString();
         return set(key, value);
     }
 
     @Override
     public <T> List<T> getList(String key, Class<T> clz) {
         String json = get(key);
-        if (json != null) {
-            List<T> list = JSON.parseArray(json, clz);
+        if(json!=null){
+            List<T> list = JSONUtil.toList(json, clz);
             return list;
         }
         return null;
@@ -70,7 +75,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public long lpush(final String key, Object obj) {
-        final String value = JSON.toJSONString(obj);
+        final String value = JSONArray.fromObject(obj).toString();
         long result = redisTemplate.execute(new RedisCallback<Long>() {
             @Override
             public Long doInRedis(RedisConnection connection) throws DataAccessException {
@@ -84,7 +89,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public long rpush(final String key, Object obj) {
-        final String value = JSON.toJSONString(obj);
+        final String value = JSONObject.fromObject(obj).toString();
         long result = redisTemplate.execute(new RedisCallback<Long>() {
             @Override
             public Long doInRedis(RedisConnection connection) throws DataAccessException {
