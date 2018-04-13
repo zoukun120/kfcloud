@@ -40,15 +40,11 @@ public  class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(    // 允许对于网站静态资源的无授权访问
                             HttpMethod.GET,
-                            "/",
-                            "/*.html",
+                            "/","/**",
                             "/favicon.ico",
-                            "/**/*.html",
-                            "/**/*.css",
-                            "/**/*.js",
-                            "/webjars/**",
-                            "/swagger-resources/**",
-                            "/*/api-docs"
+                            "/jquery/**",
+                            "/bootstrap-3.3.7-dist/**",
+                            "/webjars/**"
                     ).permitAll()
                     //允许微信发送的请求
                     .antMatchers("/access","/code","/redirect_uri","/isBrother","/createMenu").permitAll()

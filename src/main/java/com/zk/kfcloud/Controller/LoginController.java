@@ -4,11 +4,9 @@ import com.zk.kfcloud.Dao.WeChatMapper;
 import com.zk.kfcloud.Entity.web.*;
 import com.zk.kfcloud.Exception.UserNotFoundException;
 import com.zk.kfcloud.Service.MenuService;
-import com.zk.kfcloud.Service.RedisService;
 import com.zk.kfcloud.Service.UserService;
 import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -61,6 +59,7 @@ public class LoginController {
     public String toIndex(String username, String password, String openid, Model model, HttpSession session) throws UserNotFoundException {
 //        1.将参数openid返回给login和index页面
         model.addAttribute("openid",openid);
+        log.info("username:"+username+",password:"+password+",openid:"+openid);
         log.info("username:"+username+",password:"+Tools.md5(password)+",openid:"+openid);
 //        2.获取登陆表单提交的三个参数，并查询数据库，
         Integer userid = userService.selectByNameAndPwd(new User(username,Tools.md5(password)));
@@ -95,6 +94,11 @@ public class LoginController {
         }else {
            return "login";
         }
+    }
+
+    @GetMapping("index")
+    public String toTestIndex( ){
+        return "index";
     }
 
 }
