@@ -101,4 +101,9 @@ public class LoginController {
         return "index";
     }
 
+    @GetMapping("index2")
+    public String toTestIndex2( ){
+        return "index";
+    }
+
 }

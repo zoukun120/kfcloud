@@ -1,130 +1,45 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <!-- Title and other stuffs -->
-  <title>空分云</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="">
-  <!-- Stylesheets -->
-  <link href="style/bootstrap.css" rel="stylesheet">
-  <!-- Font awesome icon -->
-  <link rel="stylesheet" href="style/font-awesome.css"> 
-  <!-- jQuery UI -->
-  <link rel="stylesheet" href="style/jquery-ui.css"> 
-  <!-- Calendar -->
-  <link rel="stylesheet" href="style/fullcalendar.css">
-  <!-- prettyPhoto -->
-  <link rel="stylesheet" href="style/prettyPhoto.css">  
-  <!-- Star rating -->
-  <link rel="stylesheet" href="style/rateit.css">
-  <!-- Date picker -->
-  <link rel="stylesheet" href="style/bootstrap-datetimepicker.min.css">
-  <!-- CLEditor -->
-  <link rel="stylesheet" href="style/jquery.cleditor.css"> 
-  <!-- Bootstrap toggle -->
-  <link rel="stylesheet" href="style/bootstrap-switch.css">
-  <!-- Main stylesheet -->
-  <link href="style/style.css" rel="stylesheet">
-  <!-- Widgets stylesheet -->
-  <link href="style/widgets.css" rel="stylesheet">
-  <!-- Favicon -->
-  <!--<link rel="shortcut icon" href="img/favicon/favicon.png">-->
-
-   <!--JS-->
-  <script src="js/html5shim.js"></script><!-- HTML5 Support for IE -->
-  <script src="js/jquery.js"></script> <!-- jQuery -->
-  <script src="js/bootstrap.js"></script> <!-- Bootstrap -->
-  <script src="js/jquery-ui-1.9.2.custom.min.js"></script> <!-- jQuery UI -->
-  <script src="js/fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
-  <script src="js/jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
-  <script src="js/jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
-
-  <!-- jQuery Flot -->
-  <script src="js/excanvas.min.js"></script>
-  <!--<script src="js/jquery.flot.js"></script>-->
-  <!--<script src="js/jquery.flot.resize.js"></script>-->
-  <!--<script src="js/jquery.flot.pie.js"></script>-->
-  <!--<script src="js/jquery.flot.stack.js"></script>-->
-
-  <script src="js/sparklines.js"></script> <!-- Sparklines -->
-  <script src="js/jquery.cleditor.min.js"></script> <!-- CLEditor -->
-  <script src="js/bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
-  <script src="js/bootstrap-switch.min.js"></script> <!-- Bootstrap Toggle -->
-  <script src="js/filter.js"></script> <!-- Filter for support page -->
-  <script src="js/custom.js"></script> <!-- Custom codes -->
-  <script src="js/charts.js"></script> <!-- Charts & Graphs -->
-  <![endif]-->
-
+    <meta charset="UTF-8"/>
+    <title>kfCloud</title>
+    <link rel="stylesheet" th:href="@{bootstrap-3.3.7-dist/css/bootstrap.min.css}"/>
+    <link href="style/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/font-awesome.css">
+    <script th:src="@{jquery/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+    <script src="js/custom.js"></script> <!-- Custom codes -->
 </head>
-
 <body>
-<!-- Header starts -->
-  <header>
-    <div class="container">
-      <div class="row">
-      </div>
-    </div>
-  </header>
-<!-- Header end -->
-
-<!-- Main content starts -->
-<div class="content">
-  	<!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-dropdown"><a href="#">导航</a></div>
-        <!--- Sidebar navigation -->
-        <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
-        <ul id="nav">
-          <!-- Main menu with font awesome icon -->
-          <li><a href="index" class="open"><i class="icon-home"></i> 首页</a>
-            <!-- Sub menu markup 
-            <ul>
-              <li><a href="#">Submenu #1</a></li>
-              <li><a href="#">Submenu #2</a></li>
-              <li><a href="#">Submenu #3</a></li>
-            </ul>-->
-          </li>
-          <li class="has_sub"><a href="#"><i class="icon-list-alt"></i> 插件页面  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
-            <ul>
-              <li>
-                <a href="widgets1.html">
-                  123456
-                </a>
-              </li>
-              <li><a href="widgets2.html">插件页面 #2</a></li>
-              <li><a href="widgets3.html">插件页面 #3</a></li>
+    <div class="content">
+        <div class="sidebar">
+            <div class="sidebar-dropdown"><a href="#">导航</a></div>
+            <ul id="nav">
+                <li><a href="index" class="open"><i class="icon-home"></i> 首页</a></li>
+                <li class="has_sub"><a href="#"><i class="icon-list-alt"></i> 插件页面  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                    <ul>
+                        <li>
+                            <a href="widgets1.html">
+                                123456
+                            </a>
+                        </li>
+                        <li><a href="widgets2.html">插件页面 #2</a></li>
+                        <li><a href="widgets3.html">插件页面 #3</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 页面模块1 <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                    <ul>
+                        <li><a href="post.html">表单Post</a></li>
+                        <li><a href="login.html">登录页</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 页面模块2  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+                    <ul>
+                        <li><a href="media.html">媒体</a></li>
+                    </ul>
+                </li>
             </ul>
-          </li>  
-          <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 页面模块1 <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
-            <ul>
-              <li><a href="post.html">表单Post</a></li>
-              <li><a href="login.html">登录页</a></li>
-            </ul>
-          </li> 
-          <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 页面模块2  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
-            <ul>
-              <li><a href="media.html">媒体</a></li>
-            </ul>
-          </li>                             
-        </ul>
-    </div>
-    <!-- Sidebar ends -->
-</div>
-<!-- Content ends -->
-
-  <!-- Footer starts -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-              <!-- Copyright info -->
-              <p class="copy">杭州电子科技大学教育部检测仪表与自动化系统集成技术工程研究中心 杭州正安科技有限公司 | <a href="www.kongfenyun.com">联系电话：13867416018</a> </p>
         </div>
-      </div>
     </div>
-  </footer>
-
 </body>
 </html>
