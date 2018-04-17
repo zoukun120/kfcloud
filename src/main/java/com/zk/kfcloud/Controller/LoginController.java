@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -90,6 +91,27 @@ public class LoginController {
                 wx.setOpenId(openid);
                 weChatMapper.insert(wx);
             }
+//            4 获取当前用户拥有的所有菜单，并传值到index页面
+//            User sessionUser = (User) session.getAttribute("SESSIONUSER");
+//            sessionUser = userService.getUserAndRoleById(user.getUserId());
+//            System.err.println("SESSIONUSER:"+sessionUser);
+//
+//            String auth = sessionUser.getAuth();
+//            System.err.println("auth:"+auth);
+//            4.1 根据用户Id查询tb2_user_menu表中所有menuId,再查询当前Menu和该menuId下的所有子菜单
+            List<Menu> menus = new ArrayList<>();
+            List<Integer> menuIds = menuService.getMenuIdByUserId(userid);
+            for (Integer menuId:menuIds) {
+                Menu menu = menuService.getMenuById(menuId);
+                if (Tools.isEmpty(menu.getMenuUrl())){
+                    menu.setSubMenu(menuService.listSubMenuByParentId(menuId));
+                }
+                menus.add(menu);
+            }
+            for (Menu menu:menus) {
+                System.err.println(menu);
+            }
+            model.addAttribute("menus",menus);
             return "index";
         }else {
            return "login";

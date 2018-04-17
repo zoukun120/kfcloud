@@ -39,24 +39,7 @@
     </div>
 </nav>
 <div class="container">
-    <div class="starter-template">
-        <!--<p th:if="${param.logout}" class="bg-warning">已注销</p>-->
-        <!--<p th:if="${param.error}" class="bg-danger">有错误，请重试</p>-->
-        <h2>空分云系统</h2>
-        <form class="form-signin" role="form" name="form" th:action="@{/index}" method="post">
-            <p id="pp" th:text="${openid}" style="visibility:hidden"></p>
-            <p><input id="openid" type="text" name="openid" style="visibility:hidden"/></p>
-            <div class="form-group">
-                <label for="username">账号</label>
-                <input type="text" class="form-control" name="username" value="" placeholder="账号"/>
-            </div>
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" class="form-control" name="password" placeholder="密码"/>
-            </div>
-            <input type="submit" id="login" value="Login" class="btn btn-primary"/>
-        </form>
-    </div>
+    <p>历史</p>
 </div>
 
 

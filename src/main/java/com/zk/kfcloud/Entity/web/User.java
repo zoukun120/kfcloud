@@ -31,6 +31,8 @@ public class User implements Serializable ,UserDetails {
 
     private Integer parentId;
 
+    private String auth;
+
     private Role role;
 
     public User() {
@@ -43,6 +45,14 @@ public class User implements Serializable ,UserDetails {
     public User(String loginname, String password) {
         this.loginname = loginname;
         this.password = password;
+    }
+
+    public String getAuth() {
+        return auth;
+    }
+
+    public void setAuth(String auth) {
+        this.auth = auth;
     }
 
     public Integer getUserId() {
@@ -162,6 +172,7 @@ public class User implements Serializable ,UserDetails {
                 ", roleId=" + roleId +
                 ", lastLogin=" + lastLogin +
                 ", parentId=" + parentId +
+                ", auth='" + auth + '\'' +
                 ", role=" + role +
                 '}';
     }

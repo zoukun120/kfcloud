@@ -11,6 +11,8 @@ public  interface MenuMapper{
   public abstract List<Menu> listSubMenuByParentId(Integer paramInteger);
   
   public abstract Menu getMenuById(Integer paramInteger);
+
+  public abstract List<Integer> getMenuIdByUserId(Integer userId);
   
   public abstract List<Menu> listAllSubMenu();
   

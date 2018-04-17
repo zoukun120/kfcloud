@@ -23,6 +23,11 @@ public class MenuServiceImpl implements MenuService {
 		return this.menuMapper.getMenuById(menuId);
 	}
 
+	@Override
+	public List<Integer> getMenuIdByUserId(Integer userId) {
+		return menuMapper.getMenuIdByUserId(userId);
+	}
+
 	public List<Menu> listAllParentMenu() {
 		return this.menuMapper.listAllParentMenu();
 	}

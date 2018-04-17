@@ -15,6 +15,8 @@ public abstract interface MenuService {
 
     public abstract Menu getMenuById(Integer paramInteger);
 
+    public abstract List<Integer> getMenuIdByUserId(Integer UserId);
+
     public abstract void saveMenu(Menu paramMenu);
 
     public abstract void deleteMenuById(Integer paramInteger);

@@ -1600,7 +1600,6 @@ footer a:hover{
 footer .copy{
 	font-size: 11px;
 }
-
 /* Responsive 很重要 */
 
 /*@media (max-width: 480px){*/
@@ -1749,5 +1748,10 @@ footer .copy{
 	header .logo{
 		padding: 0px;
 		display: none;
+	}
+
+	.navbar-header button{
+		width:100%;
+		background-color: #00bbff;
 	}
 }

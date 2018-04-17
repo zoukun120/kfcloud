@@ -11,6 +11,7 @@
         <result column="role_id" property="roleId" jdbcType="INTEGER"/>
         <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP"/>
         <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="wechat_auth" property="auth" jdbcType="VARCHAR"/>
         <association property="role" column="role_id" javaType="com.zk.kfcloud.Entity.web.Role">
             <id column="role_id" property="roleId"/>
             <result column="role_name" property="roleName"/>
