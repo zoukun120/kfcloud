@@ -5,86 +5,69 @@
     <title>实时数据</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/current/style.css}">
+    <link rel="stylesheet" th:href="@{/js/current/reset.css}">
     <link rel="stylesheet" th:href="@{/style/style.css}">
-    <link rel="stylesheet" th:href="@{/js/current/current.css}">
     <script th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/current/current.js}"></script>
+    <script th:src="@{/js/current/modernizr.js}"></script> <!-- Modernizr -->
+    <script th:src="@{/js/current/main.js}"></script>
+    <script th:src="@{/js/current/velocity.min.js}"></script>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
-        <div class="container">
-            <!-- Menu button for smallar screens -->
-            <div class="navbar-header">
-                <button class="navbar-toggle btn-navbar" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();" type="button">
-                    <span>导航</span>
-                </button>
+    <section class="cd-section">
+
+        <div id="menu" class="cd-modal-action">
+            <a href="#0" class="btn" data-type="modal-trigger"><span>导航</span></a>
+            <span class="cd-modal-bg"></span>
+        </div>
+
+        <div class="widget col-md-12">
+            <div class="widget-head">
+                <div class="pull-center">实时数据</div>
+                <div class="clearfix"></div>
             </div>
-            <!-- model start -->
-            <div class="modal fade login" id="loginModal">
-                <div class="modal-dialog login animated">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">Login with</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="box">
-                                <div class="content">
-                                    <div class="social">
-                                        <a class="circle github" href="/auth/github">
-                                            <i class="fa fa-github fa-fw"></i>
-                                        </a>
-                                        <a id="google_login" class="circle google" href="/auth/google_oauth2">
-                                            <i class="fa fa-google-plus fa-fw"></i>
-                                        </a>
-                                        <a id="facebook_login" class="circle facebook" href="/auth/facebook">
-                                            <i class="fa fa-facebook fa-fw"></i>
-                                        </a>
-                                    </div>
-                                    <div class="division">
-                                        <div class="line l"></div>
-                                        <span>or</span>
-                                        <div class="line r"></div>
-                                    </div>
-                                    <div class="error"></div>
-                                    <div class="form loginBox">
-                                        <form method="post" action="/login" accept-charset="UTF-8">
-                                            <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box">
-                                <div class="content registerBox" style="display:none;">
-                                    <div class="form">
-                                        <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-                                            <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                            <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                                            <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                                            <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="forgot login-footer">
-                            <span>Looking to
-                                 <a href="javascript: showRegisterForm();">create an account</a>
-                            ?</span>
-                            </div>
-                            <div class="forgot register-footer" style="display:none">
-                                <span>Already have an account?</span>
-                                <a href="javascript: showLoginForm();">Login</a>
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="widget-content">
+
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>参数名</td>
+                            <td>值</td>
+                        </tr>
+                    </thead>
+                    <tbody id="currentdata">
+
+                    </tbody>
+                </table>
+
+                <div class="widget-foot">
+                    <ul class="pagination pull-right">
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 模态框 start -->
+        <div class="cd-modal">
+            <div class="cd-modal-content">
+                <div id="sysPanel">
+                    <!-- 这里会展示某工厂current页面拥有的空分系统模块-->
                 </div>
             </div>
-            <!-- model end -->
         </div>
-    </div>
+        <a href="#0" class="cd-modal-close">Close</a>
+        <!-- 模态框 end -->
+    </section>
 
 </body>
 </html>

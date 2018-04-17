@@ -31,8 +31,7 @@
 	</select>
 
 	<select id="getData" resultType="map" statementType="STATEMENT">
-		select
-		${SqlFields} from ${KFTable} order by TIME Desc limit 1
+		select ${SqlFields} from ${KFTable} order by TIME Desc limit 1
 	</select>
 
 	<select id="getAlarmData" parameterType="String" resultType="java.util.HashMap"

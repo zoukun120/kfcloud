@@ -21,12 +21,12 @@
         <form class="form-signin" role="form" th:action="@{/index}" method="post">
             <input type="text" class="form-control" name="username" placeholder="用户名" required autofocus/>
             <input type="password" class="form-control" name="password" placeholder="密码" required/>
+            <!--<label id="remeberme" class="checkbox">-->
+                <!--<input type="checkbox" value="remember-me"> 记住我-->
+            <!--</label>-->
             <button class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
             <p><input id="openid" type="text" name="openid" style="visibility:hidden"/></p>
             <p id="pp" th:text="${openid}" style="visibility:hidden"></p>
-            <!--<label class="checkbox">-->
-            <!--<input type="checkbox" value="remember-me"> 记住我-->
-            <!--</label>-->
         </form>
     </div>
 </body>
