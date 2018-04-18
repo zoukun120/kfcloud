@@ -80,4 +80,17 @@ public class FactoryController {
         json.put("dataMap", dataMap);
         return json;
     }
+
+    /**
+     * 返回某工厂history页面拥有的空分系统数据
+     * @param id
+     * @return
+     */
+
+    @GetMapping("/history/{factoryId}")
+    @ResponseBody
+    public List<Factory> hisSystem(@PathVariable("factoryId") Integer id){
+
+        return factoryService.listAllInfoByFactoryId(id);
+    }
 }
