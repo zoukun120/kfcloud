@@ -91,6 +91,7 @@ html{
 }
 /* 很重要 */
 .submenu li {
+    display: inline-block;
     margin:5px auto;
     border-radius:0.5em;
     box-shadow: 5px 5px 5px #343434 ;
