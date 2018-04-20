@@ -49,6 +49,7 @@ public  class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     //允许微信发送的请求
                     .antMatchers("/access","/code","/redirect_uri","/isBrother","/createMenu").permitAll()
                     .antMatchers("/","/login","/index").permitAll()
+                    .antMatchers("/subMenu","/current","/history").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .logout()

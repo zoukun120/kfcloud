@@ -3,7 +3,8 @@ body{
 	line-height: 22px;
 	color: #666;
 	border-top: 3px solid #eee;
-	background:#343434 url("../img/back.png") repeat;  
+	/*background:#343434 url("../img/back.png") repeat;  */
+	background-color: #03bb91;
 	padding-top: 37px;
 	-webkit-font-smoothing: antialiased;
 }
@@ -925,11 +926,11 @@ header .header-data .hdata em{
 /* Widget */
 
 .widget {
-  border: 1px solid #c9c9c9;
+  border: 2px solid #1aaef3;
   border-radius: 3px;
   margin-top: 10px;
   margin-bottom: 20px; 
-  background: #fafafa url('../img/cream.png') repeat;
+  background: #343434;
 }
 
 .widget p{
@@ -995,18 +996,18 @@ header .header-data .hdata em{
 	color: #888;
 }
 
-.widget .padd, .modal-body{
-	padding: 13px 15px;
-}
+/*.widget .padd, .modal-body{*/
+	/*padding: 13px 15px;*/
+/*}*/
 
 .widget .widget-head,.modal-header{
-  background-color: #f8f8f8;
+  /*background-color: #f8f8f8;*/
   background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
   background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
   background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
   background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
   background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: linear-gradient(top, #f8f8f8, #f2f2f2);	
+  background: linear-gradient(top, #f8f8f8, #f2f2f2);
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
   text-shadow:0px 1px #fff;
@@ -1468,7 +1469,7 @@ header .header-data .hdata em{
 /* Chart */
 
 #bar-chart,#bar-chart-black,#curve-chart,#live-chart,#pie-chart,#pie-chart2,#pie-chart3{
-	height: 250px;
+	min-height: 250px;
 	max-width: 100%;
 }
 
@@ -1518,40 +1519,10 @@ border:1px solid #eee;
 	padding: 10px 0px;
 }
 
-/* Widget-Content */
 
-.widget-content .error .form-inline button{
-	margin-left:-2px;
-	padding:8px 12px;
-}
 
-.chats{
-	padding-left:0px;
-	margin-left:0px;
-}
 
-.recent{
-	padding-left:0px;
-	margin-left:0px;
-}
 
-.widget-foot .form-inline button {
-	margin-left: -3px;
-	padding:7px 12px;
-}
-
-.widget-content .form-inline button {
-	margin-left: 0px;
-	padding:7px 12px;
-}
-
-.buttons button{
-	margin-top:10px;
-}
-
-.widget-content ol#slist{
-	padding:0px;
-}
 
 .task i {
 	display:inline-block;
@@ -1584,9 +1555,9 @@ footer{
 	border-top: 3px solid #ddd;
 }
 
-footer .container{
-	max-width:100% !important;
-}
+/*footer .container{*/
+	/*max-width:100% !important;*/
+/*}*/
 
 footer a, footer a:visited{
 	color: #444;
