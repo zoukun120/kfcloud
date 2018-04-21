@@ -8,7 +8,7 @@ $(document).ready(function () {
         var attrValue = $('#nav i').attr('class');
             console.log(attrValue)
         if (attrValue.indexOf("up")!= -1){
-            $('.submenu').show();
+            $('.dropdown-menu').show();
             $('#nav i').attr('class','icon-chevron-down');
         }
         // 2 隐藏图表
@@ -17,18 +17,18 @@ $(document).ready(function () {
         loadSysName();
     });
     //点击系统名，隐藏下拉菜单
-    $(".submenu").click(function(){
+    $(".dropdown-menu").click(function(){
         //判断是否隐藏 下拉系统菜单选择项
         console.log('点击系统名，隐藏下拉菜单')
         var attrValue = $('#nav i').attr('class');
         if (attrValue.indexOf("down")!= -1){
-            $('.submenu').hide();
+            $('.dropdown-menu').hide();
             $('#nav i').attr('class','icon-chevron-up');
         }
 
     });
 
-    $(".submenu li").click(function(){
+    $(".dropdown-menu li").click(function(){
         //清空图表
         $("#container").empty();
     });
@@ -45,16 +45,21 @@ function loadSysName() {
         type : "get",
         success : function(factories) {
                 console.log(factories)
-                $('.submenu').empty();
+                $('.dropdown-menu').empty();
                 // 遍历数据，构造html，点击发送请求
+
+                var result = "<li id='firstli'><ul>"
+                // $('.dropdown-menu').append(prefix);
                 for (var i=0;i<factories.length;i++){
                     var li = '';
                     li += '<li>'
                         + '<a onclick="loadHisData(\'tb2_model'+ factories[i].modelNum +'\','+factories[i].modelId+',\''+factories[i].systemName+'\')">' + factories[i].systemName + '</a>'
                         + '</li>';
-                    console.log(li)
-                    $('.submenu').append(li);
+                    result +=li;
                 }
+                result += "</ul></li>";
+                console.log(result)
+                $('.dropdown-menu').append(result);
         }
     })
 }

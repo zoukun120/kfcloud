@@ -14,15 +14,16 @@ html{
 }
 
 /* general styles */
-.menu, .menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+/*.menu, .menu ul {*/
+    /*list-style: none;*/
+    /*padding: 0;*/
+    /*margin: 0;*/
+/*}*/
 .menu {
-    height: 58px;
+    min-height: 58px;
+    height: auto;
     margin: 8px auto;
-    /*border: #1aaef3 solid 2px;*/
+    /*border: #b81900 solid 2px;*/
 }
 .menu li {
     background: -moz-linear-gradient(#292929, #252525);
@@ -79,20 +80,29 @@ html{
     color: #C4302B;
 }
 
-/* submenu styles */
-.submenu {
-    left: 40%;
-    max-height: 0;
-    position: absolute;
-    top: 205%;
+/* dropdown-menu styles */
+.dropdown-menu {
+    /*border: red dashed 2px;*/
+    margin-left: 10%;
+    /*max-height: 0;*/
+    position: static;
+    /*top: 205%;*/
+    padding:5px;
+    border-radius:1em;
     z-index: 0;
-    width: 20%;
+    width: 80%;
     perspective: 400px;
+    background: transparent;
 }
 /* 很重要 */
-.submenu li {
+/*#firstli{*/
+    /*border: red solid 3px;*/
+/*}*/
+
+.dropdown-menu li {
+    border: green solid 1px;
     display: inline-block;
-    margin:5px auto;
+    margin:3px 2px;
     border-radius:0.5em;
     box-shadow: 5px 5px 5px #343434 ;
     background: #1aaef3;
@@ -109,16 +119,24 @@ html{
     -o-transition: opacity .4s, -o-transform .5s;
     transition: opacity .4s, transform .5s;
 }
-.menu .submenu li:hover a {
+
+.btn-group{
+    width: 100%;
+}
+.dropdown-menu li a{
+    font-size: 14px;
+    line-height: 30px;
+}
+.menu .dropdown-menu li:hover a {
     /*border-left: 3px solid #454545;*/
     border-radius: 0;
     color: #ffffff;
 }
-.menu > li:hover .submenu, .menu > li:focus .submenu {
+.menu > li:hover .dropdown-menu, .menu > li:focus .dropdown-menu {
     max-height: 2000px;
     z-index: 10;
 }
-.menu > li:hover .submenu li, .menu > li:focus .submenu li {
+.menu > li:hover .dropdown-menu li, .menu > li:focus .dropdown-menu li {
     opacity: 1;
 
     -webkit-transform: none;
@@ -129,56 +147,56 @@ html{
 }
 
 /* CSS3 delays for transition effects */
-.menu li:hover .submenu li:nth-child(1) {
+.menu li:hover .dropdown-menu li:nth-child(1) {
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
     -ms-transition-delay: 0s;
     -o-transition-delay: 0s;
     transition-delay: 0s;
 }
-.menu li:hover .submenu li:nth-child(2) {
+.menu li:hover .dropdown-menu li:nth-child(2) {
     -webkit-transition-delay: 50ms;
     -moz-transition-delay: 50ms;
     -ms-transition-delay: 50ms;
     -o-transition-delay: 50ms;
     transition-delay: 50ms;
 }
-.menu li:hover .submenu li:nth-child(3) {
+.menu li:hover .dropdown-menu li:nth-child(3) {
     -webkit-transition-delay: 100ms;
     -moz-transition-delay: 100ms;
     -ms-transition-delay: 100ms;
     -o-transition-delay: 100ms;
     transition-delay: 100ms;
 }
-.menu li:hover .submenu li:nth-child(4) {
+.menu li:hover .dropdown-menu li:nth-child(4) {
     -webkit-transition-delay: 150ms;
     -moz-transition-delay: 150ms;
     -ms-transition-delay: 150ms;
     -o-transition-delay: 150ms;
     transition-delay: 150ms;
 }
-.menu li:hover .submenu li:nth-child(5) {
+.menu li:hover .dropdown-menu li:nth-child(5) {
     -webkit-transition-delay: 200ms;
     -moz-transition-delay: 200ms;
     -ms-transition-delay: 200ms;
     -o-transition-delay: 200ms;
     transition-delay: 200ms;
 }
-.menu li:hover .submenu li:nth-child(6) {
+.menu li:hover .dropdown-menu li:nth-child(6) {
     -webkit-transition-delay: 250ms;
     -moz-transition-delay: 250ms;
     -ms-transition-delay: 250ms;
     -o-transition-delay: 250ms;
     transition-delay: 250ms;
 }
-.menu li:hover .submenu li:nth-child(7) {
+.menu li:hover .dropdown-menu li:nth-child(7) {
     -webkit-transition-delay: 300ms;
     -moz-transition-delay: 300ms;
     -ms-transition-delay: 300ms;
     -o-transition-delay: 300ms;
     transition-delay: 300ms;
 }
-.menu li:hover .submenu li:nth-child(8) {
+.menu li:hover .dropdown-menu li:nth-child(8) {
     -webkit-transition-delay: 350ms;
     -moz-transition-delay: 350ms;
     -ms-transition-delay: 350ms;
@@ -186,56 +204,56 @@ html{
     transition-delay: 350ms;
 }
 
-.submenu li:nth-child(1) {
+.dropdown-menu li:nth-child(1) {
     -webkit-transition-delay: 350ms;
     -moz-transition-delay: 350ms;
     -ms-transition-delay: 350ms;
     -o-transition-delay: 350ms;
     transition-delay: 350ms;
 }
-.submenu li:nth-child(2) {
+.dropdown-menu li:nth-child(2) {
     -webkit-transition-delay: 300ms;
     -moz-transition-delay: 300ms;
     -ms-transition-delay: 300ms;
     -o-transition-delay: 300ms;
     transition-delay: 300ms;
 }
-.submenu li:nth-child(3) {
+.dropdown-menu li:nth-child(3) {
     -webkit-transition-delay: 250ms;
     -moz-transition-delay: 250ms;
     -ms-transition-delay: 250ms;
     -o-transition-delay: 250ms;
     transition-delay: 250ms;
 }
-.submenu li:nth-child(4) {
+.dropdown-menu li:nth-child(4) {
     -webkit-transition-delay: 200ms;
     -moz-transition-delay: 200ms;
     -ms-transition-delay: 200ms;
     -o-transition-delay: 200ms;
     transition-delay: 200ms;
 }
-.submenu li:nth-child(5) {
+.dropdown-menu li:nth-child(5) {
     -webkit-transition-delay: 150ms;
     -moz-transition-delay: 150ms;
     -ms-transition-delay: 150ms;
     -o-transition-delay: 150ms;
     transition-delay: 150ms;
 }
-.submenu li:nth-child(6) {
+.dropdown-menu li:nth-child(6) {
     -webkit-transition-delay: 100ms;
     -moz-transition-delay: 100ms;
     -ms-transition-delay: 100ms;
     -o-transition-delay: 100ms;
     transition-delay: 100ms;
 }
-.submenu li:nth-child(7) {
+.dropdown-menu li:nth-child(7) {
     -webkit-transition-delay: 50ms;
     -moz-transition-delay: 50ms;
     -ms-transition-delay: 50ms;
     -o-transition-delay: 50ms;
     transition-delay: 50ms;
 }
-.submenu li:nth-child(8) {
+.dropdown-menu li:nth-child(8) {
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
     -ms-transition-delay: 0s;
@@ -262,4 +280,10 @@ html{
 
 #container{
     min-height: 450px;
+}
+
+.outer{
+    border: red solid 5px;
+    min-height: 250px;
+    height: auto;
 }
