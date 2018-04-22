@@ -37,7 +37,7 @@ html{
 
     /*border-bottom: 2px solid #181818;*/
     /*border-top: 2px solid #303030;*/
-    min-width: 160px;
+    min-width: 136px;
 }
 .menu > li {
     display: block;
@@ -83,14 +83,14 @@ html{
 /* dropdown-menu styles */
 .dropdown-menu {
     /*border: red dashed 2px;*/
-    margin-left: 10%;
+    margin-left: 5%;
     /*max-height: 0;*/
     position: static;
     /*top: 205%;*/
     padding:5px;
     border-radius:1em;
     z-index: 0;
-    width: 80%;
+    width: 90%;
     perspective: 400px;
     background: transparent;
 }
@@ -147,62 +147,62 @@ html{
 }
 
 /* CSS3 delays for transition effects */
-.menu li:hover .dropdown-menu li:nth-child(1) {
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    -ms-transition-delay: 0s;
-    -o-transition-delay: 0s;
-    transition-delay: 0s;
-}
-.menu li:hover .dropdown-menu li:nth-child(2) {
-    -webkit-transition-delay: 50ms;
-    -moz-transition-delay: 50ms;
-    -ms-transition-delay: 50ms;
-    -o-transition-delay: 50ms;
-    transition-delay: 50ms;
-}
-.menu li:hover .dropdown-menu li:nth-child(3) {
-    -webkit-transition-delay: 100ms;
-    -moz-transition-delay: 100ms;
-    -ms-transition-delay: 100ms;
-    -o-transition-delay: 100ms;
-    transition-delay: 100ms;
-}
-.menu li:hover .dropdown-menu li:nth-child(4) {
-    -webkit-transition-delay: 150ms;
-    -moz-transition-delay: 150ms;
-    -ms-transition-delay: 150ms;
-    -o-transition-delay: 150ms;
-    transition-delay: 150ms;
-}
-.menu li:hover .dropdown-menu li:nth-child(5) {
-    -webkit-transition-delay: 200ms;
-    -moz-transition-delay: 200ms;
-    -ms-transition-delay: 200ms;
-    -o-transition-delay: 200ms;
-    transition-delay: 200ms;
-}
-.menu li:hover .dropdown-menu li:nth-child(6) {
-    -webkit-transition-delay: 250ms;
-    -moz-transition-delay: 250ms;
-    -ms-transition-delay: 250ms;
-    -o-transition-delay: 250ms;
-    transition-delay: 250ms;
-}
-.menu li:hover .dropdown-menu li:nth-child(7) {
-    -webkit-transition-delay: 300ms;
-    -moz-transition-delay: 300ms;
-    -ms-transition-delay: 300ms;
-    -o-transition-delay: 300ms;
-    transition-delay: 300ms;
-}
-.menu li:hover .dropdown-menu li:nth-child(8) {
-    -webkit-transition-delay: 350ms;
-    -moz-transition-delay: 350ms;
-    -ms-transition-delay: 350ms;
-    -o-transition-delay: 350ms;
-    transition-delay: 350ms;
-}
+/*.menu li:hover .dropdown-menu li:nth-child(1) {*/
+    /*-webkit-transition-delay: 0s;*/
+    /*-moz-transition-delay: 0s;*/
+    /*-ms-transition-delay: 0s;*/
+    /*-o-transition-delay: 0s;*/
+    /*transition-delay: 0s;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(2) {*/
+    /*-webkit-transition-delay: 50ms;*/
+    /*-moz-transition-delay: 50ms;*/
+    /*-ms-transition-delay: 50ms;*/
+    /*-o-transition-delay: 50ms;*/
+    /*transition-delay: 50ms;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(3) {*/
+    /*-webkit-transition-delay: 100ms;*/
+    /*-moz-transition-delay: 100ms;*/
+    /*-ms-transition-delay: 100ms;*/
+    /*-o-transition-delay: 100ms;*/
+    /*transition-delay: 100ms;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(4) {*/
+    /*-webkit-transition-delay: 150ms;*/
+    /*-moz-transition-delay: 150ms;*/
+    /*-ms-transition-delay: 150ms;*/
+    /*-o-transition-delay: 150ms;*/
+    /*transition-delay: 150ms;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(5) {*/
+    /*-webkit-transition-delay: 200ms;*/
+    /*-moz-transition-delay: 200ms;*/
+    /*-ms-transition-delay: 200ms;*/
+    /*-o-transition-delay: 200ms;*/
+    /*transition-delay: 200ms;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(6) {*/
+    /*-webkit-transition-delay: 250ms;*/
+    /*-moz-transition-delay: 250ms;*/
+    /*-ms-transition-delay: 250ms;*/
+    /*-o-transition-delay: 250ms;*/
+    /*transition-delay: 250ms;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(7) {*/
+    /*-webkit-transition-delay: 300ms;*/
+    /*-moz-transition-delay: 300ms;*/
+    /*-ms-transition-delay: 300ms;*/
+    /*-o-transition-delay: 300ms;*/
+    /*transition-delay: 300ms;*/
+/*}*/
+/*.menu li:hover .dropdown-menu li:nth-child(8) {*/
+    /*-webkit-transition-delay: 350ms;*/
+    /*-moz-transition-delay: 350ms;*/
+    /*-ms-transition-delay: 350ms;*/
+    /*-o-transition-delay: 350ms;*/
+    /*transition-delay: 350ms;*/
+/*}*/
 
 .dropdown-menu li:nth-child(1) {
     -webkit-transition-delay: 350ms;

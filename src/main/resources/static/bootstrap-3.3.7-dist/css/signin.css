@@ -1,63 +1,81 @@
 body {
-	background:url(../images/login_bg_0.jpg) #f8f6e9;
+    /*background-color:#546D68 ;*/
+    background-image: url(../images/login_bg.jpg);
+    background-repeat: repeat;
+    background-size: cover;
 }
-/*#remeberme{*/
-    /*float: right;*/
-/*}*/
+
 .signin {
-	width:477px;
-	height:479px;
-	/*background:url(../images/login_bg.png) no-repeat;*/
-	margin:0 auto;
-	
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-top:-239px;
-	margin-left:-238px;
+    min-width: 88%;
+    min-height: 60%;
+    margin: 0 auto;
+    position: absolute;
+    top: 12%;
+    left: 6%;
+    border:#55736d57 solid 1px;
+    box-shadow:5px 5px 5px;
 }
+
 .signin-head {
-	margin:0 auto;
-	padding-top:30px;
-	width:120px;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: center;
 }
+
 .form-signin {
-  max-width: 330px;
-  padding: 43px 15px 15px 15px;
-  margin: 0 auto;
+    max-width: 330px;
+    padding: 43px 15px 15px 15px;
+    margin: 0 auto;
 }
+
 .form-signin .checkbox {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 .form-signin .checkbox {
-  font-weight: normal;
+    font-weight: normal;
 }
+
 .form-signin .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 .form-signin .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
+
 .form-signin input[type="text"] {
-  margin-bottom: 14px;
-  border-radius: 0;
-  background: url(../images/login_user.png) 0 0 #bdbdbd no-repeat;
-  padding-left:60px;
-  color:#FFFFFF;
+    margin-bottom: 14px;
+    border-radius: 0;
+    background: url(../images/login_user.png) 0 0 transparent  no-repeat;
+    padding-left: 60px;
+    color: #FFFFFF;
+    width: 80%;
+    margin: auto;
 }
+
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-radius: 0;
-  background: url(../images/login_pas.png) 0 0 #bdbdbd no-repeat;
-  padding-left:60px;
-  color:#FFFFFF;
+    margin-bottom: 10px;
+    border-radius: 0;
+    background: url(../images/login_pas.png) 0 0 transparent  no-repeat;
+    padding-left: 60px;
+    color: #FFFFFF;
+    width: 80%;
+    margin: 1em auto;
 }
+
 .form-signin button {
-  border-radius: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: 2px 2px 2px #474845;
+    border-color: #98978c70;
+    color: #dee8dd;
+    width: 80%;
+    margin: auto;
 }

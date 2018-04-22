@@ -1,13 +1,17 @@
 package com.zk.kfcloud.ServerImpl;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.zk.kfcloud.Dao.FactoryMapper;
 import com.zk.kfcloud.Entity.web.Factory;
+import com.zk.kfcloud.Entity.web.Menu;
 import com.zk.kfcloud.Service.FactoryService;
+import com.zk.kfcloud.Service.MenuService;
+import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +19,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class FactoryServiceImpl implements FactoryService {
+
 	@Autowired
 	FactoryMapper factoryMapper;
+
+	@Autowired
+	MenuService menuService;
 
 	public List<Factory> listAllInfoByFactoryId(Integer factoryId) {
 		return this.factoryMapper.listAllInfoByFactoryId(factoryId);
@@ -111,5 +119,21 @@ public class FactoryServiceImpl implements FactoryService {
 		dateMap.put("tableName", tableName);
 		return factoryMapper.getAllData(dateMap);
 	}
-	
+
+	@Override
+	public List<Menu> commonCode(Integer userid) {
+		List<Menu> menus = new ArrayList<>();
+		List<Integer> menuIds = menuService.getMenuIdByUserId(userid);
+		for (Integer menuId:menuIds) {
+			Menu menu = menuService.getMenuById(menuId);
+			if (Tools.isEmpty(menu.getMenuUrl())){
+				menu.setSubMenu(menuService.listSubMenuByParentId(menuId));
+			}
+			menus.add(menu);
+		}
+		for (Menu menu:menus) {
+			System.err.println(menu);
+		}
+		return menus;
+	}
 }

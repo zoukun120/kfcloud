@@ -14,15 +14,17 @@ jQuery(document).ready(function($){
 		//if browser doesn't support transitions...
 		if(actionBtn.parents('.no-csstransitions').length > 0 ) animateLayer(actionBtn.next('.cd-modal-bg'), scaleValue, true);
 		//隐藏表格
-		$('.widget').hide();
+		$('.widget').hide('slow');
 		//清空定时器
         window.clearInterval(t);
-        sendAjax();
+		var factoryId = $("#pp").html();
+        sendAjax(factoryId);
 	});
 
 	//trigger the animation - close modal window
 	$('.cd-section .cd-modal-close').on('click', function(){
 		closeModal();
+        // $('.widget').hide();//点X，隐藏蓝色框
 	});
 	$(document).keyup(function(event){
 		if(event.which=='27') closeModal();
@@ -91,9 +93,9 @@ jQuery(document).ready(function($){
 /**
  * 点击’导航‘，发送get请求
  */
-function sendAjax() {
-    // console.log('send  ajax ')
-    var factoryId = 8;
+function sendAjax(factoryId) {
+    console.log('factoryId = '+factoryId);
+    // var factoryId = 8;
     $.ajax({
         url : '/current/'+factoryId,
         type : "get",
@@ -101,13 +103,15 @@ function sendAjax() {
             $('#sysPanel').empty();
             //    遍历数据，构造html，点击发送请求
             for (var i=0;i<factories.length;i++){
-            	var modelName = 'tb2_model'+factories[i].modelNum;
-            	var modelId = factories[i].modelId;
-            	var systemName = factories[i].systemName;
-            	var url = '/current/tb2_model'+factories[i].modelNum+'/'+factories[i].modelId+'/'+factories[i].systemName;
-				var a = '<a class="btn btn-success" onclick="clickSys(\''+url+'\')">'+systemName+'</a>'
-                // console.log(a)
-                $('#sysPanel').append(a);
+                var systemName = factories[i].systemName;
+              	if(systemName!='报警系统'){
+                    var modelName = 'tb2_model'+factories[i].modelNum;
+                    var modelId = factories[i].modelId;
+                    var url = '/current/tb2_model'+factories[i].modelNum+'/'+factories[i].modelId+'/'+factories[i].systemName;
+                    var a = '<a class="btn btn-success" onclick="clickSys(\''+url+'\')">'+systemName+'</a>'
+                    // console.log(a)
+                    $('#sysPanel').append(a);
+				}
             }
         }
     })
@@ -117,6 +121,7 @@ function sendAjax() {
  * 自动触发关闭按钮
  */
 function  clickSys(url) {
+    $('.widget').show();
     time(url);
     t=setInterval(function(){time(url)},5000);//以后每隔5s发一次请求
 }
@@ -142,7 +147,7 @@ function time(url) {
                     + '</tr>';
                 $('#currentdata').append(tr)
             }
-            $('.widget').show('slow');
+            $('.widget-head,.widget-content').show('slow');
         },
         error : function() {
             alert('服务器正忙，请稍后再试...');

@@ -1,6 +1,7 @@
 package com.zk.kfcloud.Service;
 
 import com.zk.kfcloud.Entity.web.Factory;
+import com.zk.kfcloud.Entity.web.Menu;
 
 import java.util.List;
 import java.util.Map;
@@ -40,5 +41,7 @@ public abstract interface FactoryService {
 	public abstract Map<String, Object> getDailyData(Integer teamNum, String tableName);
 
 	List<Object> getAllData(Map<String, Object> dateMap, String tableName);
+
+	public abstract List<Menu> commonCode(Integer userid);
 	
 }

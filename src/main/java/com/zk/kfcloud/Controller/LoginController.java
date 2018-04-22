@@ -3,8 +3,10 @@ package com.zk.kfcloud.Controller;
 import com.zk.kfcloud.Dao.WeChatMapper;
 import com.zk.kfcloud.Entity.web.*;
 import com.zk.kfcloud.Exception.UserNotFoundException;
+import com.zk.kfcloud.Service.FactoryService;
 import com.zk.kfcloud.Service.MenuService;
 import com.zk.kfcloud.Service.UserService;
+import com.zk.kfcloud.Utils.FactoryUtil;
 import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,8 @@ public class LoginController {
     private MenuService menuService;
     @Autowired
     private WeChatMapper weChatMapper;
-
+    @Autowired
+    private FactoryService factoryService;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
     @Autowired
@@ -99,19 +102,7 @@ public class LoginController {
 //            String auth = sessionUser.getAuth();
 //            System.err.println("auth:"+auth);
 //            4.1 根据用户Id查询tb2_user_menu表中所有menuId,再查询当前Menu和该menuId下的所有子菜单
-            List<Menu> menus = new ArrayList<>();
-            List<Integer> menuIds = menuService.getMenuIdByUserId(userid);
-            for (Integer menuId:menuIds) {
-                Menu menu = menuService.getMenuById(menuId);
-                if (Tools.isEmpty(menu.getMenuUrl())){
-                    menu.setSubMenu(menuService.listSubMenuByParentId(menuId));
-                }
-                menus.add(menu);
-            }
-            for (Menu menu:menus) {
-                System.err.println(menu);
-            }
-            model.addAttribute("menus",menus);
+            model.addAttribute("menus",factoryService.commonCode(userid));
             return "index";
         }else {
            return "login";
@@ -119,12 +110,9 @@ public class LoginController {
     }
 
     @GetMapping("index")
-    public String toTestIndex( ){
-        return "index";
-    }
-
-    @GetMapping("index2")
-    public String toTestIndex2( ){
+    public String toUserIndex(Integer userid, Model model){
+        System.err.println("index-get-userid:"+userid);
+        model.addAttribute("menus",factoryService.commonCode(userid));
         return "index";
     }
 

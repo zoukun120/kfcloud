@@ -4,7 +4,10 @@ body{
 	color: #666;
 	border-top: 3px solid #eee;
 	/*background:#343434 url("../img/back.png") repeat;  */
-	background-color: #03bb91;
+	/*background-color: #03bb91;*/
+	background-image: url(../bootstrap-3.3.7-dist/images/login_bg.jpg);
+	background-repeat: repeat;
+	background-size: cover;
 	padding-top: 37px;
 	-webkit-font-smoothing: antialiased;
 }
@@ -112,7 +115,7 @@ button{
 
 
 a.btn{
-	font-size: 11px !important;
+	font-size: 18px !important;
 }
 
 .progress{
@@ -339,25 +342,25 @@ text-decoration:none;
 
 /* Half column */
 
-.mcol-left{
-	width: 48%;
-	float: left;
-}
+/*.mcol-left{*/
+	/*width: 48%;*/
+	/*float: left;*/
+/*}*/
 
-.mcol-right{
-	width: 48%;
-	float: right;
-}
+/*.mcol-right{*/
+	/*width: 48%;*/
+	/*float: right;*/
+/*}*/
 
-.col-left{
-	width: 48%;
-	float: left;
-}
+/*.col-left{*/
+	/*width: 48%;*/
+	/*float: left;*/
+/*}*/
 
-.col-right{
-	width: 48%;
-	float: right;
-}
+/*.col-right{*/
+	/*width: 48%;*/
+	/*float: right;*/
+/*}*/
 
 /* Dropdown menu */
 
@@ -723,14 +726,17 @@ header .header-data .hdata em{
 
 .sidebar ul li{
 	list-style-type: none;
+	margin: 2px auto;
 }
 
-.sidebar #nav { 
-  display: block; 
-  width:100%; 
-  margin:0 auto; 
-  position: absolute;
-  z-index: 60;
+.sidebar #nav {
+	display: block;
+	position: absolute;
+	z-index: 60;
+	min-width: 94%;
+	margin: auto;
+	left: 3%;
+	box-shadow: 10px 10px 10px;
 }
 
 /**
@@ -776,7 +782,8 @@ header .header-data .hdata em{
 }
 
 .sidebar #nav > li > a:hover, .sidebar #nav > li > a.open, .sidebar #nav > li > a.subdrop { 
-  color: #e9e9e9;
+  /*color: #e9e9e9;*/
+	color: transparent;
   border-bottom: 1px solid #167cac;
   border-top: 1px solid #2094ca;
   background-color: #0993d3;
@@ -926,12 +933,13 @@ header .header-data .hdata em{
 /* Widget */
 
 .widget {
-  border: 2px solid #1aaef3;
-  border-radius: 3px;
-  margin-top: 10px;
-  margin-bottom: 20px; 
-  background: #343434;
-	display: block;
+	border: 2px solid #1aaef3;
+	border-radius: 3px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	background: #9fc8d8;
+	/*display: block;*/
+	/*min-height: 250px;*/
 }
 
 .widget p{
@@ -1001,23 +1009,23 @@ header .header-data .hdata em{
 	/*padding: 13px 15px;*/
 /*}*/
 
-.widget .widget-head,.modal-header{
-  /*background-color: #f8f8f8;*/
-  background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
-  background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
-  background: linear-gradient(top, #f8f8f8, #f2f2f2);
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
-  text-shadow:0px 1px #fff;
-  border-bottom: 1px solid #ccc;
-  border-top: 1px solid #fff;
+.widget .widget-head, .modal-header {
+	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
+	background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+	background: linear-gradient(top, #f8f8f8, #f2f2f2);
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	text-shadow: 0px 1px #fff;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
 	color: #666;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: bold;
-    padding: 8px 15px;
+	padding: 8px 15px;
+	max-height: 50px;
 }
 
 .widget.wblack .widget-head{
