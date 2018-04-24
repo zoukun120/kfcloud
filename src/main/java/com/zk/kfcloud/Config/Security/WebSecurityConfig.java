@@ -44,6 +44,7 @@ public  class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/favicon.ico",
                             "/jquery/**",
                             "/bootstrap-3.3.7-dist/**",
+                            "/layui/**",
                             "/webjars/**"
                     ).permitAll()
                     //允许微信发送的请求
@@ -55,4 +56,6 @@ public  class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .permitAll();
         }
+
+
 }
