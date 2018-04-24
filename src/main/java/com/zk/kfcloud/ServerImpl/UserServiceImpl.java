@@ -6,6 +6,7 @@ import com.zk.kfcloud.Entity.web.User;
 import com.zk.kfcloud.Entity.web.WeChat;
 import com.zk.kfcloud.Exception.UserNotFoundException;
 import com.zk.kfcloud.Service.UserService;
+import com.zk.kfcloud.Service.WeChatService;
 import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     private UserMapper userMapper;
 
     @Autowired
-    private WeChatMapper weChatMapper;
+    private WeChatService weChatService;
 
     /*
         判断当前openid是否已经在数据库，
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
     @Override
     public User isBrother(String openid) {
         if (Tools.notEmpty(openid)) {
-            List<WeChat> allWeChatUser = weChatMapper.findAllWeChatUser();
+            List<WeChat> allWeChatUser = weChatService.findAllWeChatUser();
             if (allWeChatUser != null) {
                 for (WeChat wx : allWeChatUser) {
                     System.err.println(wx);

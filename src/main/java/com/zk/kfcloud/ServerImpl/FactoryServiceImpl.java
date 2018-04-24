@@ -132,7 +132,7 @@ public class FactoryServiceImpl implements FactoryService {
 			menus.add(menu);
 		}
 		for (Menu menu:menus) {
-			System.err.println(menu);
+			log.info(menu.toString());
 		}
 		return menus;
 	}

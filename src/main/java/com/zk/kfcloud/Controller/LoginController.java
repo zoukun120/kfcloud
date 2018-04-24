@@ -6,6 +6,7 @@ import com.zk.kfcloud.Exception.UserNotFoundException;
 import com.zk.kfcloud.Service.FactoryService;
 import com.zk.kfcloud.Service.MenuService;
 import com.zk.kfcloud.Service.UserService;
+import com.zk.kfcloud.Service.WeChatService;
 import com.zk.kfcloud.Utils.FactoryUtil;
 import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
@@ -31,15 +32,13 @@ public class LoginController {
     @Autowired
     private UserService userService;
     @Autowired
-    private MenuService menuService;
-    @Autowired
-    private WeChatMapper weChatMapper;
+    private WeChatService weChatService;
     @Autowired
     private FactoryService factoryService;
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-    @Autowired
-    RedisTemplate<String,User> userRedisTemplate;
+//    @Autowired
+//    private StringRedisTemplate stringRedisTemplate;
+//    @Autowired
+//    RedisTemplate<String,User> userRedisTemplate;
     /**
      * 一切请求从get方式的login起(用户点击‘空分云’按钮)，然后再接入微信api，获取到openid传到login.html
      * @return
@@ -76,11 +75,11 @@ public class LoginController {
             user.setLastLogin(new Date());
             userService.updateUserLoginStatus(user);
             userService.updateLastLogin(user);
-            stringRedisTemplate.opsForValue().set("JSESSIONID",session.getId());
-            userRedisTemplate.opsForValue().set("SESSIONUSER",user);
+//            stringRedisTemplate.opsForValue().set("JSESSIONID",session.getId());
+//            userRedisTemplate.opsForValue().set("SESSIONUSER",user);
             log.info("当前用户："+user+",已添加 sessionId 和 User");
 //            3.2 一个空分账号可以绑定多个微信号（openid不同），如果是新微信号，则在tb2_wechat表中插入openid和userid信息
-            List<WeChat> allWeChatUser = weChatMapper.findAllWeChatUser();
+            List<WeChat> allWeChatUser = weChatService.findAllWeChatUser();
             Boolean flag = true;
             for (WeChat wxUser:allWeChatUser) {
                 log.info(wxUser.toString());
@@ -92,7 +91,7 @@ public class LoginController {
                 WeChat wx = new WeChat();
                 wx.setUserId(userid);
                 wx.setOpenId(openid);
-                weChatMapper.insert(wx);
+                weChatService.insert(wx);
             }
 //            4 获取当前用户拥有的所有菜单，并传值到index页面
 //            User sessionUser = (User) session.getAttribute("SESSIONUSER");

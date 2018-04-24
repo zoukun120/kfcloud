@@ -1,10 +1,10 @@
-package com.zk.kfcloud.Dao;
+package com.zk.kfcloud.Service;
 
 import com.zk.kfcloud.Entity.web.WeChat;
 
 import java.util.List;
 
-public interface WeChatMapper {
+public interface WeChatService {
 
     int deleteByPrimaryKey(Integer id);
 

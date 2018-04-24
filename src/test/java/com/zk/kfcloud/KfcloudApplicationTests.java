@@ -11,6 +11,7 @@ public class KfcloudApplicationTests {
 
     @Test
     public void contextLoads() {
+
     }
 
 }

@@ -30,13 +30,4 @@ public class WeChat {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-
-    @Override
-    public String toString() {
-        return "WeChat{" +
-                "id=" + id +
-                ", openId='" + openId + '\'' +
-                ", userId=" + userId +
-                '}';
-    }
 }
