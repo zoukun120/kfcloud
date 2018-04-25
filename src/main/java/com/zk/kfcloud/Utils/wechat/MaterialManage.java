@@ -13,7 +13,7 @@ import java.net.URL;
 @Slf4j
 public class MaterialManage {
 
-    public static final String DOMAIN = "http://nnvv2c.natappfree.cc";
+    public static final String DOMAIN = "http://www.zoukunzk.cn";
 
     public static final String APPID = "wxce2ee669cb26eded";
     public static final String APPSECRET = "a18bfd173767748a08120ae5a8954ae0";
