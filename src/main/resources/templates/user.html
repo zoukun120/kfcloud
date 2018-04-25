@@ -22,17 +22,17 @@
         layui.use('table', function () {
             var table = layui.table;
             var data = [
-                {field: 'userId', title: 'ID', width: 38, sort: true, fixed: 'left'}
-                , {field: 'username', title: '用户名', width: 90}
-                , {field: 'loginname', title: '登录名', width: 90}
-                , {field: 'status', title: '状态', width: 60}
-                // , {field: 'lastLogin', title: '最后登陆时间', width: 160, sort: true}
-                , {field: 'parentId', title: '父账户', width: 80}
+                {field: 'userId', title: 'ID', sort: true, fixed: 'left'}
+                , {field: 'username', title: '用户名'}
+                , {field: 'loginname', title: '登录名'}
+                , {field: 'status', title: '状态'}
+                // , {field: 'lastLogin', title: '最后登陆时间'}
+                , {field: 'parentId', title: '父账户'}
             ];
             //第一个实例
             table.render({
                 elem: '#user_table'
-                , height: 355
+                // , height: 355  宽高不指定，会自适应窗口
                 , url: '/users' //数据接口
                 , page: true //开启分页
                 ,limit:7

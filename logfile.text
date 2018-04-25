@@ -8756,3 +8756,425 @@ org.thymeleaf.exceptions.TemplateInputException: Error resolving template "user"
 2018-04-25 15:27:59.803  INFO 8012 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 23
 2018-04-25 15:28:13.911  INFO 8012 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.MenuController   : userId = 22,openId =test
 2018-04-25 15:28:13.911  INFO 8012 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.MenuController   : userId = 28,openId =oHNZ-w5CL6LPMNWP3x5qUX92mZDo
+2018-04-25 22:59:46.243  INFO 1128 --- [restartedMain] com.zk.kfcloud.KfcloudApplication        : Starting KfcloudApplication on DESKTOP-QG1HI0C with PID 1128 (F:\Projects\IdeaProjects\kfcloud\target\classes started by Halo in F:\Projects\IdeaProjects\kfcloud)
+2018-04-25 22:59:46.259  INFO 1128 --- [restartedMain] com.zk.kfcloud.KfcloudApplication        : No active profile set, falling back to default profiles: default
+2018-04-25 22:59:46.544  INFO 1128 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44f9fbe4: startup date [Wed Apr 25 22:59:46 CST 2018]; root of context hierarchy
+2018-04-25 22:59:52.238  INFO 1128 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-04-25 22:59:53.960  INFO 1128 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$ec1cf6f3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-04-25 22:59:53.979  INFO 1128 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$536f2eb9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-04-25 22:59:54.101  INFO 1128 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-04-25 22:59:54.112  INFO 1128 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@34637d2d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-04-25 22:59:54.122  INFO 1128 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$10f199a5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-04-25 22:59:54.145  INFO 1128 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-04-25 22:59:56.687  INFO 1128 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8086 (http)
+2018-04-25 22:59:56.786  INFO 1128 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-04-25 22:59:56.787  INFO 1128 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2018-04-25 22:59:56.807  INFO 1128 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : Loaded APR based Apache Tomcat Native library [1.2.16] using APR version [1.6.3].
+2018-04-25 22:59:56.807  INFO 1128 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2018-04-25 22:59:56.807  INFO 1128 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2018-04-25 22:59:57.957  INFO 1128 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.0.2m  2 Nov 2017]
+2018-04-25 22:59:58.361  INFO 1128 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-04-25 22:59:58.361  INFO 1128 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 11817 ms
+2018-04-25 22:59:58.747  INFO 1128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-04-25 22:59:58.748  INFO 1128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-04-25 22:59:58.748  INFO 1128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-04-25 22:59:58.748  INFO 1128 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-04-25 22:59:58.749  INFO 1128 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-04-25 22:59:58.749  INFO 1128 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-04-25 23:00:02.400  INFO 1128 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6151e83, org.springframework.security.web.context.SecurityContextPersistenceFilter@783a273, org.springframework.security.web.header.HeaderWriterFilter@3613071b, org.springframework.security.web.authentication.logout.LogoutFilter@44fb6241, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67cdc05c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47ec38c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@677053d5, org.springframework.security.web.session.SessionManagementFilter@10bc2d59, org.springframework.security.web.access.ExceptionTranslationFilter@4424caa8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7e1024b9]
+2018-04-25 23:00:02.634  INFO 1128 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-25 23:00:03.267  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@44f9fbe4: startup date [Wed Apr 25 22:59:46 CST 2018]; root of context hierarchy
+2018-04-25 23:00:03.496  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/setUrl],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.zk.kfcloud.Config.Session.testSpringSession.setUrl(javax.servlet.http.HttpServletRequest)
+2018-04-25 23:00:03.500  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getSession],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.zk.kfcloud.Config.Session.testSpringSession.getSession(javax.servlet.http.HttpServletRequest)
+2018-04-25 23:00:03.506  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/subMenu/{pagename}/{factoryId}],methods=[GET]}" onto public java.lang.String com.zk.kfcloud.Controller.FactoryController.sendPage(java.lang.String,java.lang.String,org.springframework.ui.Model)
+2018-04-25 23:00:03.507  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/history],methods=[POST]}" onto public net.sf.json.JSONObject com.zk.kfcloud.Controller.FactoryController.hisData(java.util.Map<java.lang.String, java.lang.Object>) throws java.lang.Exception
+2018-04-25 23:00:03.510  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/current/{factoryId}],methods=[GET]}" onto public java.util.List<com.zk.kfcloud.Entity.web.Factory> com.zk.kfcloud.Controller.FactoryController.curSystem(java.lang.Integer)
+2018-04-25 23:00:03.511  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/current/{modelName}/{modelId}/{systemName}],methods=[GET]}" onto public net.sf.json.JSONObject com.zk.kfcloud.Controller.FactoryController.curSystem(java.lang.String,java.lang.Integer,java.lang.String)
+2018-04-25 23:00:03.512  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sys],methods=[GET]}" onto public java.lang.String com.zk.kfcloud.Controller.FactoryController.sys()
+2018-04-25 23:00:03.512  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/history/{factoryId}],methods=[GET]}" onto public java.util.List<com.zk.kfcloud.Entity.web.Factory> com.zk.kfcloud.Controller.FactoryController.hisSystem(java.lang.Integer)
+2018-04-25 23:00:03.515  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index],methods=[POST]}" onto public java.lang.String com.zk.kfcloud.Controller.LoginController.toIndex(java.lang.String,java.lang.String,java.lang.String,org.springframework.ui.Model,javax.servlet.http.HttpSession) throws com.zk.kfcloud.Exception.UserNotFoundException
+2018-04-25 23:00:03.516  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.zk.kfcloud.Controller.LoginController.toUserIndex(java.lang.Integer,org.springframework.ui.Model)
+2018-04-25 23:00:03.517  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/ || /login],methods=[GET]}" onto public void com.zk.kfcloud.Controller.LoginController.login(javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2018-04-25 23:00:03.520  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/menus],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.zk.kfcloud.Controller.MenuController.pageUser(java.lang.Integer,java.lang.Integer)
+2018-04-25 23:00:03.522  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/roles],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.zk.kfcloud.Controller.RoleController.pageUser(java.lang.Integer,java.lang.Integer)
+2018-04-25 23:00:03.523  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/testDevTools],methods=[GET]}" onto public static java.lang.String com.zk.kfcloud.Controller.testDevTools.test()
+2018-04-25 23:00:03.524  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/findAll],methods=[GET]}" onto java.util.List<com.zk.kfcloud.Entity.web.User> com.zk.kfcloud.Controller.testMyBatis.findall()
+2018-04-25 23:00:03.525  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/testThymeleaf],methods=[GET]}" onto public static java.lang.String com.zk.kfcloud.Controller.testThymeleaf.test()
+2018-04-25 23:00:03.530  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/isBrother],methods=[GET]}" onto public java.lang.String com.zk.kfcloud.Controller.UserController.Brother(java.lang.String,org.springframework.ui.Model)
+2018-04-25 23:00:03.530  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/users],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.zk.kfcloud.Controller.UserController.pageUser(java.lang.Integer,java.lang.Integer)
+2018-04-25 23:00:03.532  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/access],methods=[GET]}" onto public static com.zk.kfcloud.Utils.JsonResult com.zk.kfcloud.Controller.WeChatController.access(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-25 23:00:03.533  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/redirect_uri],methods=[GET]}" onto public static com.zk.kfcloud.Utils.JsonResult com.zk.kfcloud.Controller.WeChatController.redirect(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-25 23:00:03.533  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/createMenu],methods=[GET]}" onto public static com.zk.kfcloud.Utils.JsonResult com.zk.kfcloud.Controller.WeChatController.createMenu()
+2018-04-25 23:00:03.534  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/code],methods=[GET]}" onto public static com.zk.kfcloud.Utils.JsonResult com.zk.kfcloud.Controller.WeChatController.login(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-25 23:00:03.537  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-04-25 23:00:03.538  INFO 1128 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-04-25 23:00:03.601  INFO 1128 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-25 23:00:03.601  INFO 1128 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-04-25 23:00:03.956  INFO 1128 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2018-04-25 23:00:05.300  INFO 1128 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-04-25 23:00:05.364  INFO 1128 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-04-25 23:00:05.366  INFO 1128 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-04-25 23:00:05.375  INFO 1128 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2018-04-25 23:00:05.499  INFO 1128 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8086 (http) with context path ''
+2018-04-25 23:00:05.509  INFO 1128 --- [restartedMain] com.zk.kfcloud.KfcloudApplication        : Started KfcloudApplication in 21.243 seconds (JVM running for 24.142)
+2018-04-25 23:03:45.424  INFO 1128 --- [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-04-25 23:03:45.425  INFO 1128 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-04-25 23:03:45.476  INFO 1128 --- [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 51 ms
+2018-04-25 23:03:45.641  INFO 1128 --- [http-nio-8086-exec-1] com.zk.kfcloud.Utils.wechat.AccessGuide  : Access to wechat server successfully
+2018-04-25 23:03:45.726  WARN 1128 --- [http-nio-8086-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Handling of [org.springframework.web.HttpMediaTypeNotAcceptableException] resulted in Exception
+
+java.lang.IllegalStateException: Cannot call sendError() after the response has been committed
+	at org.apache.catalina.connector.ResponseFacade.sendError(ResponseFacade.java:472) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at javax.servlet.http.HttpServletResponseWrapper.sendError(HttpServletResponseWrapper.java:129) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at javax.servlet.http.HttpServletResponseWrapper.sendError(HttpServletResponseWrapper.java:129) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.sendError(OnCommittedResponseWrapper.java:109) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at javax.servlet.http.HttpServletResponseWrapper.sendError(HttpServletResponseWrapper.java:129) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.sendError(OnCommittedResponseWrapper.java:109) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver.handleHttpMediaTypeNotAcceptable(DefaultHandlerExceptionResolver.java:299) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver.doResolveException(DefaultHandlerExceptionResolver.java:180) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:140) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:78) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1255) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1062) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1008) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:866) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) [spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-embed-websocket-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:66) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+
+2018-04-25 23:03:45.734 ERROR 1128 --- [http-nio-8086-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Could not find acceptable representation] with root cause
+
+org.springframework.web.HttpMediaTypeNotAcceptableException: Could not find acceptable representation
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:287) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.handleReturnValue(RequestResponseBodyMethodProcessor.java:180) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:82) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:119) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:877) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:783) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:991) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:866) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851) ~[spring-webmvc-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:127) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:91) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:170) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:66) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) ~[spring-security-web-5.0.4.RELEASE.jar:5.0.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:357) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:270) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-5.0.5.RELEASE.jar:5.0.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:496) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:790) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.29.jar:8.5.29]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+
+2018-04-25 23:03:45.760  WARN 1128 --- [http-nio-8086-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved exception caused by Handler execution: org.springframework.web.HttpMediaTypeNotAcceptableException: Could not find acceptable representation
+2018-04-25 23:04:35.455  INFO 1128 --- [http-nio-8086-exec-8] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2018-04-25 23:04:36.149  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:04:36.149  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:04:36.150  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:04:36.150  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:04:36.151  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:04:36.151  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:04:36.151  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:05:14.096  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:05:14.096  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:05:14.096  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:05:14.096  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:05:14.097  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:05:14.097  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:05:14.097  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:05:47.458  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:05:47.459  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:05:47.459  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:05:47.459  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:05:47.459  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:05:47.459  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:05:47.459  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:06:30.119  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:06:30.119  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:06:30.120  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:06:30.120  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:06:30.120  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:06:30.120  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:06:30.120  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:06:41.659  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:06:43.808  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 27
+2018-04-25 23:06:43.808  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 28
+2018-04-25 23:06:43.808  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 102
+2018-04-25 23:06:43.809  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 103
+2018-04-25 23:06:43.809  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 105
+2018-04-25 23:06:43.809  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 106
+2018-04-25 23:06:43.809  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 107
+2018-04-25 23:06:46.183  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 108
+2018-04-25 23:06:46.184  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 111
+2018-04-25 23:06:46.184  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 112
+2018-04-25 23:06:46.184  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 113
+2018-04-25 23:06:46.184  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 114
+2018-04-25 23:06:46.184  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 117
+2018-04-25 23:06:46.184  INFO 1128 --- [http-nio-8086-exec-2] c.zk.kfcloud.Controller.UserController   : userId = 118
+2018-04-25 23:06:59.581  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:06:59.582  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:06:59.582  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:06:59.583  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:06:59.583  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:06:59.583  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:06:59.584  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:07:12.718  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:07:12.719  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:07:12.719  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:07:12.719  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:07:12.719  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:07:12.719  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:07:12.719  INFO 1128 --- [http-nio-8086-exec-3] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:07:26.176  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 27
+2018-04-25 23:07:26.177  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 28
+2018-04-25 23:07:26.177  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 102
+2018-04-25 23:07:26.177  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 103
+2018-04-25 23:07:26.177  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 105
+2018-04-25 23:07:26.177  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 106
+2018-04-25 23:07:26.177  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 107
+2018-04-25 23:07:27.820  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 108
+2018-04-25 23:07:27.820  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 111
+2018-04-25 23:07:27.821  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 112
+2018-04-25 23:07:27.821  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 113
+2018-04-25 23:07:27.821  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 114
+2018-04-25 23:07:27.821  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 117
+2018-04-25 23:07:27.821  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 118
+2018-04-25 23:08:18.114  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.RoleController   : roleId = 1,roleName =超级管理员
+2018-04-25 23:08:18.115  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.RoleController   : roleId = 2,roleName =工厂一管理员
+2018-04-25 23:08:18.115  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.RoleController   : roleId = 3,roleName =工厂二管理员
+2018-04-25 23:08:18.115  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.RoleController   : roleId = 4,roleName =工厂三管理员
+2018-04-25 23:08:18.115  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.RoleController   : roleId = 5,roleName =工厂四管理员
+2018-04-25 23:08:18.115  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.RoleController   : roleId = 6,roleName =工厂五管理员
+2018-04-25 23:08:34.718  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 1,roleName =超级管理员
+2018-04-25 23:08:34.718  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 2,roleName =工厂一管理员
+2018-04-25 23:08:34.718  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 3,roleName =工厂二管理员
+2018-04-25 23:08:34.719  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 4,roleName =工厂三管理员
+2018-04-25 23:08:34.719  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 5,roleName =工厂四管理员
+2018-04-25 23:08:34.719  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 6,roleName =工厂五管理员
+2018-04-25 23:08:55.494  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:08:55.495  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:08:55.495  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:08:55.495  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:08:55.495  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:08:55.495  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:08:55.495  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:09:10.221  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:09:10.221  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:09:10.221  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:09:10.222  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:09:10.222  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:09:10.222  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:09:10.223  INFO 1128 --- [http-nio-8086-exec-7] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:09:15.000  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:09:15.000  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:09:15.001  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:09:15.001  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:09:15.001  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:09:15.001  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:09:15.001  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:09:17.782  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 27
+2018-04-25 23:09:17.782  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 28
+2018-04-25 23:09:17.782  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 102
+2018-04-25 23:09:17.782  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 103
+2018-04-25 23:09:17.782  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 105
+2018-04-25 23:09:17.783  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 106
+2018-04-25 23:09:17.783  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.UserController   : userId = 107
+2018-04-25 23:09:43.666  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:09:43.667  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:09:43.667  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:09:43.667  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:09:43.667  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:09:43.667  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:09:43.668  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:10:03.738  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.RoleController   : roleId = 1,roleName =超级管理员
+2018-04-25 23:10:03.738  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.RoleController   : roleId = 2,roleName =工厂一管理员
+2018-04-25 23:10:03.738  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.RoleController   : roleId = 3,roleName =工厂二管理员
+2018-04-25 23:10:03.739  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.RoleController   : roleId = 4,roleName =工厂三管理员
+2018-04-25 23:10:03.739  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.RoleController   : roleId = 5,roleName =工厂四管理员
+2018-04-25 23:10:03.739  INFO 1128 --- [http-nio-8086-exec-6] c.zk.kfcloud.Controller.RoleController   : roleId = 6,roleName =工厂五管理员
+2018-04-25 23:10:11.366  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:10:11.367  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:10:11.367  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:10:11.367  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:10:11.367  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:10:11.367  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:10:11.367  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:10:20.014  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.RoleController   : roleId = 8,roleName =管理员1
+2018-04-25 23:10:20.014  INFO 1128 --- [http-nio-8086-exec-9] c.zk.kfcloud.Controller.RoleController   : roleId = 46,roleName =临时用户
+2018-04-25 23:10:58.706  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.MenuController   : userId = 22,openId =test
+2018-04-25 23:10:58.706  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.MenuController   : userId = 15,openId =oHNZ-wz2B4U3QlswP9bi82otnwVI
+2018-04-25 23:10:58.706  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.MenuController   : userId = 28,openId =oHNZ-w5CL6LPMNWP3x5qUX92mZDo
+2018-04-25 23:11:15.777  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.MenuController   : userId = 22,openId =test
+2018-04-25 23:11:15.777  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.MenuController   : userId = 15,openId =oHNZ-wz2B4U3QlswP9bi82otnwVI
+2018-04-25 23:11:15.777  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.MenuController   : userId = 28,openId =oHNZ-w5CL6LPMNWP3x5qUX92mZDo
+2018-04-25 23:11:39.917  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 1
+2018-04-25 23:11:39.917  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 14
+2018-04-25 23:11:39.917  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 15
+2018-04-25 23:11:39.917  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 18
+2018-04-25 23:11:39.917  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 20
+2018-04-25 23:11:39.917  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 22
+2018-04-25 23:11:39.918  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.UserController   : userId = 23
+2018-04-25 23:11:44.257  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 27
+2018-04-25 23:11:44.258  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 28
+2018-04-25 23:11:44.258  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 102
+2018-04-25 23:11:44.258  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 103
+2018-04-25 23:11:44.258  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 105
+2018-04-25 23:11:44.258  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 106
+2018-04-25 23:11:44.258  INFO 1128 --- [http-nio-8086-exec-8] c.zk.kfcloud.Controller.UserController   : userId = 107
+2018-04-25 23:11:45.703  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 108
+2018-04-25 23:11:45.704  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 111
+2018-04-25 23:11:45.704  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 112
+2018-04-25 23:11:45.704  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 113
+2018-04-25 23:11:45.704  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 114
+2018-04-25 23:11:45.704  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 117
+2018-04-25 23:11:45.704  INFO 1128 --- [http-nio-8086-exec-10] c.zk.kfcloud.Controller.UserController   : userId = 118
+2018-04-25 23:11:57.899  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 1,roleName =超级管理员
+2018-04-25 23:11:57.900  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 2,roleName =工厂一管理员
+2018-04-25 23:11:57.900  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 3,roleName =工厂二管理员
+2018-04-25 23:11:57.900  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 4,roleName =工厂三管理员
+2018-04-25 23:11:57.900  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 5,roleName =工厂四管理员
+2018-04-25 23:11:57.900  INFO 1128 --- [http-nio-8086-exec-1] c.zk.kfcloud.Controller.RoleController   : roleId = 6,roleName =工厂五管理员
+2018-04-25 23:12:01.672  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.RoleController   : roleId = 8,roleName =管理员1
+2018-04-25 23:12:01.672  INFO 1128 --- [http-nio-8086-exec-4] c.zk.kfcloud.Controller.RoleController   : roleId = 46,roleName =临时用户
+2018-04-25 23:12:04.420  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.RoleController   : roleId = 1,roleName =超级管理员
+2018-04-25 23:12:04.420  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.RoleController   : roleId = 2,roleName =工厂一管理员
+2018-04-25 23:12:04.420  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.RoleController   : roleId = 3,roleName =工厂二管理员
+2018-04-25 23:12:04.420  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.RoleController   : roleId = 4,roleName =工厂三管理员
+2018-04-25 23:12:04.420  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.RoleController   : roleId = 5,roleName =工厂四管理员
+2018-04-25 23:12:04.420  INFO 1128 --- [http-nio-8086-exec-5] c.zk.kfcloud.Controller.RoleController   : roleId = 6,roleName =工厂五管理员

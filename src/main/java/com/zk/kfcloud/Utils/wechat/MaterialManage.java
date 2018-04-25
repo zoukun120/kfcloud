@@ -13,10 +13,14 @@ import java.net.URL;
 @Slf4j
 public class MaterialManage {
 
-    public static final String DOMAIN = "http://www.zoukunzk.cn";
+//    public static final String DOMAIN = "http://www.zoukunzk.cn";
+//
+//    public static final String APPID = "wxce2ee669cb26eded";
+//    public static final String APPSECRET = "a18bfd173767748a08120ae5a8954ae0";
+    public static final String DOMAIN = "http://j3azf5.natappfree.cc";
 
-    public static final String APPID = "wxce2ee669cb26eded";
-    public static final String APPSECRET = "a18bfd173767748a08120ae5a8954ae0";
+    public static final String APPID = "wxb66105e88b4179b6";
+    public static final String APPSECRET = "67d9b310ccac2beee686f5193b4506f2";
     public static final String AccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + APPID + "&secret=" + APPSECRET;
     public static final String UploadUrl = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
     public static final String AuthCodeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect";

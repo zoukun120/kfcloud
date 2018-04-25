@@ -21,14 +21,14 @@
         layui.use('table', function () {
             var table = layui.table;
             var data = [
-                {field: 'roleId', title: 'ID', width: 40, sort: true, fixed: 'left'}
-                , {field: 'roleName', title: '角色名', width: 120}
-                , {field: 'rights', title: '权限', width: 180}
+                {field: 'roleId', title: 'ID', sort: true, fixed: 'left'}
+                , {field: 'roleName', title: '角色名'}
+                , {field: 'rights', title: '权限'}
             ];
             //第一个实例
             table.render({
                 elem: '#role_table'
-                , height: 315
+                // , height: 315
                 , url: '/roles' //数据接口
                 , page: true //开启分页
                 ,limit:6

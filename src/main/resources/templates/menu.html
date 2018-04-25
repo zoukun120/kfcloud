@@ -21,14 +21,14 @@
         layui.use('table', function () {
             var table = layui.table;
             var data = [
-                {field: 'id', title: 'ID', width: 40, sort: true, fixed: 'left'}
-                , {field: 'userId', title: '用户Id', width: 80}
-                , {field: 'openId', title: '微信Id', width: 220}
+                {field: 'id', title: 'ID', sort: true, fixed: 'left'}
+                , {field: 'userId', title: '用户Id'}
+                , {field: 'openId', title: '微信Id'}
             ];
             //第一个实例
             table.render({
                 elem: '#menu_table'
-                , height: 315
+                // , height: 315
                 , url: '/menus' //数据接口
                 , page: true //开启分页
                 ,limit:5
