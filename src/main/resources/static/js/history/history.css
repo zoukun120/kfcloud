@@ -23,6 +23,7 @@ html{
     min-height: 58px;
     height: auto;
     margin: 8px auto;
+    width: 100%;
     /*border: #b81900 solid 2px;*/
 }
 .menu li {
@@ -46,7 +47,7 @@ html{
     margin: auto;
 }
 .menu > li:first-child {
-    background: #03bb91;
+    background: transparent;
     border-radius:2em;
 }
 
@@ -64,19 +65,7 @@ html{
 }
 
 /* onhover styles */
-.menu li:hover {
-    /*background: #03bb91;*/
-    background: -moz-linear-gradient(#1c1c1c, #1b1b1b);
-    background: -ms-linear-gradient(#1c1c1c, #1b1b1b);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1c1c1c), color-stop(100%, #1b1b1b));
-    background: -webkit-linear-gradient(#1c1c1c, #1b1b1b);
-    background: -o-linear-gradient(#1c1c1c, #1b1b1b);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1c1c1c', endColorstr='#1b1b1b');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#1c1c1c', endColorstr='#1b1b1b')";
-    background: linear-gradient(#1c1c1c, #1b1b1b);
-}
 .menu li:hover > a {
-    border-radius: 5px 0 0 0;
     color: #C4302B;
 }
 
@@ -264,9 +253,11 @@ html{
     background-color:#343434;
     border-radius: 2em;
     border: #1aaef3 solid 2px;
+    text-align:center;
 }
+
 #nav:hover{
-    border: #b94a48 solid 2px;
+    border: #b94a48 solid 1px;
 }
 
 #start_datetime,#end_datetime{

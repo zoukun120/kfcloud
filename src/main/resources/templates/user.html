@@ -6,37 +6,41 @@
     <title>用户管理</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/js/user/user.css">
 </head>
 <body>
-<table id="demo" lay-filter="test"></table>
 
-<!-- js引入 -->
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="/layui/layui.js"></script>
-<script>
-    layui.use('table', function () {
-        var table = layui.table;
-        var data = [
-            {field: 'userId', title: 'ID', width: 40, sort: true, fixed: 'left'}
-            , {field: 'username', title: '用户名', width: 80}
-            , {field: 'loginname', title: '登录名', width: 80, sort: true}
-            , {field: 'password', title: '密码', width: 80}
-            , {field: 'status', title: '状态', width: 80}
-            , {field: 'lastLogin', title: '最后登陆时间', width: 160, sort: true}
-            , {field: 'parentId', title: '父账户', width: 80, sort: true}
-        ];
-        //第一个实例
-        table.render({
-            elem: '#demo'
-            , height: 315
-            , url: '/users' //数据接口
-            , page: true //开启分页
-            ,limit:5
-            , cols: [data]
+    <div class="user_div layui-container">
+        <table id="user_table" class="layui-table"></table>
+    </div>
+
+
+    <!-- js引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            var data = [
+                {field: 'userId', title: 'ID', width: 38, sort: true, fixed: 'left'}
+                , {field: 'username', title: '用户名', width: 90}
+                , {field: 'loginname', title: '登录名', width: 90}
+                , {field: 'status', title: '状态', width: 60}
+                // , {field: 'lastLogin', title: '最后登陆时间', width: 160, sort: true}
+                , {field: 'parentId', title: '父账户', width: 80}
+            ];
+            //第一个实例
+            table.render({
+                elem: '#user_table'
+                , height: 355
+                , url: '/users' //数据接口
+                , page: true //开启分页
+                ,limit:7
+                , cols: [data]
+            });
+
         });
-
-    });
-</script>
+    </script>
 
 </body>
 </html>
