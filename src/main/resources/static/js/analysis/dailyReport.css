@@ -1,0 +1,12 @@
+.layui-form-item{
+    border: #283033 solid 1px;
+    margin-top: 5px;
+    background:#dfe2e6;
+    box-shadow:2px 2px 2px;
+    margin:auto;
+    padding:3px;
+}
+.layui-input{
+    max-width: 150px;
+    display:inline-block;
+}

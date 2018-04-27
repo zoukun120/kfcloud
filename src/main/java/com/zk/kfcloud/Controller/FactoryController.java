@@ -1,17 +1,22 @@
 package com.zk.kfcloud.Controller;
 
+import com.zk.kfcloud.Entity.web.Analysis;
 import com.zk.kfcloud.Entity.web.Factory;
 import com.zk.kfcloud.Service.FactoryService;
 import com.zk.kfcloud.Utils.DateFilter;
+import com.zk.kfcloud.Utils.DateJsonValueProcessor;
 import com.zk.kfcloud.Utils.FactoryUtil;
+import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 @Slf4j
@@ -25,7 +30,8 @@ public class FactoryController {
     public String sendPage(@PathVariable("pagename") String pagename, @PathVariable("factoryId") String factoryId, Model model) {
         model.addAttribute("factoryId", factoryId);
         //        去掉后缀'.html'
-        return pagename.substring(0, pagename.indexOf("."));
+        System.err.println(pagename);
+        return pagename;
     }
 
     @GetMapping("/sys")
@@ -143,9 +149,170 @@ public class FactoryController {
         JSONObject json = new JSONObject();
         json.put("paraMap", paraMap);
         json.put("hisDataList", hisDataList);
-//        Map<String, Object> result = new HashMap<>();
-//        result.put("paraMap", paraMap);
-//        result.put("hisDataList", hisDataList);
         return json;
+    }
+
+    /**
+     * 测试分析页面：ajax代替iframe
+     * @return
+     */
+    @GetMapping("analysis")
+    public String analysis(){
+        return "analysis";
+    }
+
+    @GetMapping("/anal/{pageName}/{factoryId}")
+    public String toAnalysisPage(@PathVariable("pageName") String name,@PathVariable("factoryId") Integer id,Model model){
+        model.addAttribute("factoryId", id);
+        return name;
+    }
+
+    @PostMapping("/anal/dailyReport/table")
+    @ResponseBody
+    public JSONArray table(@RequestBody Analysis analysis){
+        System.err.println(analysis);
+        Integer factoryId = analysis.getFactoryId();
+        String dateFrist = analysis.getDateFrist();
+        String dateStart = analysis.getDateStart();
+        String dateEnd = analysis.getDateEnd();
+        // 1 根据factoryId 获取para_ana1表的数据
+        Map<String, Object> paraAnalysisData = factoryService.getParaAnalysisData(factoryId);
+        System.err.println("paraAnalysisData:"+paraAnalysisData);
+        // 2 根据班组编号查询数据，并传入动态表名
+        String out_day_tableName = String.valueOf(paraAnalysisData.get("out_table_day"));
+        String field = "TIME,kind,state,out01,out02,out03,out04,out05,out06,out07,out08,out09";
+//			将日期间隔置为null
+        Map<String, Object> dateFilter = new LinkedHashMap<>();
+        try {
+            dateFilter = DateFilter.dateFilter(dateEnd,dateFrist);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+        dateFilter.put("interval", null);
+        System.err.println(dateFilter);
+        List<Object> dailyData = factoryService.getHistoryDatasByDate(dateFilter, out_day_tableName, field);//存放dailyData的json数组
+        System.out.println("dailyData:"+dailyData);
+//          表单的第一列数据
+        String team1=paraAnalysisData.get("team_01").toString().substring(0,paraAnalysisData.get("team_01").toString().lastIndexOf(":"));
+        String team2=paraAnalysisData.get("team_02").toString().substring(0,paraAnalysisData.get("team_02").toString().lastIndexOf(":"));
+        String team3=paraAnalysisData.get("team_03").toString().substring(0,paraAnalysisData.get("team_03").toString().lastIndexOf(":"));
+        log.info("team1:"+team1+",team2:"+team2+",team3:"+team3);
+
+        for (int i = 0; i < dailyData.size(); i++) {
+            String groupId = null;
+            switch (i){
+                case 0: groupId = "合计";break;
+                case 1: groupId = "班组"+i+"("+team3+"-"+team1+")";break;
+                case 2: groupId = "班组"+i+"("+team1+"-"+team2+")";break;
+                case 3: groupId = "班组"+i+"("+team2+"-"+team3+")";break;
+            }
+            ((Map<String,Object>)dailyData.get(i)).put("groupId",groupId);
+        }
+        return JSONArray.fromObject(dailyData);
+    }
+    /**
+     * 每日数据分析
+     * 1、表前面的日期：日报表(日期：2017-12-7)
+     * 2、表格
+     * 3、每日曲线（凌晨-凌晨）
+     * 4、班组下显示时间
+     * @param analysis
+     * @return
+     */
+    @PostMapping("/dailyReport")
+    public @ResponseBody JSONObject dailyReportPost(@RequestBody Analysis analysis, HttpServletResponse response) {
+        System.out.println("analysis:"+analysis);
+        // 0 初始化数据
+        Integer factoryId = analysis.getFactoryId();
+        String dateFrist = analysis.getDateFrist();
+        String dateStart = analysis.getDateStart();
+        String dateEnd = analysis.getDateEnd();
+        System.err.println("dateStart:"+dateStart);
+        System.err.println("dateEnd:"+dateEnd);
+        System.err.println("dateFrist:"+dateFrist);
+        // 1 根据factoryId 获取para_ana1表的数据
+        Map<String, Object> paraAnalysisData = factoryService.getParaAnalysisData(factoryId);
+        System.err.println("paraAnalysisData:"+paraAnalysisData);
+        // 2 根据班组编号查询数据，并传入动态表名
+        String out_day_tableName = String.valueOf(paraAnalysisData.get("out_table_day"));
+        String field = "TIME,kind,state,out01,out02,out03,out04,out05,out06,out07,out08,out09";
+//			将日期间隔置为null
+        Map<String, Object> dateFilter = new LinkedHashMap<>();
+        try {
+            dateFilter = DateFilter.dateFilter(dateEnd,dateFrist);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+        dateFilter.put("interval", null);
+        System.err.println(dateFilter);
+        List<Object> dailyData = factoryService.getHistoryDatasByDate(dateFilter, out_day_tableName, field);//存放dailyData的json数组
+        System.out.println("dailyData:"+dailyData);
+        // 3 获取画昨日曲线的数据
+        Map<String, Object> yDataPreHeadler = Tools.yesterdayDataPreHeadler(paraAnalysisData);
+        String tableName = (String) yDataPreHeadler.get("tableName");
+        String KFFields = (String) yDataPreHeadler.get("KFFields");
+
+//		从dateStart:2017-11-15 15:00:00  中取出2017-11传入sql，用来动态选择指定月份某一表（如 KF0001_201711）
+        System.err.println("dateStart:"+dateStart);
+        String year = dateStart.substring(0, dateStart.indexOf("-"));
+        String month = dateStart.substring(dateStart.indexOf("-")+1, dateStart.lastIndexOf("-"));
+        if(month.length()==1) {
+            month = "0"+month;
+        }
+        System.out.println(year+","+month);
+        Calendar now = Calendar.getInstance();//实现分月查询
+        int nowyear = now.get(Calendar.YEAR);
+        int nowmonth = now.get(Calendar.MONTH)+1;
+        System.out.println("当下年月："+nowyear+","+nowmonth);
+        if(Integer.valueOf(year)!=nowyear || Integer.valueOf(month)!=nowmonth) {
+            tableName = tableName + "_"+year+month;
+        }
+        System.out.println("查询的表："+tableName);
+
+        List<Object> yDataList = new ArrayList<>();
+        Map<String, Object> dateFilter2 = new LinkedHashMap<>();
+        try {
+            dateFilter2 = DateFilter.dateFilter(dateStart,dateEnd);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+        dateFilter2.put("interval", 72);
+        System.err.println(dateFilter2);
+        try {
+            yDataList = factoryService.getHistoryDatasByDate(dateFilter2, tableName,
+                    KFFields);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.err.println("yDataList:"+yDataList);
+        Map<String, Object> lineNumMap = new HashMap<>();// 将lineNum传入页面，便于动态创建曲线条数
+        lineNumMap.put("lineNum", paraAnalysisData.get("line_num"));
+        String[] split = KFFields.split(",");
+        for (int i = 0; i < split.length; i++) {
+            lineNumMap.put("para" + i, split[i]);
+        }
+
+        yDataList.add(lineNumMap);
+        System.out.println("yDataList:"+yDataList);
+        // 转json传给页面
+//		System.out.println(((Map<String, Object>)dailyData.get(1)).get("TIME").getClass());//测试从数据库得到得time类型：class java.sql.Timestamp
+//		System.out.println(paraAnalysisData.get("team_01").getClass());//测试输出班组时间格式:class java.sql.Time
+        Map<String, Object> result = new HashMap<>();
+        String team1 = paraAnalysisData.get("team_01").toString();
+        String team2 = paraAnalysisData.get("team_02").toString();
+        String team3 = paraAnalysisData.get("team_03").toString();
+        result.put("team_01", team1.substring(0,team1.length()-3));//17:00:00->17:00
+        result.put("team_02", team2.substring(0,team2.length()-3));
+        result.put("team_03", team3.substring(0,team3.length()-3));
+        result.put("team_num", paraAnalysisData.get("team_num"));
+        result.put("dailyData", dailyData);
+        result.put("yDataList", yDataList);
+
+        JsonConfig jsonConfig = new JsonConfig();
+        jsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, new DateJsonValueProcessor("dd日HH:mm:ss"));
+        JSONObject jsonObject = JSONObject.fromObject(result,jsonConfig);
+        System.out.println(jsonObject);
+
+        return jsonObject;
     }
 }

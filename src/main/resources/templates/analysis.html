@@ -4,12 +4,41 @@
     <meta charset="UTF-8"/>
     <title>数据分析</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
 </head>
 <body>
 
-    <div class="container">
-        <p>新模块，敬请期待！</p>
+    <div class="layui-container">
+        <ul class="layui-nav layui-bg-cyan" lay-filter="">
+            <li id="dailyReport" class="layui-nav-item layui-this">
+                <a href="javascript:getHtml()">每日报表</a>
+            </li>
+        </ul>
+
+        <div id="iframeContent">
+
+        </div>
+
     </div>
+
+    <!-- js引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script>
+       function getHtml() {
+           // var url = '/subMenu/user/8';
+           var url = '/anal/dailyReport/8';
+           $.ajax({
+               url:url,
+               type:'get',
+               dataType:'html',
+               success:function (data) {
+                   // console.log(data)
+                   $("#iframeContent").html(data);
+               }
+           });
+       }
+    </script>
 
 </body>
 </html>

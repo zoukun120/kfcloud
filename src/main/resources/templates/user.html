@@ -17,7 +17,7 @@
 
     <!-- js引入 -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/layui/layui.js"></script>
+    <script src="/layui/layui.all.js"></script>
     <script>
         layui.use('table', function () {
             var table = layui.table;
@@ -32,7 +32,6 @@
             //第一个实例
             table.render({
                 elem: '#user_table'
-                // , height: 355  宽高不指定，会自适应窗口
                 , url: '/users' //数据接口
                 , page: true //开启分页
                 ,limit:7

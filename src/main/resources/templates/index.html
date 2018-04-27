@@ -24,7 +24,7 @@
                     </a>
                     <ul>
                          <li th:each="submenu:${menu.getSubMenu()}">
-                             <a th:href="@{/subMenu/__${submenu.getMenuUrl()}__/__${submenu.getFactoryId()}__}">
+                             <a th:href="@{/subMenu/__${#strings.substring(submenu.getMenuUrl(),0,submenu.#strings.indexOf(submenu.getMenuUrl(),'.')) }__/__${submenu.getFactoryId()}__}">
                                  <i class="icon-bar-chart"></i>
                                  <span  th:text="${submenu.getMenuName()}">二级子菜单</span>
                              </a>
