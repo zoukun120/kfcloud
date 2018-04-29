@@ -163,21 +163,25 @@ public class FactoryController {
 
     @GetMapping("/anal/{pageName}/{factoryId}")
     public String toAnalysisPage(@PathVariable("pageName") String name,@PathVariable("factoryId") Integer id,Model model){
+        System.err.println("页面"+name+"的factoryId是 "+id);
         model.addAttribute("factoryId", id);
         return name;
     }
 
+    /**
+     * 报表数据
+     * @param analysis
+     * @return
+     */
     @PostMapping("/anal/dailyReport/table")
     @ResponseBody
     public JSONArray table(@RequestBody Analysis analysis){
         System.err.println(analysis);
         Integer factoryId = analysis.getFactoryId();
         String dateFrist = analysis.getDateFrist();
-        String dateStart = analysis.getDateStart();
         String dateEnd = analysis.getDateEnd();
         // 1 根据factoryId 获取para_ana1表的数据
         Map<String, Object> paraAnalysisData = factoryService.getParaAnalysisData(factoryId);
-        System.err.println("paraAnalysisData:"+paraAnalysisData);
         // 2 根据班组编号查询数据，并传入动态表名
         String out_day_tableName = String.valueOf(paraAnalysisData.get("out_table_day"));
         String field = "TIME,kind,state,out01,out02,out03,out04,out05,out06,out07,out08,out09";
@@ -191,7 +195,6 @@ public class FactoryController {
         dateFilter.put("interval", null);
         System.err.println(dateFilter);
         List<Object> dailyData = factoryService.getHistoryDatasByDate(dateFilter, out_day_tableName, field);//存放dailyData的json数组
-        System.out.println("dailyData:"+dailyData);
 //          表单的第一列数据
         String team1=paraAnalysisData.get("team_01").toString().substring(0,paraAnalysisData.get("team_01").toString().lastIndexOf(":"));
         String team2=paraAnalysisData.get("team_02").toString().substring(0,paraAnalysisData.get("team_02").toString().lastIndexOf(":"));
@@ -210,6 +213,69 @@ public class FactoryController {
         }
         return JSONArray.fromObject(dailyData);
     }
+
+    /**
+     *  获取画昨日曲线的数据
+     * @param analysis
+     * @return
+     */
+    @PostMapping("/anal/dailyReport/line")
+    @ResponseBody
+    public JSONArray line(@RequestBody Analysis analysis){
+        System.err.println(analysis);
+        Integer factoryId = analysis.getFactoryId();
+        String dateStart = analysis.getDateStart();
+        String dateEnd = analysis.getDateEnd();
+//        1 根据factoryId 获取para_ana1表的数据
+        Map<String, Object> paraAnalysisData = factoryService.getParaAnalysisData(factoryId);
+//        2 拼接字段名，和表名
+        Map<String, Object> yDataPreHeadler = Tools.yesterdayDataPreHeadler(paraAnalysisData);
+        String tableName = (String) yDataPreHeadler.get("tableName");
+        String KFFields = (String) yDataPreHeadler.get("KFFields");
+
+//		  3 根据日期调整查询表名：如，从dateStart:2017-11-15 15:00:00  中取出2017-11传入sql，用来动态选择指定月份某一表（如 KF0001_201711）
+        System.err.println("dateStart:"+dateStart);
+        String year = dateStart.substring(0, dateStart.indexOf("-"));
+        String month = dateStart.substring(dateStart.indexOf("-")+1, dateStart.lastIndexOf("-"));
+        if(month.length()==1) {
+            month = "0"+month;
+        }
+        log.info("1、预查询表的年月份："+year+","+month);
+        Calendar now = Calendar.getInstance();//实现分月查询
+        int nowyear = now.get(Calendar.YEAR);
+        int nowmonth = now.get(Calendar.MONTH)+1;
+        log.info("2、当下年月："+nowyear+","+nowmonth);
+        if(Integer.valueOf(year)!=nowyear || Integer.valueOf(month)!=nowmonth) {
+            tableName = tableName + "_"+year+month;
+        }
+        log.info("3、最终要查询的表："+tableName);
+//        4 查询时间调整
+        Map<String, Object> dateFilter2 = new LinkedHashMap<>();
+        try {
+            dateFilter2 = DateFilter.dateFilter(dateStart,dateEnd);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+        dateFilter2.put("interval", 72);
+//        5 查询昨日历史数据
+        List<Object> yDataList = new ArrayList<>();
+        try {
+            yDataList = factoryService.getHistoryDatasByDate(dateFilter2, tableName,KFFields);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        6 将lineNum传入页面，便于echarts动态创建曲线条数，lineNumMap插入到yDataList最后
+        Map<String, Object> lineNumMap = new HashMap<>();
+        lineNumMap.put("lineNum", paraAnalysisData.get("line_num"));
+        String[] split = KFFields.split(",");
+        for (int i = 0; i < split.length; i++) {
+            lineNumMap.put("para" + i, split[i]);
+        }
+        yDataList.add(lineNumMap);
+
+        return JSONArray.fromObject(yDataList);
+    }
+
     /**
      * 每日数据分析
      * 1、表前面的日期：日报表(日期：2017-12-7)

@@ -9,6 +9,7 @@
 <body>
 
     <div class="layui-container">
+        <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
         <ul class="layui-nav layui-bg-cyan" lay-filter="">
             <li id="dailyReport" class="layui-nav-item layui-this">
                 <a href="javascript:getHtml()">每日报表</a>
@@ -25,15 +26,19 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="/layui/layui.all.js"></script>
     <script>
+        <!-- 模拟自动点击a标签-->
+        $(function(){
+            getHtml();
+        })
        function getHtml() {
-           // var url = '/subMenu/user/8';
-           var url = '/anal/dailyReport/8';
+           var factoryId = $("#factoryId").html();
+           console.log(factoryId)
+           var url = '/anal/dailyReport/'+factoryId;
            $.ajax({
                url:url,
                type:'get',
                dataType:'html',
                success:function (data) {
-                   // console.log(data)
                    $("#iframeContent").html(data);
                }
            });

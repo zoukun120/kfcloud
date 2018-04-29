@@ -39,7 +39,7 @@ $(document).ready(function () {
  * 获取系统名称
  */
 function loadSysName() {
-    var factoryId = 8;
+    var factoryId =  $("#factoryId").html();
     $.ajax({
         url : '/history/'+factoryId,
         type : "get",
@@ -51,11 +51,13 @@ function loadSysName() {
                 var result = "<li id='firstli'><ul>"
                 // $('.dropdown-menu').append(prefix);
                 for (var i=0;i<factories.length;i++){
-                    var li = '';
-                    li += '<li>'
-                        + '<a onclick="loadHisData(\'tb2_model'+ factories[i].modelNum +'\','+factories[i].modelId+',\''+factories[i].systemName+'\')">' + factories[i].systemName + '</a>'
-                        + '</li>';
-                    result +=li;
+                    if (factories[i].systemName!='报警系统') {
+                        var li = '';
+                        li += '<li>'
+                            + '<a onclick="loadHisData(\'tb2_model'+ factories[i].modelNum +'\','+factories[i].modelId+',\''+factories[i].systemName+'\')">' + factories[i].systemName + '</a>'
+                            + '</li>';
+                        result +=li;
+                    }
                 }
                 result += "</ul></li>";
                 console.log(result)

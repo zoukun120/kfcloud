@@ -7,41 +7,37 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="/js/user/user.css">
     <link rel="stylesheet" href="/js/analysis/dailyReport.css" media="all">
-    <!-- js引入 -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/layui/layui.all.js"></script>
-    <script src="/js/analysis/dailyReport.js"></script>
 </head>
 <body>
 
-    <div style="border: red solid 1px;width: 100%;height: 500px;margin-top:20px;">
-        <!-- 时间选择器 -->
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label">时间</label>
-                <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
-                <button id="confirm" class="layui-btn">确定</button>
+    <div id="container">
+        <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
+        <!--1、每日报表-->
+        <div id="table_container">
+            <div class="layui-form-item"><!-- 时间选择器 -->
+                <div class="layui-inline">
+                    <div id="time">
+                        <!--<label class="layui-form-label">时间</label>-->
+                        <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                        <button id="confirm" class="layui-btn">确定</button>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="content">
             <table id="anal_table" class="layui-table"></table>
         </div>
 
-        <button class="layui-btn" style="margin-top:200px;margin-left: 150px;">我就是加载的页面</button>
+        <!--2、昨日曲线-->
+        <div class="content">
+            <div id ="cruve_container"></div>
+        </div>
+
     </div>
 
-    <!--<script>-->
-        <!--layui.use(['laydate','table'], function(){-->
-            <!--// 1 日期选择器-->
-            <!--var date = layui.laydate;-->
-            <!--date.render({-->
-                <!--elem: '#test1', //指定元素-->
-                <!--value:yestoday()-->
-            <!--});-->
-        <!--});-->
-
-    <!--</script>-->
-
+    <!-- js引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/highstock/6.0.3/highstock.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script src="/js/analysis/dailyReport.js"></script>
+    <script src="/js/echarts.min.js"></script>
 </body>
 </html>
