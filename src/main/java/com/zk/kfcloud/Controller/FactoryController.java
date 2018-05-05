@@ -381,4 +381,28 @@ public class FactoryController {
 
         return jsonObject;
     }
+
+
+    @PostMapping("/anal/OperateCondition/board")
+    public @ResponseBody Double dashBoard(@RequestBody Analysis analysis){
+//      1 获取表名
+        String boardTableName = factoryService.getDashBoardTableName(analysis.getFactoryId());
+        String KFFields = "out01";
+        log.info("boardTableName:"+boardTableName+",KFFields:"+KFFields);
+//      3 获取最新数据
+        Map<String, Object> data = factoryService.getData(boardTableName, KFFields);
+        Double res = 0.0;
+        for (Map.Entry<String,Object> map :data.entrySet()) {
+            log.info("key:"+map.getKey()+",value:"+map.getValue());
+            res =  Double.valueOf(String.valueOf(map.getValue()));
+            if (res > 150){
+                res = 150.0;
+            }
+            if (res < 0){
+                res = 0.0;
+            }
+        }
+        return  res;
+    }
+
 }

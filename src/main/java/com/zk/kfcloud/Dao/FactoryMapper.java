@@ -39,5 +39,7 @@ public interface FactoryMapper{
   public abstract Map<String, Object> getDailyData(Map<String, Object> paramMap);
   
   public abstract List<Object> getAllData(Map<String, Object> dateMap);
+
+  public abstract String getDashBoardTableName(Integer factoryId);
   
 }

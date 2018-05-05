@@ -13,7 +13,10 @@
 
         <ul class="layui-nav layui-bg-cyan" lay-filter="">
             <li id="dailyReport" class="layui-nav-item layui-this">
-                <a href="javascript:getHtml()">每日报表</a>
+                <a href="javascript:getHtml('dailyReport')">每日报表</a>
+            </li>
+            <li id="xxx" class="layui-nav-item">
+                <a href="javascript:getHtml('dashBoard')">工况分析</a>
             </li>
         </ul>
 
@@ -25,19 +28,24 @@
 
     <!-- js引入 -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js"></script>
     <script src="/layui/layui.all.js"></script>
     <script>
         <!-- 模拟自动点击a标签-->
         $(function(){
-            getHtml();
+            // 默认加载 报表页面
+            getHtml('dailyReport');
         })
-       function getHtml() {
-           var factoryId = $("#factoryId").html();
-           console.log(factoryId)
-           var url = '/anal/dailyReport/'+factoryId;
+
+
+       function getHtml(page) {
+           // 1 先清空
+           if (page=='dashBoard') {
+               $("#iframeContent").empty();
+           }
+           var url = '/anal/'+page+'/'+$("#factoryId").html();
            $.ajax({
                url:url,
-               // async:true,
                type:'get',
                dataType:'html',
                success:function (data) {

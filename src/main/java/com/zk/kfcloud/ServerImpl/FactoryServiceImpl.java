@@ -136,4 +136,9 @@ public class FactoryServiceImpl implements FactoryService {
 		}
 		return menus;
 	}
+
+	@Override
+	public String getDashBoardTableName(Integer factoryId) {
+		return factoryMapper.getDashBoardTableName(factoryId);
+	}
 }

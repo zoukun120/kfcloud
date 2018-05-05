@@ -11,6 +11,10 @@
 		<result column="model_id" property="modelId" />
 	</resultMap>
 
+	<select id="getDashBoardTableName" parameterType="Integer" resultType="String">
+		select out_table_sec from para_ana2  where factory_id = #{factoryId}
+	</select>
+
 	<select id="listAllInfoByFactoryId" parameterType="Integer"
 		resultMap="factoryResultMap">
 		select

@@ -43,5 +43,7 @@ public abstract interface FactoryService {
 	List<Object> getAllData(Map<String, Object> dateMap, String tableName);
 
 	public abstract List<Menu> commonCode(Integer userid);
+
+	String getDashBoardTableName(Integer factoryId);
 	
 }

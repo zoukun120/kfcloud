@@ -11,6 +11,13 @@ layui.use(['laydate','table'], function(){
     });
 });
 
+$(function(){
+    // $("#confirm").trigger('click');
+    var dateStart = $("#test1").val()+' 00:00:00';
+    var dateEnd = getEndTime(dateStart);
+    getHisCruve(dateStart,dateEnd);
+})
+
 /**
  * 1.1、点击事件选择器的确定按钮
  */
@@ -22,6 +29,7 @@ $("#confirm").click(function(){
     // getDailyTable(dateEnd,dateFrist);
     getHisCruve(dateStart,dateEnd);
 });
+
 
 /*
  * 2、发送post请求，从服务器拿到报表数据
@@ -63,7 +71,9 @@ function getDailyTable(dateEnd,dateFrist) {
             })
         },
         error : function() {
-            alert('服务器正忙，请稍后再试...');
+            // alert('服务器正忙，请稍后再试...');
+            var layer = layui.layer;
+            layer.msg('服务器正忙，请稍后再试...')
         }
     })
 }
