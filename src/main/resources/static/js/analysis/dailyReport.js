@@ -1,3 +1,4 @@
+
 /**
  * 1、日期选择器
  */
@@ -17,7 +18,8 @@ $("#confirm").click(function(){
     var dateStart = $("#test1").val()+' 00:00:00';
     var dateEnd = getEndTime(dateStart);
     var dateFrist = addTime(dateEnd);
-    getDailyTable(dateEnd,dateFrist);
+    <!-- 2 报表功能暂时关闭 -->
+    // getDailyTable(dateEnd,dateFrist);
     getHisCruve(dateStart,dateEnd);
 });
 

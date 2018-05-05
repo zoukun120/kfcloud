@@ -10,6 +10,7 @@
 
     <div class="layui-container">
         <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
+
         <ul class="layui-nav layui-bg-cyan" lay-filter="">
             <li id="dailyReport" class="layui-nav-item layui-this">
                 <a href="javascript:getHtml()">每日报表</a>
@@ -36,6 +37,7 @@
            var url = '/anal/dailyReport/'+factoryId;
            $.ajax({
                url:url,
+               // async:true,
                type:'get',
                dataType:'html',
                success:function (data) {
