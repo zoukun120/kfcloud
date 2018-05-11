@@ -298,7 +298,7 @@ public class FactoryController {
         System.err.println("dateFrist:"+dateFrist);
         // 1 根据factoryId 获取para_ana1表的数据
         Map<String, Object> paraAnalysisData = factoryService.getParaAnalysisData(factoryId);
-        System.err.println("paraAnalysisData:"+paraAnalysisData);
+//        System.err.println("paraAnalysisData:"+paraAnalysisData);
         // 2 根据班组编号查询数据，并传入动态表名
         String out_day_tableName = String.valueOf(paraAnalysisData.get("out_table_day"));
         String field = "TIME,kind,state,out01,out02,out03,out04,out05,out06,out07,out08,out09";
@@ -310,9 +310,9 @@ public class FactoryController {
             e2.printStackTrace();
         }
         dateFilter.put("interval", null);
-        System.err.println(dateFilter);
+//        System.err.println(dateFilter);
         List<Object> dailyData = factoryService.getHistoryDatasByDate(dateFilter, out_day_tableName, field);//存放dailyData的json数组
-        System.out.println("dailyData:"+dailyData);
+//        System.out.println("dailyData:"+dailyData);
         // 3 获取画昨日曲线的数据
         Map<String, Object> yDataPreHeadler = Tools.yesterdayDataPreHeadler(paraAnalysisData);
         String tableName = (String) yDataPreHeadler.get("tableName");
@@ -350,7 +350,7 @@ public class FactoryController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.err.println("yDataList:"+yDataList);
+//        System.err.println("yDataList:"+yDataList);
         Map<String, Object> lineNumMap = new HashMap<>();// 将lineNum传入页面，便于动态创建曲线条数
         lineNumMap.put("lineNum", paraAnalysisData.get("line_num"));
         String[] split = KFFields.split(",");
@@ -359,7 +359,7 @@ public class FactoryController {
         }
 
         yDataList.add(lineNumMap);
-        System.out.println("yDataList:"+yDataList);
+//        System.out.println("yDataList:"+yDataList);
         // 转json传给页面
 //		System.out.println(((Map<String, Object>)dailyData.get(1)).get("TIME").getClass());//测试从数据库得到得time类型：class java.sql.Timestamp
 //		System.out.println(paraAnalysisData.get("team_01").getClass());//测试输出班组时间格式:class java.sql.Time
@@ -377,7 +377,7 @@ public class FactoryController {
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.registerJsonValueProcessor(java.sql.Timestamp.class, new DateJsonValueProcessor("dd日HH:mm:ss"));
         JSONObject jsonObject = JSONObject.fromObject(result,jsonConfig);
-        System.out.println(jsonObject);
+//        System.out.println(jsonObject);
 
         return jsonObject;
     }

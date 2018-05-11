@@ -4,10 +4,9 @@
     <meta charset="UTF-8"/>
     <title>每日报表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!--<link rel="stylesheet" href="/layui/css/layui.css" media="all">-->
-    <link href="https://cdn.bootcss.com/layer/3.1.0/mobile/need/layer.css" rel="stylesheet">
     <link rel="stylesheet" href="/js/user/user.css">
     <link rel="stylesheet" href="/js/analysis/dailyReport.css" media="all">
+    <link rel="stylesheet" th:href="@{/js/history/mobiscroll.custom.min.css}"/>
 </head>
 <body>
 
@@ -17,9 +16,8 @@
         <div id="table_container">
             <div class="layui-form-item"><!-- 时间选择器 -->
                 <div class="layui-inline">
-                    <div id="time">
-                        <!--<label class="layui-form-label">时间</label>-->
-                        <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                    <div id="time" class="section">
+                        <input type="text" class="layui-input" id="test1">
                         <button id="confirm" class="layui-btn">确定</button>
                     </div>
                 </div>
@@ -36,9 +34,9 @@
     </div>
 
     <!-- js引入 -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/layui/layui.all.js"></script>
     <script src="/js/analysis/dailyReport.js"></script>
-    <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js"></script>
+    <!-- 日期选择器 -->
+    <script th:src="@{/js/analysis/main.js}"></script>
+    <script th:src="@{/js/history/mobiscroll.custom.min.js}"></script>
 </body>
 </html>

@@ -4,20 +4,46 @@
     <meta charset="UTF-8"/>
     <title>数据分析</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color:#6a7e75;
+        }
+        #anal{
+            border: #0f0f0f solid 1px;
+            box-shadow:5px 5px 5px;
+            height:60px;
+            background: transparent;
+            padding:6px;
+        }
+        #anal li{
+            box-shadow:5px 5px 5px;
+            background: transparent;
+            margin-right:5px;
+        }
+        .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+            background-color:#3e5a65;
+        }
+        a{
+            color:#fff;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="layui-container">
+    <div class="container">
         <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
 
-        <ul class="layui-nav layui-bg-cyan" lay-filter="">
-            <li id="dailyReport" class="layui-nav-item layui-this">
-                <a href="javascript:getHtml('dailyReport')">每日报表</a>
+        <ul id="anal" class="nav nav-pills ">
+
+            <li id="xxx" role="presentation" class="active">
+                <a>工况分析</a>
+                <!--<a href="javascript:getHtml('dashBoard')">工况分析</a>-->
             </li>
-            <li id="xxx" class="layui-nav-item">
-                <a href="javascript:getHtml('dashBoard')">工况分析</a>
-            </li>
+
+            <!--<li id="dailyReport" role="presentation">-->
+                <!--<a href="javascript:getHtml('dailyReport')">每日报表</a>-->
+            <!--</li>-->
         </ul>
 
         <div id="iframeContent">
@@ -28,13 +54,15 @@
 
     <!-- js引入 -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js"></script>
-    <script src="/layui/layui.all.js"></script>
     <script>
         <!-- 模拟自动点击a标签-->
         $(function(){
-            // 默认加载 报表页面
-            getHtml('dailyReport');
+            //全局定时器变量
+            var intervalTime;
+            // 默认加载 仪表盘页面 dailyReport/dashBoard
+            getHtml('dashBoard');
         })
 
 

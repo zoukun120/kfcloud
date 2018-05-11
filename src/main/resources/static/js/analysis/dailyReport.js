@@ -2,18 +2,12 @@
 /**
  * 1、日期选择器
  */
-layui.use(['laydate','table'], function(){
-    // 1 日期选择器
-    var date = layui.laydate;
-    date.render({
-        elem: '#test1', //指定元素
-        value:yestoday()
-    });
-});
 
 $(function(){
-    // $("#confirm").trigger('click');
-    var dateStart = $("#test1").val()+' 00:00:00';
+    //停止 仪表盘的定时器
+    window.clearInterval(intervalTime);
+    //页面开始 加载曲线
+    var dateStart =timeStamp2String(yestoday())
     var dateEnd = getEndTime(dateStart);
     getHisCruve(dateStart,dateEnd);
 })
@@ -22,12 +16,17 @@ $(function(){
  * 1.1、点击事件选择器的确定按钮
  */
 $("#confirm").click(function(){
-    var dateStart = $("#test1").val()+' 00:00:00';
-    var dateEnd = getEndTime(dateStart);
-    var dateFrist = addTime(dateEnd);
-    <!-- 2 报表功能暂时关闭 -->
-    // getDailyTable(dateEnd,dateFrist);
-    getHisCruve(dateStart,dateEnd);
+    //判断选择过日期
+    var dateStart = $("#test1").val();
+    if (dateStart==''){
+        alert.msg('请选择日期');
+    }else {
+        dateStart +=' 00:00:00';
+        var dateEnd = getEndTime(dateStart);
+        <!-- 2 报表功能暂时关闭 -->
+        // getDailyTable(dateEnd,dateFrist);
+        getHisCruve(dateStart,dateEnd);
+    }
 });
 
 
@@ -51,29 +50,9 @@ function getDailyTable(dateEnd,dateFrist) {
         contentType : "application/json",
         success : function(result) {
             // console.log(result);
-            // 2 表格
-            var table = layui.table;
-            var data = [
-                {field: 'groupId', fixed: 'left'}
-                ,{field: 'out01', title: '合格率'}
-                , {field: 'out02', title: '出塔量'}
-                , {field: 'out03', title: '放散量'}
-                , {field: 'out04', title: '放散率'}
-                , {field: 'out05', title: '利用量'}
-                , {field: 'out06', title: '消耗量'}
-                , {field: 'out07', title: '单位能耗'}
-                , {field: 'out08', title: '停气时间'}
-            ];
-            table.render({
-                elem: '#anal_table',
-                cols: [data],
-                data: result
-            })
         },
         error : function() {
-            // alert('服务器正忙，请稍后再试...');
-            var layer = layui.layer;
-            layer.msg('服务器正忙，请稍后再试...')
+            alert('服务器正忙，请稍后再试...')
         }
     })
 }
@@ -97,7 +76,7 @@ function getHisCruve(dateStart,dateEnd){
         data: JSON.stringify(jsonObj),
         contentType: "application/json",
         success: function (yDataList) {
-            console.log(yDataList);
+            // console.log(yDataList);
             //为画表格准备数据
             var paraMap = yDataList[yDataList.length - 1];
             var paraNum = paraMap.lineNum;
@@ -106,7 +85,7 @@ function getHisCruve(dateStart,dateEnd){
             for (var i = 0; i < paraNum + 3; i++) {//动态创建变量名.arr0,arr1.arr2..,其中arr0用来存放所有的参数名，arr1存单位,arr2用来存TIME，arr4开始存数据
                 var varName = 'arr' + i;
                 window[varName] = [];
-                console.log('arr' + i);
+                // console.log('arr' + i);
             }
 
             //把字段存入arr0
@@ -168,8 +147,8 @@ function getHisCruve(dateStart,dateEnd){
             for (var i = 0; i < arr2.length; i++) {
                 option.xAxis[0].data.push(timeStamp2String(arr2[i].time));
             }
-            console.log('x轴数据：')
-            console.log(option.xAxis[0].data)
+            // console.log('x轴数据：')
+            // console.log(option.xAxis[0].data)
             // 2.2、将数值数组push到yAxis中，
             for (var m = 0; m < paraNum; m++) {//0,1,2,3,多级Y轴---将yAxisObj对象push到charts.yAxis数组中，
                 // 2.2.1、y轴显示的方位
@@ -196,10 +175,10 @@ function getHisCruve(dateStart,dateEnd){
                 };
                 option.series.push(seriesObj);
             }
-            console.log('y轴数据：')
-            console.log(option.yAxis)
-            console.log('series数据：')
-            console.log(option.series)
+            // console.log('y轴数据：')
+            // console.log(option.yAxis)
+            // console.log('series数据：')
+            // console.log(option.series)
             // 3、使用刚指定的配置项和数据显示图表。
             myChart.setOption(option);
         },
@@ -307,7 +286,7 @@ function getEndTime(startTime) {
     var datetime = new Date(startTime);
     datetime.setHours(0, 0, 0, 0);
     var year = datetime.getFullYear();
-    var month = datetime.getMonth()+1;// 月份从0开始,日期+1
+    var month = datetime.getMonth() + 1;// 月份从0开始,日期+1
     var date = datetime.getDate();
     //获取每个月的天数
     var d = new Date(year,month,0);
@@ -328,6 +307,9 @@ function getEndTime(startTime) {
         }
     }
     //统一将 月份、 小时、分、秒  显示成两位数
+    if (month < 10) {
+        month = '0' + month;
+    }
     if (date < 10) {
         date = '0' + date;
     }
