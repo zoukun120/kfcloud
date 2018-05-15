@@ -45,12 +45,12 @@ function printDashBoard(url,jsonObj){
                 tooltip : {
                     formatter: "{a} <br/>{b} : {c}%"
                 },
-                toolbox: {
-                    feature: {
-                        restore: {},
-                        saveAsImage: {}
-                    }
-                },
+                // toolbox: {
+                //     feature: {
+                //         restore: {},
+                //         saveAsImage: {}
+                //     }
+                // },
                 series: [
                     {
                         name: '业务指标',

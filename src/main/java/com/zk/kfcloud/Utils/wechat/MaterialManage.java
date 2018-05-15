@@ -13,15 +13,12 @@ import java.net.URL;
 @Slf4j
 public class MaterialManage {
 
-//    public static final String DOMAIN = "http://www.zoukunzk.cn";
-//
-//    public static final String APPID = "wx7aa9af01712b950a";
-//    public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
-//    public static final String DOMAIN = "http://sjxtqp.natappfree.cc";
-//
-//    public static final String APPID = "wxb66105e88b4179b6";
-//    public static final String APPSECRET = "67d9b310ccac2beee686f5193b4506f2";
-    public static final String DOMAIN = "http://dtrmci.natappfree.cc";
+//    正式上线
+    public static final String DOMAIN = "http://www.zoukunzk.cn";
+
+//    本地调试
+//    public static final String DOMAIN = "http://dtrmci.natappfree.cc";
+
     public static final String APPID = "wx7aa9af01712b950a";
     public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
     public static final String AccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + APPID + "&secret=" + APPSECRET;
