@@ -40,15 +40,14 @@ public class UserController {
     @GetMapping("/isBrother")
     public String Brother(@RequestParam("openid") String openid, Model model) {
         User brother = userService.isBrother(openid);
-        System.err.println("brother:" + brother);
+       log.info("brother:" + brother);
         if (brother != null) {
-            System.err.println("自己人，马上进入首页");
-//            session.setAttribute("sessionUser", brother);
-            System.err.println("redirect:index?userid=" + brother.getUserId());
+            log.info("内部用户，直接进入系统");
+            log.info("重定向url：redirect:index?userid=" + brother.getUserId());
             return "redirect:index?userid=" + brother.getUserId();
         } else {
             model.addAttribute("openid", openid);
-            System.err.println("新用户，请进入登陆页");
+            log.info("新用户，请进入登陆页");
             return "login";
         }
     }
@@ -78,7 +77,6 @@ public class UserController {
             }
         }
         Map<String, Object> res = new HashMap<>();
-        System.err.println(users.size());
         res.put("code", 0);
         res.put("msg", "");
         res.put("count", userService.findAllUsers().size());

@@ -82,7 +82,7 @@ public class LoginController {
             List<WeChat> allWeChatUser = weChatService.findAllWeChatUser();
             Boolean flag = true;
             for (WeChat wxUser:allWeChatUser) {
-                log.info(wxUser.toString());
+//                log.info(wxUser.toString());
                 if (openid.equals(wxUser.getOpenId())) {//openid存在，不插入数据库
                     flag = false;
                 }
@@ -110,7 +110,7 @@ public class LoginController {
 
     @GetMapping("index")
     public String toUserIndex(Integer userid, Model model){
-        System.err.println("index-get-userid:"+userid);
+        log.info("index-get-userid:"+userid);
         model.addAttribute("menus",factoryService.commonCode(userid));
         return "index";
     }

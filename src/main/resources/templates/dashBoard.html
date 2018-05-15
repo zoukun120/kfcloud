@@ -11,20 +11,10 @@
 
     <div id="container">
         <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
-        <!--1、时间选择器 -->
-        <div id="table_container">
-            <div class="layui-form-item" style="height: 46px">
-                <div class="layui-inline">
-                    <div id="time">
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--2、昨日曲线-->
+        <!-- 显示echarts图 -->
         <div class="content">
-            <div id ="cruve_container"></div>
+            <div id ="dashBoard_container" style="min-height: 400px;"></div>
         </div>
 
     </div>

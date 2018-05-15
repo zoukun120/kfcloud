@@ -131,9 +131,9 @@ public class FactoryServiceImpl implements FactoryService {
 			}
 			menus.add(menu);
 		}
-		for (Menu menu:menus) {
-			log.info(menu.toString());
-		}
+//		for (Menu menu:menus) {
+//			log.info(menu.toString());
+//		}
 		return menus;
 	}
 

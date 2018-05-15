@@ -6,14 +6,16 @@ import com.zk.kfcloud.Utils.JsonResult;
 import com.zk.kfcloud.Utils.wechat.AccessGuide;
 import com.zk.kfcloud.Utils.wechat.Authorization;
 import com.zk.kfcloud.Utils.wechat.CustomerMenu;
+import com.zk.kfcloud.Utils.wechat.MsgManage;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * 调试微信步骤：
@@ -34,7 +36,6 @@ public class WeChatController {
      */
     @GetMapping("/access")
     public static JsonResult access(HttpServletRequest request, HttpServletResponse response) {
-        System.err.println("/access");
         try {
             AccessGuide.doGet(request, response);
             return JsonResult.ok("Access to wechat server successfully");
@@ -45,7 +46,22 @@ public class WeChatController {
         }
     }
 
-
+    /**
+     * 用户给公众号发送的消息，微信服务器会以xml的形式post到自己配置服务器的url上
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    @PostMapping("/access")
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        String responseMessage = MsgManage.processRequest(req);//工具类 coreService的processRequest方法处理用户请求
+        PrintWriter out = resp.getWriter();
+        out.print(responseMessage);
+        out.close();
+    }
 
     /*
         创建微信菜单
@@ -95,7 +111,7 @@ public class WeChatController {
             log.info("code:" + code);
             log.info(tokenAndOpenId);
             log.info("userInfo:" + userInfo);
-            System.err.println("/isBrother?id=" + openid);
+            log.info("/isBrother?id=" + openid);
             response.sendRedirect("/isBrother?openid=" + openid);
             return JsonResult.ok("User Authorization Successfully");
         } catch (Exception e) {

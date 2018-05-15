@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService,UserDetailsService {
             List<WeChat> allWeChatUser = weChatService.findAllWeChatUser();
             if (allWeChatUser != null) {
                 for (WeChat wx : allWeChatUser) {
-                    System.err.println(wx);
+//                    System.err.println(wx);
                     if (openid.equals(wx.getOpenId())) {
                         return userMapper.selectByPrimaryKey(wx.getUserId());
                     }

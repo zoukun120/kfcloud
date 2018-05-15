@@ -51,12 +51,12 @@
 #anal_table{
     margin: 0;
 }
-#cruve_container{
-    width: 100%;
-    min-height: 400px;
-    /*border: #cc901b solid 1px;*/
-    margin:auto
-}
+/*#dashBoard_container{*/
+    /*width: 100%;*/
+    /*min-height: 400px;*/
+    /*!*border: #cc901b solid 1px;*!*/
+    /*margin:auto*/
+/*}*/
 .content{
     border: #283033 solid 1px;
     background:transparent;
