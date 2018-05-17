@@ -58,7 +58,7 @@ public class FactoryServiceImpl implements FactoryService {
 	}
 
 	public Map<String, Object> getParaValues(String modelName, Integer modelId, String fields) {
-		log.info("fields:" + fields);
+//		log.info("fields:" + fields);
 		Map<String, Object> map = new HashMap<>();
 		map.put("modelName", modelName);
 		map.put("modelId", modelId);

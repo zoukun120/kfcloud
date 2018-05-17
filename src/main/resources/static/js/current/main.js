@@ -135,6 +135,7 @@ function time(url) {
             //动态创建表格
             var paraMap = data.paraMap;
             var dataMap = data.dataMap;
+            $(".pull-center").html("实时数据("+timeStamp2String(dataMap.TIME.time)+")")
             $("#currentdata").empty();
             for(var i=1;i<=paraMap.para_num;i++){
                 //得到参数名和参数坐标名
@@ -153,4 +154,36 @@ function time(url) {
             alert('服务器正忙，请稍后再试...');
         }
     })
+}
+
+/**
+ * 时间戳 转 字符串
+ * @param time
+ * @returns {string}
+ */
+function timeStamp2String(time) {// timestamp转datetime
+    var datetime = new Date();
+    datetime.setTime(time);
+    var year = datetime.getFullYear();
+    var month = datetime.getMonth() + 1;
+    var date = datetime.getDate();
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (date < 10) {
+        date = '0' + date;
+    }
+    var hour = datetime.getHours();
+    if (hour < 10) {
+        hour = '0' + hour;
+    }
+    var minute = datetime.getMinutes();
+    if (minute < 10) {
+        minute = '0' + minute;
+    }
+    var second = datetime.getSeconds();
+    if (second < 10) {
+        second = '0' + second;
+    }
+    return year+"-"+month+"-"+date+" "+hour + ":" + minute + ":" + second;
 }

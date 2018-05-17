@@ -65,3 +65,11 @@
 .layui-table td{
     font-size:1px;
 }
+
+#dashBoard_time{
+    text-align:center;
+    box-shadow:5px 5px 5px;
+    padding:10px 10px 10px;
+    font-size:16px;
+
+}

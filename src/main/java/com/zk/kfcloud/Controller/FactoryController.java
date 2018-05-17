@@ -17,6 +17,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Slf4j
@@ -56,12 +60,12 @@ public class FactoryController {
     @GetMapping("/current/{modelName}/{modelId}/{systemName}")
     @ResponseBody
     public JSONObject curSystem(@PathVariable("modelName") String modelname, @PathVariable("modelId") Integer id, @PathVariable("systemName") String systemname) {
-        System.err.println(modelname);
-        System.err.println(id);
-        System.err.println(systemname);
+//        System.err.println(modelname);
+//        System.err.println(id);
+//        System.err.println(systemname);
 //      1 在表tb2_model1中，查出对应id的信息
         Map<String, Object> paraMap = factoryService.getParasByModelNameAndId(modelname, id);
-        System.err.println(paraMap);
+//        System.err.println(paraMap);
 //          1.1 得到数据表 如KF0004
         String KFTable = (String) paraMap.get("para_url");
 //          1.2 遍历paraMap，得到sql的’查询字符串‘
@@ -74,13 +78,12 @@ public class FactoryController {
                 KFFields.append(value + ",");
             }
         }
-        String SqlFields = KFFields.substring(0, KFFields.toString().lastIndexOf(","));
+        String SqlFields = "TIME,"+KFFields.substring(0, KFFields.toString().lastIndexOf(","));
         log.info("KFTable:" + KFTable);
         log.info("SqlFields:" + SqlFields);
 
 //      2 查询KFTable（KF0004）中最新一条SqlFields（para_num.para_name,para_suffix...）数据
         Object dataMap = factoryService.getData(KFTable, SqlFields);
-
 //      3 返回json数据
         JSONObject json = new JSONObject();
         json.put("paraMap", paraMap);
@@ -119,7 +122,7 @@ public class FactoryController {
 //        2 组装tb2_model的查询字符串
         int paraNum = factoryService.getParaNum(modelName, modelId);
         String ModelFields = FactoryUtil.assemblyModelField(paraNum, "para_url,para_num,");
-        log.info("paraNum:" + paraNum + ",ModelFields:" + ModelFields);
+//        log.info("paraNum:" + paraNum + ",ModelFields:" + ModelFields);
 
 //        3 组装kf_000x 的查询字符串
         Map<String, Object> paraMap = factoryService.getParaValues(modelName, modelId, ModelFields);
@@ -384,25 +387,33 @@ public class FactoryController {
 
 
     @PostMapping("/anal/OperateCondition/board")
-    public @ResponseBody Double dashBoard(@RequestBody Analysis analysis){
+    public @ResponseBody Map<String, Object> dashBoard(@RequestBody Analysis analysis) throws ParseException {
 //      1 获取表名
         String boardTableName = factoryService.getDashBoardTableName(analysis.getFactoryId());
-        String KFFields = "out01";
+        String KFFields = "TIME,out01";
         log.info("boardTableName:"+boardTableName+",KFFields:"+KFFields);
 //      3 获取最新数据
         Map<String, Object> data = factoryService.getData(boardTableName, KFFields);
-        Double res = 0.0;
+        DateFormat df= new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
         for (Map.Entry<String,Object> map :data.entrySet()) {
-            log.info("key:"+map.getKey()+",value:"+map.getValue());
-            res =  Double.valueOf(String.valueOf(map.getValue()));
-            if (res > 150){
-                res = 150.0;
-            }
-            if (res < 0){
-                res = 0.0;
+            String key = map.getKey();
+            switch (key){
+                case "TIME":
+                    data.put(key,df.format(map.getValue()));break;
+                case "out01":
+                    Double value = Double.valueOf(String.valueOf(map.getValue()));
+                    if (value>=150.0){
+                        data.put(key,150);break;
+                    }
+                    if (value<=0.0){
+                        data.put(key,0);break;
+                    }
             }
         }
-        return  res;
+        for (Map.Entry<String,Object> map :data.entrySet()) {
+            log.info("key:"+map.getKey()+",value:"+map.getValue());
+        }
+        return  data;
     }
 
 }

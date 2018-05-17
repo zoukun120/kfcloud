@@ -928,13 +928,10 @@ header .header-data .hdata em {
 /* Widget */
 
 .widget {
-    border: 2px solid #1aaef3;
+    /*border: 2px solid #1aaef3;*/
     border-radius: 3px;
     margin-top: 10px;
     margin-bottom: 20px;
-    background: #9fc8d8;
-    /*display: block;*/
-    /*min-height: 250px;*/
 }
 
 .widget p {
@@ -1005,24 +1002,19 @@ header .header-data .hdata em {
 /*}*/
 
 .widget .widget-head, .modal-header {
-    background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
-    background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
-    background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
-    background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
-    background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
-    background: linear-gradient(top, #f8f8f8, #f2f2f2);
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
-    text-shadow: 0px 1px #fff;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #fff;
-    color: #666;
-    font-size: 14px;
+    color: #fff;
+    font-size: 16px;
     font-weight: bold;
     padding: 8px 15px;
     max-height: 50px;
+    box-shadow: 5px 5px 5px #353030;
+    text-align:center;
 }
-
+.widget-head input{
+    background: transparent;
+}
 .widget.wblack .widget-head {
     background-color: #333;
     background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#111));
@@ -1740,3 +1732,4 @@ footer .copy {
         background-color: #00bbff;
     }
 }
+

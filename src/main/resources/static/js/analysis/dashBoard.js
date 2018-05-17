@@ -39,18 +39,16 @@ function printDashBoard(url,jsonObj){
         async : false,
         data : JSON.stringify(jsonObj),
         contentType : "application/json",
-        success : function(dash_value) {
+        success : function(result) {
+            console.log(result);
+            var time = result.TIME;
+            $("#dashBoard_time").html(time);
+            var dash_value = result.out01;
             // 指定图表的配置项和数据
             option = {
                 tooltip : {
                     formatter: "{a} <br/>{b} : {c}%"
                 },
-                // toolbox: {
-                //     feature: {
-                //         restore: {},
-                //         saveAsImage: {}
-                //     }
-                // },
                 series: [
                     {
                         name: '业务指标',

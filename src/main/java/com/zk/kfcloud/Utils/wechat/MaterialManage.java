@@ -13,14 +13,15 @@ import java.net.URL;
 @Slf4j
 public class MaterialManage {
 
-//    正式上线
-    public static final String DOMAIN = "http://www.zoukunzk.cn";
+    //    正式上线
+//    public static final String DOMAIN = "http://www.zoukunzk.cn";
+//    public static final String APPID = "wx7aa9af01712b950a";
+//    public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
+    //    本地调试
+    public static final String DOMAIN = "http://isi3ax.natappfree.cc";
+    public static final String APPID = "wxce2ee669cb26eded";
+    public static final String APPSECRET = "a18bfd173767748a08120ae5a8954ae0";
 
-//    本地调试
-//    public static final String DOMAIN = "http://dtrmci.natappfree.cc";
-
-    public static final String APPID = "wx7aa9af01712b950a";
-    public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
     public static final String AccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + APPID + "&secret=" + APPSECRET;
     public static final String UploadUrl = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
 
@@ -31,7 +32,7 @@ public class MaterialManage {
      */
     public static AccessToken getAccessToken() {
         AccessToken token = new AccessToken();
-        JSONObject jsonObj =  JSONObject.fromObject(RequestMethod.doGet(AccessTokenUrl));
+        JSONObject jsonObj = JSONObject.fromObject(RequestMethod.doGet(AccessTokenUrl));
         if (jsonObj != null) {
             token.setAccess_token(jsonObj.getString("access_token"));
             token.setExpires_in(jsonObj.getInt("expires_in"));
