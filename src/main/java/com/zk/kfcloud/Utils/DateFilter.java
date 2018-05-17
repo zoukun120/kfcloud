@@ -37,7 +37,7 @@ public class DateFilter {
 			dEnd = simpleDateFormat.parse(dateEnd);
 		}
 		int hourNum = (int) (dEnd.getTime() / 3600000L - dStart.getTime() / 3600000L);
-		if (hourNum <= 1) {
+		if (hourNum < 1) {
 			map.put("interval", null);
 			log.info("interval:null");
 		} else {

@@ -34,7 +34,7 @@ public class CustomerMenu {
         ViewButton button3 = new ViewButton();
         button3.setName("技术支持");
         button3.setType(MENU_VIEW);
-        button3.setUrl("https://blog.csdn.net/edison_03/article/category/7502343");
+        button3.setUrl("https://blog.csdn.net/edison_03");
 
 
         Menu menu = new Menu();

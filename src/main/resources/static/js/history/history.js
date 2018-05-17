@@ -6,13 +6,17 @@ $(document).ready(function () {
     $("#nav").click(function(){
         // 1 判断是否隐藏 下拉系统菜单选择项
         var attrValue = $('#nav i').attr('class');
-            console.log(attrValue)
+        console.log(attrValue)
         if (attrValue.indexOf("up")!= -1){
             $('.dropdown-menu').show();
             $('#nav i').attr('class','icon-chevron-down');
+        }else{
+            $('.dropdown-menu').hide();
+            $('#nav i').attr('class','icon-chevron-up');
         }
+
         // 2 隐藏图表
-        // $("#container").empty();
+        $("#container").empty();
         $(".widget-head").hide();
         // 3 加载系统菜单选项
         loadSysName();
@@ -31,16 +35,9 @@ $(document).ready(function () {
     });
 
     $(".dropdown-menu li").click(function(){
-        //清空图表
-        // $("#container").empty();
         $(".widget-head").show();
-        // var time_selector = '<div class="widget-head"><div class="pull-left"><div class="section">' +
-        //     ' <label>时间:</label> <input type="text" id="start_datetime"/>    -   <input type="text" id="end_datetime"/>' +
-        //     '<label> <button id="confirm" class="btn btn-default btn-sm" onclick="triggerCurve()"> 确定 </button></label>' +
-        //     '</div></div><div class="clearfix"></div></div>';
-        // console.log(time_selector);
-        // $("#xxx").append(time_selector);
-
+        //清空图表
+        $("#container").empty();
     });
 
 })
@@ -54,24 +51,24 @@ function loadSysName() {
         url : '/history/'+factoryId,
         type : "get",
         success : function(factories) {
-                // console.log(factories)
-                $('.dropdown-menu').empty();
-                // 遍历数据，构造html，点击发送请求
+            console.log(factories)
+            $('.dropdown-menu').empty();
+            // 遍历数据，构造html，点击发送请求
 
-                var result = "<li id='firstli'><ul>"
-                // $('.dropdown-menu').append(prefix);
-                for (var i=0;i<factories.length;i++){
-                    if (factories[i].systemName!='报警系统') {
-                        var li = '';
-                        li += '<li>'
-                            + '<a onclick="loadHisData(\'tb2_model'+ factories[i].modelNum +'\','+factories[i].modelId+',\''+factories[i].systemName+'\')">' + factories[i].systemName + '</a>'
-                            + '</li>';
-                        result +=li;
-                    }
+            var result = "<li id='firstli'><ul>"
+            // $('.dropdown-menu').append(prefix);
+            for (var i=0;i<factories.length;i++){
+                if (factories[i].systemName!='报警系统') {
+                    var li = '';
+                    li += '<li>'
+                        + '<a onclick="loadHisData(\'tb2_model'+ factories[i].modelNum +'\','+factories[i].modelId+',\''+factories[i].systemName+'\')">' + factories[i].systemName + '</a>'
+                        + '</li>';
+                    result +=li;
                 }
-                result += "</ul></li>";
-                // console.log(result)
-                $('.dropdown-menu').append(result);
+            }
+            result += "</ul></li>";
+            console.log(result)
+            $('.dropdown-menu').append(result);
         }
     })
 }
@@ -100,10 +97,10 @@ function triggerCurve() {
     if (dateEnd != ''){
         dateEnd += ':00';
     }
-    // console.log(dateStart)
-    // console.log(dateEnd)
-    // console.log(modelName)
-    // console.log(modelId)
+    console.log(dateStart)
+    console.log(dateEnd)
+    console.log(modelName)
+    console.log(modelId)
     //2 发送ajax请求，获取历史数据，构造DOM元素，显示图表
     if(dateEnd==""||dateStart <= dateEnd){//输入正常，将输入的开始，结束时间传给服务器
         /* 下面开始全自动化读取数据什么的了 */
@@ -112,9 +109,9 @@ function triggerCurve() {
         alert("开始时间不能大于结束时间！");
     }
 }
-    /*
-		使用Highcharts，绘制表格
-	*/
+/*
+    使用Highcharts，绘制表格
+*/
 function printCharts(modelName,modelId,dateStart,dateEnd){
     /* console.log('dateStart='+dateStart+',dateEnd='+dateEnd); */
     if(dateStart=='' ||dateEnd==''){//初始化开始和结束时间
@@ -132,8 +129,7 @@ function printCharts(modelName,modelId,dateStart,dateEnd){
         dataType : 'json',
         contentType:'application/json; charset=utf-8',
         success:function(result){
-            // $("#container").empty();
-            // console.log(result)
+            console.log(result)
             //(1)初始化
             var paraMap = result.paraMap;
             var paraNum = paraMap.para_num;//获取当前系统的字段个数，有几个就创建（几+3）个数组
@@ -178,35 +174,55 @@ function printCharts(modelName,modelId,dateStart,dateEnd){
                 }
             }
             //开始画表格了
-            option = {
+            var charts ={// 图表初始化函数，其中 container 为图表的容器 div
+                chart: {
+                    renderTo: 'container',
+                    zoomType: 'xy',
+                    backgroundColor:'transparent',
+                    marginTop:50
+                },
+                title: {
+                    text: null
+                },
+                xAxis:{
+                    // title: {text: '时间'},
+                    categories:[],
+                    crosshair: true,
+                },
+                yAxis:[], //动态生成多级y轴
+                tooltip: {
+                    shared: true,
+                    valueDecimals: 2
+                },
+                credits: {
+                    enabled: false  //去掉hightchats水印
+                },
                 legend: {
-                    type:'scroll',
-                    x: 'left', // 'center' | 'left' | {number},
-                    y: 'bottom', // 'center' | 'bottom' | {number}
-                    data:[]
+                    align: 'left',
+                    backgroundColor:'transparent',
+                    verticalAlign: 'bottom',
                 },
-                xAxis: [{
-                    name:'时间',
-                    data:[]
-                }],
-                yAxis: {
-                    type: 'value'
-                },
-                series: []
+                series:[]
             };
-            option.legend.data = arr0;
             for(var i=0;i<arr2.length;i++){//将时间push到categories数组中，
-                option.xAxis[0].data.push(arr2[i]);
+                charts.xAxis.categories.push(arr2[i]);
             }
 
             for(var m = 0;m<paraNum;m++){//0,1,2,3,多级Y轴---将yAxisObj对象push到charts.yAxis数组中，
+                var yAxisObj={"labels":{"format":'{value}'+arr1[m],"style":{"color":"Highcharts.getOptions().colors["+m+"]"}},"title":{"text":"","style":{"color":"Highcharts.getOptions().colors["+m+"]"}},"opposite":false}	;
+                if(m%2!=0){
+                    yAxisObj.opposite=true;
+                }
+                charts.yAxis.push(yAxisObj);
+
                 var dataArray = "arr"+(m+3);
-                var seriesObj={"name":arr0[m],"type":"line","data":eval(dataArray)};
-                option.series.push(seriesObj);
+                var seriesObj={"name":arr0[m],"type":"spline","yAxis":m,"data":eval(dataArray),"tooltip":{"valueSuffix":arr1[m]},"visible":false};
+                if(m==0){//打开网页默认显示第一个字段
+                    seriesObj.visible=true;
+                }
+                charts.series.push(seriesObj);
             }
-            // console.log(option)
-            var myChart = echarts.init(document.getElementById('container'));
-            myChart.setOption(option);
+            var options=new Highcharts.Chart(charts);
         },
         error:function(){
             alert('请求数据有误！');
