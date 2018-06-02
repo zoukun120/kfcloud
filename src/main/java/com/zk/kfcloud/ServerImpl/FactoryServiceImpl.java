@@ -1,11 +1,12 @@
 package com.zk.kfcloud.ServerImpl;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
+//import com.zk.kfcloud.Config.Quartz.AlarmJob;
+//import com.zk.kfcloud.Config.Quartz.QuartzConfigration;
+import ch.qos.logback.core.db.dialect.SybaseSqlAnywhereDialect;
 import com.zk.kfcloud.Dao.FactoryMapper;
 import com.zk.kfcloud.Entity.web.Factory;
 import com.zk.kfcloud.Entity.web.Menu;
@@ -13,6 +14,8 @@ import com.zk.kfcloud.Service.FactoryService;
 import com.zk.kfcloud.Service.MenuService;
 import com.zk.kfcloud.Utils.Tools;
 import lombok.extern.slf4j.Slf4j;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,49 @@ public class FactoryServiceImpl implements FactoryService {
 
 	@Autowired
 	MenuService menuService;
+
+
+	@Override
+	public List<String> getOpenids(String tableName) {
+		Map<String, Object> alarms = factoryMapper.getAlarmInfoByAlarmUrl(tableName);
+		Integer alarmId = (Integer) alarms.get("alarm_id");
+		List<Integer> factoryIds = factoryMapper.getFactoryIdsByAlarmId(alarmId);
+		Map<String,List<String>> result = new LinkedHashMap<>();
+		List<String> openIDS = new ArrayList<>();
+		for (int i = 0; i < factoryIds.size(); i++) {
+			List<Integer> menuIds = factoryMapper.getMenuIdsByFactoryId(factoryIds.get(i));
+			Integer menuId = menuIds.get(0);
+			Menu menu = menuService.getMenuById(menuId);
+			List<String> openIds = factoryMapper.getOpenIdsByMenuId(menuId);
+			for (int j = 0; j < openIds.size(); j++) {
+				openIDS.add(openIds.get(j));
+			}
+		}
+		return openIDS;
+	}
+
+	@Override
+	public List<String> getFactoryNames(String tableName) {
+		Integer alarmId = (Integer) factoryMapper.getAlarmInfoByAlarmUrl(tableName).get("alarm_id");
+		List<Integer> factoryIds = factoryMapper.getFactoryIdsByAlarmId(alarmId);
+		log.info("factoryIds:"+factoryIds);
+		List<String> factoryNames = new ArrayList<>();
+		for (int i = 0; i < factoryIds.size(); i++) {
+			List<Integer> menuIds = factoryMapper.getMenuIdsByFactoryId(factoryIds.get(i));
+//			System.err.println("menuIds:"+menuIds);
+			Menu menu = menuService.getMenuById(menuIds.get(0));
+			factoryNames.add(menu.getMenuName());
+		}
+		return factoryNames;
+	}
+
+	@Override
+	public Map<String, Object> getAlarmInfoByAlarmUrl(String alarmTableName) {
+		return factoryMapper.getAlarmInfoByAlarmUrl(alarmTableName);
+	}
+
+
+//	private QuartzConfigration schedulerFactoryConfig;
 
 	public List<Factory> listAllInfoByFactoryId(Integer factoryId) {
 		return this.factoryMapper.listAllInfoByFactoryId(factoryId);
@@ -141,4 +187,47 @@ public class FactoryServiceImpl implements FactoryService {
 	public String getDashBoardTableName(Integer factoryId) {
 		return factoryMapper.getDashBoardTableName(factoryId);
 	}
+
+	@Override
+	public Map<String, Object> monitor(String tableName) {
+		Map<String, Object> alarmData = factoryMapper.getAlarmData(tableName);
+		String feilds = "TIME,";
+		for (Map.Entry<String,Object> alarm:alarmData.entrySet()) {
+			String key = alarm.getKey();
+			if(key.contains("Alarm")){
+				feilds += key+",";
+			}
+
+		}
+		feilds = feilds.substring(0,feilds.lastIndexOf(","));
+
+		Map<String, Object> alarmMap = factoryMapper.getData(tableName, feilds);
+//		log.info("查询报警表："+tableName+",查询字段"+feilds);
+		return  alarmMap;
+	}
+
+//	@Override
+//	public String testQuartz() throws SchedulerException {
+//		//定时器
+//		JobDetail jobDetail = JobBuilder
+//				.newJob(AlarmJob.class)
+//				.withIdentity("myJob", "jonGroup1")
+//				.build();
+//
+//		CronTrigger trigger = (CronTrigger) TriggerBuilder.newTrigger()
+//				.withIdentity("myTrigger","triggerGroup1")
+//				.withSchedule(CronScheduleBuilder.cronSchedule("*/2 * * * * ? *"))
+//				.build();
+//
+//		Scheduler scheduler = null;
+//		try {
+//			scheduler = schedulerFactoryConfig.schedulerFactoryBean().getScheduler();
+//		}catch(IOException e){
+//			e.printStackTrace();
+//		}
+//		scheduler.scheduleJob(jobDetail, trigger);
+//		scheduler.start();
+//
+//		return "quartz 启动成功！";
+//	}
 }

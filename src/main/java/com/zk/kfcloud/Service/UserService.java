@@ -42,7 +42,6 @@ public interface UserService {
 
     public abstract List<User> listPageUser(User paramUser);
 
-
     public abstract User getUserAndRoleById(Integer paramInteger);
 
     public abstract List<User> listAllUser();

@@ -34,19 +34,29 @@
 		#{factoryId}
 	</select>
 
-	<select id="getData" resultType="map" statementType="STATEMENT">
+	<select id="getData" resultType="java.util.LinkedHashMap" statementType="STATEMENT">
 		select ${SqlFields} from ${KFTable} order by TIME Desc limit 1
 	</select>
 
-	<select id="getAlarmData" parameterType="String" resultType="java.util.HashMap"
+	<select id="getAlarmData" parameterType="String" resultType="java.util.LinkedHashMap"
 		statementType="STATEMENT">
 		select * from ${AlarmTable} order by TIME Desc limit 1
 	</select>
 
+	<select id="getAlarmInfoByAlarmUrl" resultType="java.util.LinkedHashMap" parameterType="String">
+		select * from tb2_model2 where alarm_url = #{alarmTableName}
+	</select>
 
-	<select id="getAlarmInfoByAlarmId" resultType="java.util.HashMap"
-		parameterType="Integer">
-		select * from tb2_model2 where alarm_id = #{alarmId}
+	<select id="getFactoryIdsByAlarmId" resultType="Integer" parameterType="Integer">
+		select factory_id from tb2_factory where model_num = 2 and model_id = #{alarmId}
+	</select>
+
+	<select id="getMenuIdsByFactoryId" resultType="Integer" parameterType="Integer">
+		select parent_id from tb2_menu where factory_id = #{factoryId}
+	</select>
+
+	<select id="getOpenIdsByMenuId" resultType="String" parameterType="Integer">
+		SELECT open_id FROM tb2_wechat t1 ,tb2_user_menu t2 WHERE t1.user_id = t2.user_id and t2.menu_id = #{menuId}
 	</select>
 
 	<select id="getParaNum" parameterType="java.util.HashMap"
@@ -110,4 +120,5 @@
 		resultType="java.util.HashMap">
 		select * from ${tableName} where kind = #{teamNum} order by TIME Desc limit 1
 	</select>
+
 </mapper>

@@ -31,14 +31,14 @@ public class CustomerMenu {
         button1.setType(MENU_VIEW);
         button1.setUrl(WXlOGIN_URL);
 
-        ViewButton button3 = new ViewButton();
-        button3.setName("技术支持");
-        button3.setType(MENU_VIEW);
-        button3.setUrl("https://blog.csdn.net/edison_03");
+//        ViewButton button3 = new ViewButton();
+//        button3.setName("技术支持");
+//        button3.setType(MENU_VIEW);
+//        button3.setUrl("https://blog.csdn.net/edison_03");
 
 
         Menu menu = new Menu();
-        menu.setButton(new Button[]{button1, button3});
+        menu.setButton(new Button[]{button1});
         return menu;
     }
 

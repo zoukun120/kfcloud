@@ -7,12 +7,12 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @Slf4j
-//@EnableRedisHttpSession
 @SpringBootApplication
 @MapperScan("com.zk.kfcloud.Dao")
-@EnableAutoConfiguration
+@EnableScheduling
 public class KfcloudApplication {
     public static void main(String[] args) {
         SpringApplication.run(KfcloudApplication.class, args);

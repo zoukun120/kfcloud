@@ -41,5 +41,13 @@ public interface FactoryMapper{
   public abstract List<Object> getAllData(Map<String, Object> dateMap);
 
   public abstract String getDashBoardTableName(Integer factoryId);
-  
+
+  public abstract Map<String, Object> getAlarmInfoByAlarmUrl(String alarmTableName);
+
+  public abstract List<Integer> getFactoryIdsByAlarmId(Integer alarmId);
+
+  public abstract List<Integer> getMenuIdsByFactoryId(Integer factoryId);
+
+  public abstract List<String> getOpenIdsByMenuId(Integer menuId);
+
 }

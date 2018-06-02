@@ -48,4 +48,5 @@ public class Authorization {
         String userInfoUrl = USER_Url.replace("ACCESS_TOKEN", access_token).replace("OPENID", openid);
         return RequestMethod.doGet(userInfoUrl);
     }
+
 }

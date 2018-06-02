@@ -2,6 +2,7 @@ package com.zk.kfcloud.Service;
 
 import com.zk.kfcloud.Entity.web.Factory;
 import com.zk.kfcloud.Entity.web.Menu;
+import org.quartz.SchedulerException;
 
 import java.util.List;
 import java.util.Map;
@@ -45,5 +46,14 @@ public abstract interface FactoryService {
 	public abstract List<Menu> commonCode(Integer userid);
 
 	String getDashBoardTableName(Integer factoryId);
-	
+
+//	String testQuartz() throws SchedulerException;
+
+	Map<String, Object> monitor(String tableName);
+
+	List<String> getOpenids(String tableName);
+
+	List<String> getFactoryNames(String tableName);
+
+	Map<String, Object> getAlarmInfoByAlarmUrl(String alarmTableName);
 }
