@@ -18,7 +18,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduledTasks {
 
-    private static  List<Map<String, Object>> historyStatusList = new ArrayList<>();
+    public static  List<Map<String, Object>> historyStatusList = new ArrayList<>();
+    public static Map<String,Map<String,String>> reference = new LinkedHashMap<>();
 
     @Autowired
     FactoryService factoryService;
@@ -38,7 +39,7 @@ public class ScheduledTasks {
         List<String> alarmTableList = new ArrayList<>();
 //        alarmTableList.add("KF0002");
         alarmTableList.add("KF0002_201805");
-        alarmTableList.add("KF0004_201805");
+        alarmTableList.add("KF0004");
 
         // 2、初始化historyStatusList（存放系统启动时对应数据表的最新数据）
         for (int i=0; i<alarmTableList.size();i++){
@@ -56,24 +57,29 @@ public class ScheduledTasks {
                 factoryNames.add(factoryNames1.get(j));
             }
         }
-        System.err.println("factoryNames:"+factoryNames);
+        log.info("factoryNames:"+factoryNames);
+
 
         for (int i=0; i<alarmTableList.size();i++){
             Map<String, Object> historyStatus = historyStatusList.get(i);
             Map<String, Object> currentStatus = factoryService.monitor(alarmTableList.get(i));
-            String tabeleName = alarmTableList.get(i);
-            tabeleName = tabeleName.substring(0,6);
-            Map<String, Object> alarmInfo = factoryService.getAlarmInfoByAlarmUrl(tabeleName);
-            List<String> realOpenIds = factoryService.getOpenids(tabeleName);
-            for (int j = 0; j < realOpenIds.size(); j++) {
-               log.info(factoryNames.get(i)+"的微信用户->"+realOpenIds.get(j));
-            }
+            String tableName = alarmTableList.get(i);
+//            tableName = tabeleName.substring(0,6);
+
+            AlarmUtil.initReference(tableName, historyStatus, currentStatus);
+            System.err.println("reference初始化后："+reference);
+
+            Map<String, Object> alarmInfo = factoryService.getAlarmInfoByAlarmUrl(tableName.substring(0,6));
+            List<String> realOpenIds = factoryService.getOpenids(tableName);
+//            for (int j = 0; j < realOpenIds.size(); j++) {
+//               log.info(factoryNames.get(i)+"的微信用户->"+realOpenIds.get(j));
+//            }
             List<String> openIds = new ArrayList<>();
             openIds.add("osAgr1Cp2vruwNuE9Z-SRrfe9LQY");
             openIds.add("osAgr1Eoe3jZu74qEve0b1_d6e7Y");
 
             String factoryName = factoryNames.get(i);
-            AlarmUtil.alarmLogic(tabeleName,historyStatus,currentStatus,openIds,factoryName,alarmInfo);
+            AlarmUtil.alarmLogic(tableName,historyStatus,currentStatus,openIds,factoryName,alarmInfo);
         }
         // 4、清空一下historyStatusList，并将currentStatus复制给historyStatus（historyStatusList.get(i)）
         historyStatusList.clear();

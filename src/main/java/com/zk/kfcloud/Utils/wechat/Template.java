@@ -99,7 +99,6 @@ public class Template {
 
         postData.put("data",data);//{"errcode":45027,"errmsg":"template conflict with industry hint: [73LIoa0753vr35]"}
 
-        System.err.println(postData);
         return RequestMethod.doPost(realTemplateUrl,postData.toString());
     }
 }

@@ -32,6 +32,7 @@ public class FactoryServiceImpl implements FactoryService {
 
 	@Override
 	public List<String> getOpenids(String tableName) {
+		tableName = tableName.substring(0,6);
 		Map<String, Object> alarms = factoryMapper.getAlarmInfoByAlarmUrl(tableName);
 		Integer alarmId = (Integer) alarms.get("alarm_id");
 		List<Integer> factoryIds = factoryMapper.getFactoryIdsByAlarmId(alarmId);
@@ -53,7 +54,7 @@ public class FactoryServiceImpl implements FactoryService {
 	public List<String> getFactoryNames(String tableName) {
 		Integer alarmId = (Integer) factoryMapper.getAlarmInfoByAlarmUrl(tableName).get("alarm_id");
 		List<Integer> factoryIds = factoryMapper.getFactoryIdsByAlarmId(alarmId);
-		log.info("factoryIds:"+factoryIds);
+//		log.info("factoryIds:"+factoryIds);
 		List<String> factoryNames = new ArrayList<>();
 		for (int i = 0; i < factoryIds.size(); i++) {
 			List<Integer> menuIds = factoryMapper.getMenuIdsByFactoryId(factoryIds.get(i));
