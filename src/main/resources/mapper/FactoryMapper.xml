@@ -38,8 +38,7 @@
 		select ${SqlFields} from ${KFTable} order by TIME Desc limit 1
 	</select>
 
-	<select id="getAlarmData" parameterType="String" resultType="java.util.LinkedHashMap"
-		statementType="STATEMENT">
+	<select id="getAlarmData" parameterType="String" resultType="java.util.LinkedHashMap" statementType="STATEMENT">
 		select * from ${AlarmTable} order by TIME Desc limit 1
 	</select>
 

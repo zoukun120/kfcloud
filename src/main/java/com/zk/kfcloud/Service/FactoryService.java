@@ -56,4 +56,14 @@ public abstract interface FactoryService {
 	List<String> getFactoryNames(String tableName);
 
 	Map<String, Object> getAlarmInfoByAlarmUrl(String alarmTableName);
+
+	/**
+	 * 分析数据逻辑
+	 * @param tableName
+	 * @return
+	 */
+	Map<String,Object> anlAlarmLogic(String tableName);
+
+	List<String> returnfactoryNames(List<String> alarmTableList);
+
 }

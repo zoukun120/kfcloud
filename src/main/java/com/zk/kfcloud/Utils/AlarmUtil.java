@@ -10,8 +10,19 @@ import java.util.*;
 @Slf4j
 public class AlarmUtil {
 
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
+    /**
+     * 生产数据监控
+     * @param tableName
+     * @param historyStatus
+     * @param currentStatus
+     * @param Openids
+     * @param factoryName
+     * @param alarmInfo
+     * @return
+     * @throws ParseException
+     */
     public static String alarmLogic(String tableName, Map<String, Object> historyStatus, Map<String, Object> currentStatus,List<String> Openids,String factoryName,Map<String, Object> alarmInfo) throws ParseException {
 
         // 1、初始化 alarmNameList、ff、sf 数组、alarmTime
@@ -44,9 +55,13 @@ public class AlarmUtil {
                             String realALARMTIME = ALARMTIME.substring(0,ALARMTIME.indexOf("报"));
                             Long past  = dateFormat.parse(realALARMTIME).getTime();//java.text.ParseException: Unparseable date: "报警时间不详!"
                             Long now = dateFormat.parse(alarmTime).getTime();
+                            // 日志输出
+                            log.info("时间间隔"+(now - past)/1000+"s");
+                            // 指定时间间隔 发送报警信息
                             if ((now - past)!=0 && ((now - past) % (1000 * 60 * 2) == 0)){
                                 String contentName = getContentName(alarmName);
                                 String content = String.valueOf(alarmInfo.get(contentName));
+                                log.info(factoryName + "：报警位" + alarmName + ",报警内容content:" + content);
                                 sendAlarmMsg(factoryName, "报警时间不详!", content, Openids);
                             }
                         }
@@ -56,7 +71,7 @@ public class AlarmUtil {
                             if (((now - past) % (1000 * 60 * 2) == 0)) {//(now - past)!=0
                                 String contentName = getContentName(alarmName);
                                 String content = String.valueOf(alarmInfo.get(contentName));
-                                System.err.println(factoryName + "：报警位" + alarmName + ",报警内容content:" + content);
+                                log.info(factoryName + "：报警位" + alarmName + ",报警内容content:" + content);
                                 sendAlarmMsg(factoryName, alarmTime, content, Openids);
                             }
                         }
@@ -184,7 +199,6 @@ public class AlarmUtil {
         String alarmTime = String.valueOf(items.get("alarmTime"));
 
         // 2、初始化 reference map
-//        Map<String,Map<String,String>> reference = new LinkedHashMap<>();
 
         for (int i = 0; i < ff.size(); i++) {//初始化reference
             Boolean one = ff.get(i);
@@ -223,4 +237,12 @@ public class AlarmUtil {
         }
 
     }
+
+//    public static Map<String,Object> anlAlarmLogic(String tableName,String fields){
+//
+//        // 1、表名处理(KF0002_ana_sec)
+//        tableName = tableName.substring(0,6)+"_ana_sec";
+//        String fields = "TIME,out01";
+//
+//    }
 }

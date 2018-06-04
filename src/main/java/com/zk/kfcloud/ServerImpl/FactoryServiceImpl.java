@@ -70,6 +70,31 @@ public class FactoryServiceImpl implements FactoryService {
 		return factoryMapper.getAlarmInfoByAlarmUrl(alarmTableName);
 	}
 
+	/**
+	 * 两个定时任务都会用到此方法，故封装起来，避免代码重复
+	 * @param alarmTableList
+	 * @return
+	 */
+	@Override
+	public List<String> returnfactoryNames(List<String> alarmTableList) {
+		List<String> factoryNames = new ArrayList<>();
+		for (int i = 0; i < alarmTableList.size(); i++) {
+			String tabeleName = alarmTableList.get(i);
+			tabeleName = tabeleName.substring(0,6);
+			List<String> factoryNames1 = getFactoryNames(tabeleName);
+			for (int j = 0; j < factoryNames1.size(); j++) {
+				factoryNames.add(factoryNames1.get(j));
+			}
+		}
+		return factoryNames;
+	}
+
+	@Override
+	public Map<String, Object> anlAlarmLogic(String tableName) {
+		tableName = tableName.substring(0,6)+"_ana_sec";
+		return factoryMapper.getData(tableName,"*");
+	}
+
 
 //	private QuartzConfigration schedulerFactoryConfig;
 
@@ -178,9 +203,6 @@ public class FactoryServiceImpl implements FactoryService {
 			}
 			menus.add(menu);
 		}
-//		for (Menu menu:menus) {
-//			log.info(menu.toString());
-//		}
 		return menus;
 	}
 
@@ -189,14 +211,19 @@ public class FactoryServiceImpl implements FactoryService {
 		return factoryMapper.getDashBoardTableName(factoryId);
 	}
 
+	/**
+	 * 从tb2_model2中读取xxx表需要监控的报警字段
+	 * @param tableName
+	 * @return
+	 */
 	@Override
 	public Map<String, Object> monitor(String tableName) {
-		Map<String, Object> alarmData = factoryMapper.getAlarmData(tableName);
+		Map<String, Object> alarmData = factoryMapper.getAlarmInfoByAlarmUrl(tableName);
 		String feilds = "TIME,";
 		for (Map.Entry<String,Object> alarm:alarmData.entrySet()) {
 			String key = alarm.getKey();
-			if(key.contains("Alarm")){
-				feilds += key+",";
+			if(key.contains("name")){
+				feilds += alarm.getValue()+",";
 			}
 
 		}
@@ -205,30 +232,7 @@ public class FactoryServiceImpl implements FactoryService {
 		Map<String, Object> alarmMap = factoryMapper.getData(tableName, feilds);
 //		log.info("查询报警表："+tableName+",查询字段"+feilds);
 		return  alarmMap;
+
 	}
 
-//	@Override
-//	public String testQuartz() throws SchedulerException {
-//		//定时器
-//		JobDetail jobDetail = JobBuilder
-//				.newJob(AlarmJob.class)
-//				.withIdentity("myJob", "jonGroup1")
-//				.build();
-//
-//		CronTrigger trigger = (CronTrigger) TriggerBuilder.newTrigger()
-//				.withIdentity("myTrigger","triggerGroup1")
-//				.withSchedule(CronScheduleBuilder.cronSchedule("*/2 * * * * ? *"))
-//				.build();
-//
-//		Scheduler scheduler = null;
-//		try {
-//			scheduler = schedulerFactoryConfig.schedulerFactoryBean().getScheduler();
-//		}catch(IOException e){
-//			e.printStackTrace();
-//		}
-//		scheduler.scheduleJob(jobDetail, trigger);
-//		scheduler.start();
-//
-//		return "quartz 启动成功！";
-//	}
 }
