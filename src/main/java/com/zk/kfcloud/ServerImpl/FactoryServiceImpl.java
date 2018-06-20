@@ -44,7 +44,13 @@ public class FactoryServiceImpl implements FactoryService {
 			Menu menu = menuService.getMenuById(menuId);
 			List<String> openIds = factoryMapper.getOpenIdsByMenuId(menuId);
 			for (int j = 0; j < openIds.size(); j++) {
-				openIDS.add(openIds.get(j));
+				if(factoryMapper.getalarm_authByOpenId(openIds.get(j))==null)
+				{
+					openIDS.add(openIds.get(j));
+				}
+				else if (factoryMapper.getalarm_authByOpenId(openIds.get(j))==1) {
+					openIDS.add(openIds.get(j));
+				}
 			}
 		}
 		return openIDS;
@@ -92,7 +98,7 @@ public class FactoryServiceImpl implements FactoryService {
 	@Override
 	public Map<String, Object> anlAlarmLogic(String tableName) {
 		tableName = tableName.substring(0,6)+"_ana_sec";
-		return factoryMapper.getData(tableName,"*");
+		return factoryMapper.getData(tableName,"*");//测试取getData1为降序，实用取getData为升序//!!!!!!!!!!!!!
 	}
 
 
@@ -205,6 +211,13 @@ public class FactoryServiceImpl implements FactoryService {
 		}
 		return menus;
 	}
+	@Override
+	public Integer AlarmIndex(String openid ) {
+		Integer stateValue;
+		stateValue = menuService.getAlarm_authByOpenId(openid);
+
+		return stateValue;
+	}
 
 	@Override
 	public String getDashBoardTableName(Integer factoryId) {
@@ -218,18 +231,18 @@ public class FactoryServiceImpl implements FactoryService {
 	 */
 	@Override
 	public Map<String, Object> monitor(String tableName) {
-		Map<String, Object> alarmData = factoryMapper.getAlarmInfoByAlarmUrl(tableName);
+		String TableName = tableName.substring(0,6);//测试阶段取前6位
+		Map<String, Object> alarmData = factoryMapper.getAlarmInfoByAlarmUrl(TableName);//获取表名的相关报警信息
 		String feilds = "TIME,";
 		for (Map.Entry<String,Object> alarm:alarmData.entrySet()) {
-			String key = alarm.getKey();
+			String key = alarm.getKey();//取键值
 			if(key.contains("name")){
-				feilds += alarm.getValue()+",";
+				feilds += alarm.getValue()+",";//获取表存在的报警名称
 			}
 
 		}
 		feilds = feilds.substring(0,feilds.lastIndexOf(","));
-
-		Map<String, Object> alarmMap = factoryMapper.getData(tableName, feilds);
+		Map<String, Object> alarmMap = factoryMapper.getData(tableName, feilds);//获取报警标志位
 //		log.info("查询报警表："+tableName+",查询字段"+feilds);
 		return  alarmMap;
 

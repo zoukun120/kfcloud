@@ -13,7 +13,9 @@ public  interface MenuMapper{
   public abstract Menu getMenuById(Integer paramInteger);
 
   public abstract List<Integer> getMenuIdByUserId(Integer userId);
-  
+
+  public abstract Integer getAlarm_authByOpenId(String openid);
+
   public abstract List<Menu> listAllSubMenu();
   
   public abstract void insertMenu(Menu paramMenu);

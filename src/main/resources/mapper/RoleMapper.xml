@@ -19,12 +19,11 @@
     delete from tb2_role
     where role_id = #{roleId,jdbcType=INTEGER}
   </delete>
+
     <insert id="insert" parameterType="com.zk.kfcloud.Entity.web.Role">
-    insert into tb2_role (role_id, role_name, rights
-      )
-    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{rights,jdbcType=VARCHAR}
-      )
+    insert into tb2_role (role_id, role_name, rights ) values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{rights,jdbcType=VARCHAR})
   </insert>
+
     <insert id="insertSelective" parameterType="com.zk.kfcloud.Entity.web.Role">
         insert into tb2_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -63,10 +62,7 @@
         where role_id = #{roleId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.zk.kfcloud.Entity.web.Role">
-    update tb2_role
-    set role_name = #{roleName,jdbcType=VARCHAR},
-      rights = #{rights,jdbcType=VARCHAR}
-    where role_id = #{roleId,jdbcType=INTEGER}
+    update tb2_role set role_name = #{roleName,jdbcType=VARCHAR},rights = #{rights,jdbcType=VARCHAR} where role_id = #{roleId,jdbcType=INTEGER}
   </update>
     <select id="listAllRoles" resultMap="roleResultMap">
 		select * from tb2_role

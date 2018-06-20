@@ -48,4 +48,15 @@ public class WeChatServiceImpl implements WeChatService {
     public List<WeChat> findAllWeChatUser() {
         return weChatMapper.findAllWeChatUser();
     }
+    @Override
+    public void updateByopenId(Boolean state, String openid) {
+       if(state==true) {
+           weChatMapper.updatealarm_authTure(openid);
+       }
+       else{
+            weChatMapper.updatealarm_authFalse(openid);
+       }
+    }
+
+
 }

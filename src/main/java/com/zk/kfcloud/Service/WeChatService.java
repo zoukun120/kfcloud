@@ -18,5 +18,7 @@ public interface WeChatService {
 
     int updateByPrimaryKey(WeChat record);
 
+    void updateByopenId(Boolean state, String openid);
+
     List<WeChat> findAllWeChatUser();
 }

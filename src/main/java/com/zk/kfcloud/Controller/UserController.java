@@ -44,7 +44,7 @@ public class UserController {
         if (brother != null) {
             log.info("内部用户，直接进入系统");
             log.info("重定向url：redirect:index?userid=" + brother.getUserId());
-            return "redirect:index?userid=" + brother.getUserId();
+            return "redirect:index?userid=" + brother.getUserId()+"&openid="+openid;
         } else {
             model.addAttribute("openid", openid);
             log.info("新用户，请进入登陆页");

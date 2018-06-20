@@ -14,13 +14,13 @@ import java.net.URL;
 public class MaterialManage {
 
     //    正式上线
-    public static final String DOMAIN = "http://www.zoukunzk.cn";
-    public static final String APPID = "wx7aa9af01712b950a";
-    public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
+//    public static final String DOMAIN = "http://www.zoukunzk.cn";
+//    public static final String APPID = "wx7aa9af01712b950a";
+//    public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
     //    本地调试
-//    public static final String DOMAIN = "http://isi3ax.natappfree.cc";
-//    public static final String APPID = "wxce2ee669cb26eded";
-//    public static final String APPSECRET = "a18bfd173767748a08120ae5a8954ae0";
+    public static final String DOMAIN = "http://hqwimg.natappfree.cc";
+    public static final String APPID = "wx659f521d004e0415";
+    public static final String APPSECRET = "c5826cbeada6a49452000ae174ad31e6";
 
     public static final String AccessTokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + APPID + "&secret=" + APPSECRET;
     public static final String UploadUrl = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";

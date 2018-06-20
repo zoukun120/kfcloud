@@ -24,6 +24,11 @@
 	<select id="getMenuIdByUserId" parameterType="int" resultType="int">
 		select menu_id from tb2_user_menu where user_id=#{userId}
 	</select>
+
+	<select id="getAlarm_authByOpenId" parameterType="string" resultType="int">
+		select alarm_auth from tb2_wechat where open_id=#{openid}
+	</select>
+
 	<select id="listAllSubMenu" resultMap="menuResultMap">
 		select <include refid="menu_Column_List"/> from tb2_menu where parent_id is not null
 	</select>

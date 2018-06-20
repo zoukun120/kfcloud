@@ -24,14 +24,10 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb2_wechat
-    where id = #{id,jdbcType=INTEGER}
+    delete from tb2_wechat where id = #{id,jdbcType=INTEGER}
   </delete>
     <insert id="insert" parameterType="com.zk.kfcloud.Entity.web.WeChat">
-    insert into tb2_wechat (id, open_id, user_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
-      )
+    insert into tb2_wechat (id, open_id, user_id) values (#{id,jdbcType=INTEGER},#{openId,jdbcType=VARCHAR},#{userId,jdbcType=INTEGER})
   </insert>
     <insert id="insertSelective" parameterType="com.zk.kfcloud.Entity.web.WeChat">
         insert into tb2_wechat
@@ -71,10 +67,15 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.zk.kfcloud.Entity.web.WeChat">
-    update tb2_wechat
-    set open_id = #{openId,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    update tb2_wechat set open_id = #{openId,jdbcType=VARCHAR},user_id = #{userId,jdbcType=INTEGER} where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <update id="updatealarm_authTure" parameterType="string">
+    update tb2_wechat set alarm_auth = 1 where open_id = #{openid}
+  </update>
+
+    <update id="updatealarm_authFalse" parameterType="String">
+    UPDATE tb2_wechat SET alarm_auth = 0 WHERE open_id = #{openid}
   </update>
     <!-- 原版的sql结束 -->
 </mapper>

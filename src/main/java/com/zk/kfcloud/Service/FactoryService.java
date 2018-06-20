@@ -45,6 +45,8 @@ public abstract interface FactoryService {
 
 	public abstract List<Menu> commonCode(Integer userid);
 
+	public abstract Integer AlarmIndex(String openid);
+
 	String getDashBoardTableName(Integer factoryId);
 
 //	String testQuartz() throws SchedulerException;
