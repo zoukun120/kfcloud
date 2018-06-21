@@ -1,0 +1,75 @@
+#container{
+    /*width: 100%;*/
+    height: 511px;
+    /*border: red solid 1px;*/
+}
+.layui-form-item{
+    border: #283033 solid 1px;
+    margin-top: 5px;
+    background:transparent;
+    box-shadow:2px 2px 2px;
+    margin:auto;
+    padding:3px;
+}
+.layui-form-item .layui-inline{
+    margin-bottom:0;
+}
+
+#time{
+    /*border: red solid;*/
+    margin-left:0.5em;
+    padding:5px 5px 5px;
+}
+
+.layui-form-label{
+    color: rgb(244, 247, 246);
+    font-weight: bold;
+    border: #5cad1f solid 1px;
+    text-align: left;
+}
+.layui-input{
+    max-width: 180px;
+    display:inline-block;
+    background:transparent;
+    color: white;
+    margin-right: 2em;
+}
+#confirm{
+    border:#fff solid 1px;
+    box-shadow:#080a08 2px 2px 2px;
+    color:#fff;
+    background-color:transparent;
+    margin-top:-2px;
+    margin-left:-28px;
+}
+
+#table_container{
+    /*border: #283033 solid 1px;*/
+    background:transparent;
+    box-shadow:2px 2px 2px;
+}
+#anal_table{
+    margin: 0;
+}
+/*#dashBoard_container{*/
+    /*width: 100%;*/
+    /*min-height: 400px;*/
+    /*!*border: #cc901b solid 1px;*!*/
+    /*margin:auto*/
+/*}*/
+.content{
+    border: #283033 solid 1px;
+    background:transparent;
+    box-shadow:2px 2px 2px;
+}
+.layui-table td{
+    font-size:1px;
+}
+
+#dashBoard_time{
+    text-align:center;
+    box-shadow:5px 5px 5px;
+    padding:10px 10px 10px;
+    font-size:16px;
+
+}

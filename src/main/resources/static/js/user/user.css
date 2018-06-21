@@ -1,0 +1,45 @@
+body{
+    background-image: url(../../bootstrap-3.3.7-dist/images/login_bg.jpg);
+}
+
+.layui-table{
+    background-color: #484746;
+    /*表格字体颜色*/
+    color: #f0f0f0;
+}
+
+.layui-table thead{
+    color: #f0f0f0;
+}
+
+.layui-table th {
+    vertical-align: middle;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* 表头以及点击tr的颜色 */
+.layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table[lay-even] tr:nth-child(even){
+    background-color:#e06806eb;
+    /*background-color:transparent;*/
+}
+
+/* 表foot */
+.layui-table-page{
+    background:#53615ceb;
+}
+
+/* 显示页面的span */
+.layui-laypage .layui-laypage-curr .layui-laypage-em{
+    background-color:transparent;
+    border:#8a928b solid 1px;
+    box-shadow:#0c0c0c 3px 3px 3px;
+}
+
+.layui-laypage button, .layui-laypage input{
+    /*background-color: #3f4752;*/
+    /*box-shadow: 3px 3px 3px;*/
+    background-color:transparent;
+    border:#8a928b solid 1px;
+    box-shadow:#0c0c0c 3px 3px 3px;
+}

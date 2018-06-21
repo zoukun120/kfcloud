@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>数据分析</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color:#6a7e75;
+        }
+        #anal{
+            border: #0f0f0f solid 1px;
+            box-shadow:5px 5px 5px;
+            height:60px;
+            background: transparent;
+            padding:6px;
+        }
+        #anal li{
+            box-shadow:5px 5px 5px;
+            background: transparent;
+            margin-right:5px;
+        }
+        .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+            background-color:#3e5a65;
+        }
+        a{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
+
+        <ul id="anal" class="nav nav-pills ">
+
+            <li id="xxx" role="presentation" class="active">
+                <a>工况分析</a>
+                <!--<a href="javascript:getHtml('dashBoard')">工况分析</a>-->
+            </li>
+
+            <!--<li id="dailyReport" role="presentation">-->
+                <!--<a href="javascript:getHtml('dailyReport')">每日报表</a>-->
+            <!--</li>-->
+        </ul>
+        <!-- 将页面加载到这里 -->
+        <div id="iframeContent">
+
+        </div>
+
+    </div>
+
+    <!-- js引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/4.1.0/echarts.min.js"></script>
+    <script>
+        <!-- 模拟自动点击a标签-->
+        $(function(){
+            //全局定时器变量
+            // var intervalTime;
+            // 默认加载 仪表盘页面 dailyReport/dashBoard
+            getHtml('dashBoard');
+        })
+
+
+       function getHtml(page) {
+           // 1 先清空
+           if (page=='dashBoard') {
+               $("#iframeContent").empty();
+           }
+           var url = '/anal/'+page+'/'+$("#factoryId").html();
+           $.ajax({
+               url:url,
+               type:'get',
+               dataType:'html',
+               success:function (data) {
+                   $("#iframeContent").html(data);
+               }
+           });
+       }
+    </script>
+
+</body>
+</html>

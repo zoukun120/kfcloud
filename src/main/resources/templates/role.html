@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--xmlns:th="http://www.thymeleaf.org"-->
+<head>
+    <meta charset="UTF-8"/>
+    <title>角色管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/js/user/user.css">
+</head>
+<body>
+
+    <div class="role_div layui-container">
+        <table id="role_table" class="layui-table"></table>
+    </div>
+
+    <!-- js引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            var data = [
+                {field: 'roleId', title: 'ID', sort: true, fixed: 'left'}
+                , {field: 'roleName', title: '角色名'}
+                , {field: 'rights', title: '权限'}
+            ];
+            //第一个实例
+            table.render({
+                elem: '#role_table'
+                // , height: 315
+                , url: '/roles' //数据接口
+                , page: true //开启分页
+                ,limit:6
+                , cols: [data]
+            });
+
+        });
+    </script>
+
+</body>
+</html>

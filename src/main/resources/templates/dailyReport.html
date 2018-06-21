@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>每日报表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/js/user/user.css">
+    <link rel="stylesheet" href="/js/analysis/dailyReport.css" media="all">
+    <link rel="stylesheet" th:href="@{/js/history/mobiscroll.custom.min.css}"/>
+</head>
+<body>
+
+    <div id="container">
+        <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
+        <!--1、每日报表-->
+        <div id="table_container">
+            <div class="layui-form-item"><!-- 时间选择器 -->
+                <div class="layui-inline">
+                    <div id="time" class="section">
+                        <input type="text" class="layui-input" id="test1">
+                        <button id="confirm" class="layui-btn">确定</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 1 报表功能暂时关闭 -->
+            <!--<table id="anal_table" class="layui-table"></table>-->
+        </div>
+
+        <!--2、昨日曲线-->
+        <div class="content">
+            <div id ="cruve_container"></div>
+        </div>
+
+    </div>
+
+    <!-- js引入 -->
+    <script src="/js/analysis/dailyReport.js"></script>
+    <!-- 日期选择器 -->
+    <script th:src="@{/js/analysis/main.js}"></script>
+    <script th:src="@{/js/history/mobiscroll.custom.min.js}"></script>
+</body>
+</html>

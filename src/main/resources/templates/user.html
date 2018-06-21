@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--xmlns:th="http://www.thymeleaf.org"-->
+<head>
+    <meta charset="UTF-8"/>
+    <title>用户管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/js/user/user.css">
+</head>
+<body>
+
+    <div class="user_div layui-container">
+        <table id="user_table" class="layui-table"></table>
+    </div>
+
+
+    <!-- js引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/layui/layui.all.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            var data = [
+                // {field: 'user_id', title: 'ID', sort: true, fixed: 'left'}
+                {field: 'loginname', title: '登录名',width:75}
+                , {field: 'status', title: '网态',width:60}
+                , {field: 'login_status', title: '微态',width:60}
+                , {field: 'alarm_auth', title: '报警',width:60}
+                , {field: 'username', title: '用户名'}
+            ];
+            //第一个实例
+            table.render({
+                elem: '#user_table'
+                , url: '/users' //数据接口
+                , page: true //开启分页
+                ,limit:7
+                , cols: [data]
+            });
+
+        });
+    </script>
+
+</body>
+</html>

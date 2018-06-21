@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zk.kfcloud.Dao.UserMapper">
+    <resultMap id="userResultMap" type="com.zk.kfcloud.Entity.web.User">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="loginname" property="loginname" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="rights" property="rights" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="role_id" property="roleId" jdbcType="INTEGER"/>
+        <result column="last_login" property="lastLogin" jdbcType="TIMESTAMP"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="wechat_auth" property="auth" jdbcType="VARCHAR"/>
+        <association property="role" column="role_id" javaType="com.zk.kfcloud.Entity.web.Role">
+            <id column="role_id" property="roleId"/>
+            <result column="role_name" property="roleName"/>
+            <result column="role_rights" property="rights"/>
+        </association>
+    </resultMap>
+    <sql id="user_Column_List">
+    user_id, loginname, password, username, rights, status, role_id, last_login, parent_id
+  </sql>
+    <select id="findAllUsers" resultMap="userResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="user_Column_List"/>
+        from tb2_user
+    </select>
+    <select id="selectByName" resultMap="userResultMap" parameterType="com.zk.kfcloud.Entity.web.User">
+        select
+        <include refid="user_Column_List"/>
+        from tb2_user
+        where loginname = #{loginname,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByNameAndPwd" resultMap="userResultMap" parameterType="com.zk.kfcloud.Entity.web.User">
+        select
+        <include refid="user_Column_List"/>
+        from tb2_user
+        where loginname = #{loginname,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="userResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="user_Column_List"/>
+        from tb2_user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb2_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" parameterType="com.zk.kfcloud.Entity.web.User">
+    insert into tb2_user (user_id, loginname, password,
+      username, rights, status,
+      role_id, last_login, parent_id)
+    values (#{userId,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{username,jdbcType=VARCHAR}, #{rights,jdbcType=VARCHAR}, #{status,jdbcType=BIT},
+      #{roleId,jdbcType=INTEGER}, #{lastLogin,jdbcType=TIMESTAMP}, #{parentId,jdbcType=INTEGER},
+  </insert>
+    <insert id="insertSelective" parameterType="com.zk.kfcloud.Entity.web.User">
+        insert into tb2_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="loginname != null">
+                loginname,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="rights != null">
+                rights,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="lastLogin != null">
+                last_login,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="loginname != null">
+                #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="rights != null">
+                #{rights,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BIT},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="lastLogin != null">
+                #{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zk.kfcloud.Entity.web.User">
+        update tb2_user
+        <set>
+            <if test="loginname != null">
+                loginname = #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="rights != null">
+                rights = #{rights,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIT},
+            </if>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="lastLogin != null">
+                last_login = #{lastLogin,jdbcType=TIMESTAMP},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zk.kfcloud.Entity.web.User">
+    update tb2_user
+    set loginname = #{loginname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      rights = #{rights,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      role_id = #{roleId,jdbcType=INTEGER},
+      last_login = #{lastLogin,jdbcType=TIMESTAMP},
+      parent_id = #{parentId,jdbcType=INTEGER},
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+
+
+    <select id="listAllUser" resultMap="userResultMap">
+		select u.user_id,u.username,u.loginname,u.password,r.role_id,r.role_name ,u.last_login
+		from tb2_user u left join tb2_role r on u.role_id=r.role_id where u.status=0
+	</select>
+
+    <select id="getUserByNameAndPwd" parameterType="map" resultMap="userResultMap">
+        select * from tb2_user
+        <where>
+            <if test="loginname!=null and password!=null">
+                loginname = #{loginname} and password=#{password}
+            </if>
+        </where>
+    </select>
+
+    <select id="getUserById" parameterType="int" resultMap="userResultMap">
+		select * from tb2_user u where u.user_id = #{userId}
+	</select>
+
+    <select id="getUserAndRoleById" parameterType="int" resultMap="userResultMap">
+		select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights
+		from tb2_user u
+		left join tb2_role r on u.role_id=r.role_id
+		where u.user_id=#{userId}
+	</select>
+    <select id="getCountByName" parameterType="com.zk.kfcloud.Entity.web.User" resultType="int">
+		select count(user_id) from tb2_user where loginname=#{loginname}
+	</select>
+    <select id="getCount" parameterType="com.zk.kfcloud.Entity.web.User" resultType="int">
+        select count(user_id) from tb2_user where status=0
+        <if test="loginname!=null and loginname!=''">
+            and loginname like "%"#{loginname}"%"
+        </if>
+        <if test="roleId!=null and roleId!=0">
+            and role_id=#{roleId}
+        </if>
+        <if test="lastLoginStart!=null">
+            and last_login&gt;=#{lastLoginStart}
+        </if>
+        <if test="lastLoginEnd!=null">
+            and last_login&lt;=#{lastLoginEnd}
+        </if>
+    </select>
+    <insert id="insertUser" parameterType="com.zk.kfcloud.Entity.web.User" useGeneratedKeys="true" keyProperty="userId">
+        insert tb2_user (<include refid="user_Column_List"/>) values (#{loginname},#{username},#{password},#{rights},0,#{roleId},#{parentId})
+    </insert>
+    <update id="updateUser" parameterType="com.zk.kfcloud.Entity.web.User">
+		update tb2_user set
+		loginname=#{loginname},
+		username=#{username},
+		password=#{password},
+		rights=#{rights},
+		status=#{status},
+		role_id=#{roleId},
+		last_login=#{lastLogin},
+		parent_id=#{parentId}
+		where user_id=#{userId}
+	</update>
+    <update id="updateLastLogin" parameterType="com.zk.kfcloud.Entity.web.User">
+		update tb2_user set last_login=#{lastLogin} where user_id=#{userId}
+	</update>
+    <update id="updateUserBaseInfo" parameterType="com.zk.kfcloud.Entity.web.User">
+        update tb2_user set
+        loginname=#{loginname},
+        username=#{username},
+        role_id=#{roleId}
+        <if test="password!=null and password!=''">,password=#{password} </if>
+        where user_id=#{userId}
+    </update>
+    <update id="updateUserRights" parameterType="com.zk.kfcloud.Entity.web.User">
+		update tb2_user set rights=#{rights} where user_id=#{userId}
+	</update>
+    <update id="updateUserLoginStatus" parameterType="com.zk.kfcloud.Entity.web.User">
+		update tb2_user set status=#{status} where user_id=#{userId}
+	</update>
+    <delete id="deleteUser" parameterType="int">
+		delete from tb2_user where user_id=#{userId}
+	</delete>
+</mapper>
