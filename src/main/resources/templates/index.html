@@ -3,124 +3,113 @@
 <head>
     <meta charset="UTF-8"/>
     <title>kfCloud</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/style.css" rel="stylesheet">
     <link rel="stylesheet" href="style/font-awesome.css">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 <body>
+    <div class="content">
+        <p id="ppp" th:text="${stateValue}" style="visibility:hidden"></p>
+        <p id="openid" th:text="${openid}" style="visibility:hidden"></p>
+        <div class="sidebar">
+            <div class="sidebar-dropdown"><a href="#">导航</a></div>
+            <ul id="nav">
+                <li>
+                    <a class="open"><i class="icon-home"></i> 首页
+                        <label style="float: right;">
+                            <span> 接收报警信息</span>&nbsp;
 
-
-<div class="content">
-    <p id="ppp" th:text="${stateValue}" style="visibility:hidden"></p>
-    <p id="openid" th:text="${openid}" style="visibility:hidden"></p>
-    <div class="sidebar" >
-        <div class="sidebar-dropdown"><a href="#">导航</a></div>
-        <ul id="nav">
-            <li>
-                <a class="open">
-                    <i class="icon-home"></i> 首页
-
-                    <label style="float: right;">
-                        <span> 接收报警信息</span>&nbsp;
-
-                        <style>
-                            .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px;}
-                            .toggle.ios .toggle-handle { border-radius: 20px;}
-                        </style>
-                        <input  id="toggle-trigger" type="checkbox" checked data-toggle="toggle"  data-on="开" data-off="关" data-size="mini" data-width="40" data-height="35" data-style="ios">
-                      </label>
-                    <div id="console-event">
-
-
-                    </div>
-                </a>
-            </li>
-            <li th:each="menu:${menus}" class="has_sub">
-                <a href="#">
-                    <i class="icon-list-alt"></i>
-                    <span th:text="${menu.getMenuName()}">一级子菜单</span>
-                    <span class="pull-right">
+                            <style>
+                                .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px;}
+                                .toggle.ios .toggle-handle { border-radius: 20px;}
+                            </style>
+                            <input  id="toggle-trigger" type="checkbox" checked data-toggle="toggle"  data-on="开" data-off="关" data-size="mini" data-width="40" data-height="35" data-style="ios">
+                        </label>
+                    </a>
+                </li>
+                <li th:each="menu:${menus}" class="has_sub">
+                    <a href="#">
+                        <i class="icon-list-alt"></i>
+                        <span th:text="${menu.getMenuName()}">一级子菜单</span>
+                        <span class="pull-right">
                             <i class="icon-chevron-right"></i>
                         </span>
-                </a>
-                <ul>
-                    <li th:each="submenu:${menu.getSubMenu()}">
-                        <a th:href="@{/subMenu/__${#strings.substring(submenu.getMenuUrl(),0,submenu.#strings.indexOf(submenu.getMenuUrl(),'.')) }__/__${submenu.getFactoryId()}__}">
-                            <i class="icon-bar-chart"></i>
-                            <span th:text="${submenu.getMenuName()}">二级子菜单</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                    </a>
+                    <ul>
+                         <li th:each="submenu:${menu.getSubMenu()}">
+                             <a th:href="@{/subMenu/__${#strings.substring(submenu.getMenuUrl(),0,submenu.#strings.indexOf(submenu.getMenuUrl(),'.')) }__/__${submenu.getFactoryId()}__}">
+                                 <i class="icon-bar-chart"></i>
+                                 <span  th:text="${submenu.getMenuName()}">二级子菜单</span>
+                             </a>
+                         </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 
-</div >
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script>
 
+        $(document).ready(function(){
 
-</div>
-
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-
-        $("#nav > li > a").on('click', function (e) {
-            if ($(this).parent().hasClass("has_sub")) {
-                e.preventDefault();
-            }
-
-            if (!$(this).hasClass("subdrop")) {
-                // hide any open menus and remove all other classes
-                $("#nav li ul").slideUp(350);
-                $("#nav li a").removeClass("subdrop");
-
-                // open our new menu and add the open class
-                $(this).next("ul").slideDown(350);
-                $(this).addClass("subdrop");
-            }
-
-            else if ($(this).hasClass("subdrop")) {
-                $(this).removeClass("subdrop");
-                $(this).next("ul").slideUp(350);
-            }
-
-        })
-       // 将数据库的报警参数读到前端
-        if($("#ppp").html()==="0"){
-            $('#toggle-trigger').bootstrapToggle('off');
-        }else{
-            $('#toggle-trigger').bootstrapToggle('on');
-        }
-        //将前端的开关状态发送请求传给数据库
-        $('#toggle-trigger').change(function() {
-            var state = $(this).prop('checked');
-
-            var jsonObj = {
-                "state" : state,
-                "openid" : $("#openid").html()
-            };
-            $.ajax({
-                type: "post",
-                url:"/state",
-                dataType:"json",
-                data:JSON.stringify(jsonObj),
-                contentType : "application/json",
-                error: function () {
-                    alert('加载数据失败！');
-                },
-                success: function(data){
-                    //TODO
-                    console.log(data)
+            $("#nav > li > a").on('click',function(e){
+                if($(this).parent().hasClass("has_sub")) {
+                    e.preventDefault();
                 }
+
+                if(!$(this).hasClass("subdrop")) {
+                    // hide any open menus and remove all other classes
+                    $("#nav li ul").slideUp(350);
+                    $("#nav li a").removeClass("subdrop");
+
+                    // open our new menu and add the open class
+                    $(this).next("ul").slideDown(350);
+                    $(this).addClass("subdrop");
+                }
+
+                else if($(this).hasClass("subdrop")) {
+                    $(this).removeClass("subdrop");
+                    $(this).next("ul").slideUp(350);
+                }
+
+            });
+
+            // 将数据库的报警参数读到前端
+            if($("#ppp").html()==="0"){
+                $('#toggle-trigger').bootstrapToggle('off');
+            }else{
+                $('#toggle-trigger').bootstrapToggle('on');
+            }
+            //将前端的开关状态发送请求传给数据库
+            $('#toggle-trigger').change(function() {
+                var state = $(this).prop('checked');
+
+                var jsonObj = {
+                    "state" : state,
+                    "openid" : $("#openid").html()
+                };
+                $.ajax({
+                    type: "post",
+                    url:"/state",
+                    dataType:"json",
+                    data:JSON.stringify(jsonObj),
+                    contentType : "application/json",
+                    error: function () {
+                        alert('加载数据失败！');
+                    },
+                    success: function(data){
+                        //TODO
+                        console.log(data)
+                    }
+                })
             })
-        })
-    })
-</script>
- </body>
+        });
+    </script>
+</body>
 </html>

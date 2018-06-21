@@ -113,7 +113,7 @@ public class LoginController {
     //将服务器的数据传给前端
     @GetMapping("/index")
     public String toUserIndex(Integer userid, String openid, Model model) {
-        log.info("index-get-userid:" + userid);
+//        log.info("index-get-userid:" + userid);
         log.info("openid:" + openid);
         model.addAttribute("openid", openid);
         model.addAttribute("menus", factoryService.commonCode(userid));

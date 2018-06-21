@@ -11,57 +11,56 @@ body {
     padding-top: 37px;
     -webkit-font-smoothing: antialiased;
 }
-/*!*按钮模块的大小*!*/
-/*!*关的背景颜色*!*/
-/*.btn:not(:disabled):not(.disabled) {*/
-    /*cursor: pointer;*/
-    /*border-color: #666;*/
-/*}*/
-/*!*关的状态字体颜色*!*/
-/*.toggle-off {*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 50%;*/
-    /*right: 0;*/
-    /*margin: 0;*/
-    /*border: 0;*/
-    /*border-radius: 0;*/
-    /*background-color: #aaa;*/
-    /*border-color: #212529;*/
-    /*color: #212529;*/
-    /*padding-left: 16px;*/
-/*}*/
-/*!*开的状态*!*/
-/*.toggle-on {*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*right: 50%;*/
-    /*margin: 0;*/
-    /*border: 0;*/
-    /*border-radius: 0;*/
-    /*background-color: #28a745;*/
-    /*border-color: #212529;*/
-    /*padding-right: 15px;*/
-/*}*/
+/*按钮模块的大小*/
+/*关的背景颜色*/
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+/*关的状态字体颜色*/
+.toggle-off {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: #aaa;
+    border-color: #212529;
+    color: #212529;
+    padding-left: 16px;
+}
+/*开的状态*/
+.toggle-on {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: #28a745;
+    border-color: #212529;
+    padding-right: 15px;
+}
 
-/*.toggle-handle {*/
-    /*position: relative;*/
-    /*margin: 0 auto;*/
-    /*padding-top: 0;*/
-    /*padding-bottom: 0;*/
-    /*height: 100%;*/
-    /*width: 0;*/
-    /*border-width: 0 1px;*/
-    /*background-color: #f8f9fa;*/
-/*}*/
-/*!*开的字体的颜色*!*/
-/*.btn-primary:hover {*/
-    /*background-color: #007bff;*/
-    /*border-color: #222;*/
-/*}*/
+.toggle-handle {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 100%;
+    width: 0;
+    border-width: 0 1px;
+    background-color: #f8f9fa;
+}
+/*开的字体的颜色*/
+.btn-primary:hover {
+    background-color: #007bff;
+    border-color: #222;
+}
 
 h1, h2, h3, h4, h5, h6 {
     padding: 2px 0px;
