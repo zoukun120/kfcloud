@@ -1,15 +1,12 @@
 package com.zk.kfcloud.Config.Quartz;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.zk.kfcloud.Service.FactoryService;
 import com.zk.kfcloud.Service.MenuService;
 import com.zk.kfcloud.Utils.AlarmUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -41,7 +38,7 @@ public class ScheduledTasks {
      * 生产数据监控
      * @throws ParseException
      */
-    @Scheduled(fixedRate = 1000*60*2)
+    @Scheduled(fixedRate = 1000*5)
     public void reportAlarmStatus() throws ParseException {
         // 2、初始化historyStatusList（存放系统启动时对应数据表的最新数据）
         for (int i=0; i<alarmTableList.size();i++){
@@ -81,7 +78,7 @@ public class ScheduledTasks {
      * 分析数据监控
      * @throws ParseException
      */
-    @Scheduled(fixedRate = 1000*60*2)
+    @Scheduled(fixedRate = 1000*5)
     public void reportAlarmStatus2() throws ParseException {
         // 1、查出数据表对应的工厂名称
         List<String> factoryNames = factoryService.returnfactoryNames(alarmTableList);

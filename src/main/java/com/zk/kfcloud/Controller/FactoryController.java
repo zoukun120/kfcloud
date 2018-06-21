@@ -32,13 +32,6 @@ public class FactoryController {
     @Autowired
     private FactoryService factoryService;
 
-//    @GetMapping("/startQuartz")
-//    public @ResponseBody String openQuartz() throws SchedulerException {
-//        System.err.println("factoryService.testQuartz()");
-//        String testQuartz = factoryService.testQuartz();
-//        System.err.println(testQuartz);
-//        return testQuartz;
-//    }
 
     @GetMapping("/subMenu/{pagename}/{factoryId}")
     public String sendPage(@PathVariable("pagename") String pagename, @PathVariable("factoryId") String factoryId, Model model) {

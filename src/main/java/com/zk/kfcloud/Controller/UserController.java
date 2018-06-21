@@ -2,7 +2,6 @@ package com.zk.kfcloud.Controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.zk.kfcloud.Entity.web.Role;
 import com.zk.kfcloud.Entity.web.User;
 import com.zk.kfcloud.Entity.web.WebWeChat;
 import com.zk.kfcloud.Service.UserService;
@@ -16,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
