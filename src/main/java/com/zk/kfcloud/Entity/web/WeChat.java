@@ -1,11 +1,17 @@
 package com.zk.kfcloud.Entity.web;
 
+import java.util.Date;
+
 public class WeChat {
     private Integer id;
 
     private String openId;
 
     private Integer userId;
+
+    private Integer loginStatus;
+
+    private Date loginTime;
 
     public Integer getId() {
         return id;
@@ -29,5 +35,32 @@ public class WeChat {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(Integer loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    public Date getLoginTime() {
+        return loginTime;
+    }
+
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    @Override
+    public String toString() {
+        return "WeChat{" +
+                "id=" + id +
+                ", openId='" + openId + '\'' +
+                ", userId=" + userId +
+                ", loginStatus=" + loginStatus +
+                ", loginTime=" + loginTime +
+                '}';
     }
 }

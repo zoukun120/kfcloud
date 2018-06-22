@@ -4,9 +4,9 @@ public class WebWeChat {
     private Integer user_id;
     private String loginname;
     private String username;
-    private Boolean status;
-    private Boolean login_status;
-    private Boolean alarm_auth;
+    private Integer status;
+    private Integer login_status;
+    private Integer alarm_auth;
 
     public Integer getUser_id() {
         return user_id;
@@ -32,29 +32,30 @@ public class WebWeChat {
         this.username = username;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Boolean getLogin_status() {
+    public Integer getLogin_status() {
         return login_status;
     }
 
-    public void setLogin_status(Boolean login_status) {
+    public void setLogin_status(Integer login_status) {
         this.login_status = login_status;
     }
 
-    public Boolean getAlarm_auth() {
+    public Integer getAlarm_auth() {
         return alarm_auth;
     }
 
-    public void setAlarm_auth(Boolean alarm_auth) {
+    public void setAlarm_auth(Integer alarm_auth) {
         this.alarm_auth = alarm_auth;
     }
+
     @Override
     public String toString() {
         return "WebWeChat{" +

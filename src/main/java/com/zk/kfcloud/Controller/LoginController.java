@@ -60,12 +60,12 @@ public class LoginController {
         if (userid != 0) {
             User user = userService.selectByPrimaryKey(userid);
 //           3.1 登陆成功，改变status、最后登录时间、记录session(openid)
-            user.setStatus(1);
-            user.setLastLogin(new Date());
+            weChatService.updateLoginStatus(openid,true);
+            WeChat weChat = new WeChat();
+            weChat.setOpenId(openid);
+            weChat.setLoginTime(new Date());
+            weChatService.updateLoginTime(weChat);
             request.getSession().setAttribute("openid",openid);
-            userService.updateUserLoginStatus(user);
-            userService.updateLastLogin(user);
-            log.info("当前用户：" + user + ",已添加 sessionId 和 User");
 //            3.2 一个空分账号可以绑定多个微信号（openid不同），如果是新微信号，则在tb2_wechat表中插入openid和userid信息
             List<WeChat> allWeChatUser = weChatService.findAllWeChatUser();
             Boolean flag = true;
@@ -100,7 +100,13 @@ public class LoginController {
     @GetMapping("/index")
     public String toUserIndex(Integer userid, String openid, Model model, HttpServletRequest request) {
         request.getSession().setAttribute("openid",openid);
+//        更新用戶登陸狀態和時間
         weChatService.updateLoginStatus(openid,true);
+        WeChat weChat = new WeChat();
+        weChat.setOpenId(openid);
+        weChat.setLoginTime(new Date());
+        weChatService.updateLoginTime(weChat);
+//        向頁面傳值
         model.addAttribute("openid", openid);
         model.addAttribute("menus", factoryService.commonCode(userid));
         model.addAttribute("stateValue", factoryService.AlarmIndex(openid));

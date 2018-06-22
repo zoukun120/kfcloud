@@ -53,10 +53,13 @@ public class WeChatServiceImpl implements WeChatService {
 
     @Override
     public void updateLoginStatus(String openid, Boolean loginStatus) {
-        System.err.println("openid = "+openid+",loginStatus = "+loginStatus);
         openid = "\'"+openid+"\'";
-        System.err.println("openid = "+openid);
         weChatMapper.updateLoginStatus(openid,loginStatus);
+    }
+
+    @Override
+    public void updateLoginTime(WeChat weChat) {
+        weChatMapper.updateLoginTime(weChat);
     }
 
     @Override

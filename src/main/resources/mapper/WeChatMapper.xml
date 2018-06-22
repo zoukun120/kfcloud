@@ -6,10 +6,12 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="open_id" jdbcType="VARCHAR" property="openId"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="login_status" jdbcType="INTEGER" property="loginStatus"/>
+        <result column="login_time" jdbcType="INTEGER" property="loginTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, open_id, user_id
-  </sql>
+        id, open_id, user_id,login_status,login_time
+      </sql>
     <!-- 主要方法 -->
     <select id="findAllWeChatUser" resultMap="BaseResultMap">
         select
@@ -18,7 +20,7 @@
     </select>
     <select id="findAllUser" resultType="com.zk.kfcloud.Entity.web.WebWeChat">
       select u.user_id, u.loginname,u.username,u.`status`,w.login_status,w.alarm_auth
-      FROM tb2_wechat w LEFT JOIN tb2_user  u ON u.user_id=w.user_id
+      FROM tb2_wechat w RIGHT JOIN tb2_user  u ON u.user_id=w.user_id
     </select>
     <!-- 自动生成的方法 -->
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -83,5 +85,8 @@
   </update>
     <update id="updateLoginStatus" statementType="STATEMENT">
     update tb2_wechat set login_status = ${loginStatus} where open_id = ${openid}
+  </update>
+    <update id="updateLoginTime" parameterType="com.zk.kfcloud.Entity.web.WeChat">
+    update tb2_wechat set login_time = #{loginTime} where open_id = #{openId}
   </update>
 </mapper>

@@ -31,4 +31,6 @@ public interface WeChatMapper {
 
     List<WebWeChat>  findAllUser();
 
+    void updateLoginTime(WeChat weChat);
+
 }

@@ -27,4 +27,6 @@ public interface WeChatService {
     void updateLoginStatus(String openid,Boolean loginStatus);
 
     List<WebWeChat> findAllUser();
+
+    void updateLoginTime(WeChat weChat);
 }
