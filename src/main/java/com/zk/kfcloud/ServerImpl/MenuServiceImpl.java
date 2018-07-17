@@ -28,6 +28,12 @@ public class MenuServiceImpl implements MenuService {
 		return menuMapper.getMenuIdByUserId(userId);
 	}
 
+
+	public Integer getAlarm_authByOpenId(String openid) {
+		return menuMapper.getAlarm_authByOpenId(openid);
+	}
+
+
 	public List<Menu> listAllParentMenu() {
 		return this.menuMapper.listAllParentMenu();
 	}

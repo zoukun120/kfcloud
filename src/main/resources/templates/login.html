@@ -21,8 +21,11 @@
             <!--<input type="checkbox" value="remember-me"> 记住我-->
             <!--</label>-->
             <button class="btn btn-lg btn-block" type="submit">登录</button>
+            <!--LoginController中toIndex的参数输入-->
             <p><input id="openid" type="text" name="openid" style="visibility:hidden"/></p>
+            <p><input id="access_token" type="text" name="access_token" style="visibility:hidden"/></p>
             <p id="pp" th:text="${openid}" style="visibility:hidden"></p>
+            <p id="pppp" th:text="${access_token}" style="visibility:hidden"></p>
         </form>
     </div>
 
@@ -31,6 +34,7 @@
     <script th:inline="javascript">
         $(function () {
             $('#openid').val($('#pp').html())
+            $('#access_token').val($('#pppp').html())
         })
     </script>
 </body>

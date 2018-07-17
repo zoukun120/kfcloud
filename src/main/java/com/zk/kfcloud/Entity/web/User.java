@@ -13,6 +13,9 @@ import java.util.Date;
  */
 public class User implements Serializable ,UserDetails {
 
+    /**
+     * 使用用户信息类
+     */
     private Integer userId;
 
     private String loginname;

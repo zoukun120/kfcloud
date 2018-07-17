@@ -17,6 +17,8 @@ public abstract interface MenuService {
 
     public abstract List<Integer> getMenuIdByUserId(Integer UserId);
 
+    public abstract Integer getAlarm_authByOpenId(String openid);
+
     public abstract void saveMenu(Menu paramMenu);
 
     public abstract void deleteMenuById(Integer paramInteger);

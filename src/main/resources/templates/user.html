@@ -22,19 +22,19 @@
         layui.use('table', function () {
             var table = layui.table;
             var data = [
-                {field: 'userId', title: 'ID', sort: true, fixed: 'left'}
+                // {field: 'user_id', title: 'ID', sort: true, fixed: 'left'}
+                {field: 'loginname', title: '登录名',width:75}
+                , {field: 'status', title: '网态',width:60}
+                , {field: 'login_status', title: '微态',width:60}
+                , {field: 'alarm_auth', title: '报警',width:60}
                 , {field: 'username', title: '用户名'}
-                , {field: 'loginname', title: '登录名'}
-                , {field: 'status', title: '状态'}
-                // , {field: 'lastLogin', title: '最后登陆时间'}
-                , {field: 'parentId', title: '父账户'}
             ];
             //第一个实例
             table.render({
                 elem: '#user_table'
                 , url: '/users' //数据接口
                 , page: true //开启分页
-                ,limit:7
+                ,limit:8
                 , cols: [data]
             });
 

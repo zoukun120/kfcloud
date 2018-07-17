@@ -7,13 +7,28 @@
     <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/style.css" rel="stylesheet">
     <link rel="stylesheet" href="style/font-awesome.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="content">
+        <p id="ppp" th:text="${stateValue}" style="visibility:hidden"></p>
+        <p id="openid" th:text="${openid}" style="visibility:hidden"></p>
         <div class="sidebar">
             <div class="sidebar-dropdown"><a href="#">导航</a></div>
             <ul id="nav">
-                <li><a class="open"><i class="icon-home"></i> 首页</a></li>
+                <li>
+                    <a class="open"><i class="icon-home"></i> 首页
+                        <label style="float: right;">
+                            <span> 接收报警信息</span>&nbsp;
+
+                            <style>
+                                .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px;}
+                                .toggle.ios .toggle-handle { border-radius: 20px;}
+                            </style>
+                            <input  id="toggle-trigger" type="checkbox" checked data-toggle="toggle"  data-on="开" data-off="关" data-size="mini" data-width="40" data-height="35" data-style="ios">
+                        </label>
+                    </a>
+                </li>
                 <li th:each="menu:${menus}" class="has_sub">
                     <a href="#">
                         <i class="icon-list-alt"></i>
@@ -37,6 +52,8 @@
 
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script>
 
         $(document).ready(function(){
@@ -62,6 +79,36 @@
                 }
 
             });
+
+            // 将数据库的报警参数读到前端
+            if($("#ppp").html()==="0"){
+                $('#toggle-trigger').bootstrapToggle('off');
+            }else{
+                $('#toggle-trigger').bootstrapToggle('on');
+            }
+            //将前端的开关状态发送请求传给数据库
+            $('#toggle-trigger').change(function() {
+                var state = $(this).prop('checked');
+
+                var jsonObj = {
+                    "state" : state,
+                    "openid" : $("#openid").html()
+                };
+                $.ajax({
+                    type: "post",
+                    url:"/state",
+                    dataType:"json",
+                    data:JSON.stringify(jsonObj),
+                    contentType : "application/json",
+                    error: function () {
+                        alert('加载数据失败！');
+                    },
+                    success: function(data){
+                        //TODO
+                        console.log(data)
+                    }
+                })
+            })
         });
     </script>
 </body>

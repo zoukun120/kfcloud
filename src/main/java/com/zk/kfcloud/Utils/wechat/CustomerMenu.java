@@ -7,6 +7,7 @@ import com.zk.kfcloud.Entity.wechat.ViewButton;
 import com.zk.kfcloud.Utils.RequestMethod;
 import net.sf.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class CustomerMenu {
     public static final String WXlOGIN_URL = MaterialManage.DOMAIN + "/login";
 
 
-    public static String createMenu() {
+    public static String createMenu() throws ParseException {
         System.err.println("WXlOGIN_URL:" + WXlOGIN_URL);
         String url = MENU_URL.replace("ACCESS_TOKEN", MaterialManage.getAccessToken().getAccess_token());
         System.err.println("MENU_URL:"+MENU_URL);
