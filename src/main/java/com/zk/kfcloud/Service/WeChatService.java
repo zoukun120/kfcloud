@@ -22,6 +22,8 @@ public interface WeChatService {
 
     void updateByopenId(Boolean state, String openid);
 
+    void updateWecharname(WeChat weChat);
+
     List<WeChat> findAllWeChatUser();
 
     void updateLoginStatus(String openid,Boolean loginStatus);

@@ -36,15 +36,18 @@ public class UserController {
      * @return
      */
     @GetMapping("/isBrother")
-    public String Brother(@RequestParam("openid") String openid, Model model) {
+    public String Brother(@RequestParam("openid") String openid,@RequestParam("access_token") String access_token, Model model) {
         User brother = userService.isBrother(openid);
+        log.info("access_token:" + access_token);
        log.info("brother:" + brother);
         if (brother != null) {
             log.info("内部用户，直接进入系统");
-            log.info("重定向url：redirect:index?userid=" + brother.getUserId());
+            log.info("重定向url：redirect:index?userid=" + brother.getUserId()+"&openid="+openid+"&access_token="+access_token);
             return "redirect:index?userid=" + brother.getUserId()+"&openid="+openid;
         } else {
+            //将参数openid返回给login页面
             model.addAttribute("openid", openid);
+            model.addAttribute("access_token", access_token);
             log.info("新用户，请进入登陆页");
             return "login";
         }

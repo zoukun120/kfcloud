@@ -4,6 +4,8 @@ import com.google.gson.JsonObject;
 import com.zk.kfcloud.Utils.RequestMethod;
 import net.sf.json.JSONObject;
 
+import java.text.ParseException;
+
 public class Template {
 
     public static final String SET_INDUSTRY_TEMPLATEURL = "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=ACCESS_TOKEN";
@@ -17,7 +19,7 @@ public class Template {
      * 设置所属行业
      * @return
      */
-    public static String setIndustry(){
+    public static String setIndustry() throws ParseException {
         JSONObject postData = new JSONObject();
         postData.put("industry_id1","2");
         postData.put("industry_id2","41");
@@ -29,7 +31,7 @@ public class Template {
      * 获取设置的行业信息
      * @return
      */
-    public static String getIndustry(){
+    public static String getIndustry() throws ParseException {
         String realTemplateUrl = GET_INDUSTRY_TEMPLATEURL.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
         return RequestMethod.doGet(realTemplateUrl);
     }
@@ -38,7 +40,7 @@ public class Template {
      * 获得模板ID
      * @return
      */
-    public static String api_add_template(){
+    public static String api_add_template() throws ParseException {
         String realTemplateUrl = API_ADD_TEMPLATEURL.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
         JSONObject postData = new JSONObject();
         postData.put("template_id_short","TM00204");
@@ -49,7 +51,7 @@ public class Template {
      * 获取模板列表
      * @return
      */
-    public static String get_all_private_template(){
+    public static String get_all_private_template() throws ParseException {
         String realTemplateUrl = GET_ALL_PRIVATE_TEMPLATEURL.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
         return RequestMethod.doGet(realTemplateUrl);
     }
@@ -58,7 +60,7 @@ public class Template {
      * 删除模板
      * @return
      */
-    public static String del_private_template(String template_id){
+    public static String del_private_template(String template_id) throws ParseException {
         String realTemplateUrl = DEL_PRIVATE_TEMPLATEURL.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
         JSONObject postData = new JSONObject();
         postData.put("template_id",template_id);
@@ -69,7 +71,8 @@ public class Template {
      * 发送模板消息
      * @return
      */
-    public static String send(String openId,String factoryName,String alarmTime,String content){
+    //故障通报通知模板
+    public static String send(String openId,String factoryName,String alarmTime,String content) throws ParseException {
         String realTemplateUrl = SEND.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
         JSONObject postData = new JSONObject();
         postData.put("touser",openId);
@@ -96,6 +99,39 @@ public class Template {
         remark.put("value",null);
         remark.put("color","#173177");
         data.put("remark","请及时处理!");
+
+        postData.put("data",data);//{"errcode":45027,"errmsg":"template conflict with industry hint: [73LIoa0753vr35]"}
+
+        return RequestMethod.doPost(realTemplateUrl,postData.toString());
+    }
+    //预警模板
+    public static String send1(String openId,String factoryName,String alarmTime,String content) throws ParseException {
+        String realTemplateUrl = SEND.replace("ACCESS_TOKEN",MaterialManage.getAccessToken().getAccess_token());
+        JSONObject postData = new JSONObject();
+        postData.put("touser",openId);
+        postData.put("template_id","rJNmZzjWm-RKl8JcQYJbDNu2agzIGQ3hrUXxqmKZZ5A");
+
+        JSONObject data = new JSONObject();
+
+        JSONObject first = new JSONObject();
+        first.put("value",factoryName+"预警信息!");
+        first.put("color","#173177");
+        data.put("first",first);
+
+        JSONObject time = new JSONObject();
+        time.put("value",alarmTime);
+        time.put("color","#173177");
+        data.put("keyword2",time);
+
+        JSONObject performance = new JSONObject();
+        performance.put("value",content);
+        performance.put("color","#173177");
+        data.put("keyword1",performance);
+
+        JSONObject remark = new JSONObject();
+        remark.put("value","请及时处理!");
+        remark.put("color","#173177");
+        data.put("remark",null);
 
         postData.put("data",data);//{"errcode":45027,"errmsg":"template conflict with industry hint: [73LIoa0753vr35]"}
 

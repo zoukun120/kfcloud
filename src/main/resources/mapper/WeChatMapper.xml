@@ -6,11 +6,12 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="open_id" jdbcType="VARCHAR" property="openId"/>
         <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="wechar_name" jdbcType="VARCHAR" property="userName"/>
         <result column="login_status" jdbcType="INTEGER" property="loginStatus"/>
         <result column="login_time" jdbcType="INTEGER" property="loginTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, open_id, user_id,login_status,login_time
+        id, open_id, user_id, wechar_name, login_status, login_time
       </sql>
     <!-- 主要方法 -->
     <select id="findAllWeChatUser" resultMap="BaseResultMap">
@@ -32,9 +33,12 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb2_wechat where id = #{id,jdbcType=INTEGER}
   </delete>
+
     <insert id="insert" parameterType="com.zk.kfcloud.Entity.web.WeChat">
-    insert into tb2_wechat (id, open_id, user_id) values (#{id,jdbcType=INTEGER},#{openId,jdbcType=VARCHAR},#{userId,jdbcType=INTEGER})
+    insert into tb2_wechat (id, open_id, user_id, wechar_name ) values (#{id,jdbcType=INTEGER},#{openId,jdbcType=VARCHAR},#{userId,jdbcType=INTEGER},#{userName,jdbcType=VARCHAR})
   </insert>
+
+
     <insert id="insertSelective" parameterType="com.zk.kfcloud.Entity.web.WeChat">
         insert into tb2_wechat
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -83,9 +87,15 @@
     <update id="updatealarm_authFalse" parameterType="String">
     UPDATE tb2_wechat SET alarm_auth = 0 WHERE open_id = #{openid}
   </update>
+
+    <update id="updateWecharname" parameterType="com.zk.kfcloud.Entity.web.WeChat">
+    update tb2_wechat set wechar_name = #{userName,jdbcType=VARCHAR} where open_id = #{openId,jdbcType=VARCHAR}
+  </update>
+
     <update id="updateLoginStatus" statementType="STATEMENT">
     update tb2_wechat set login_status = ${loginStatus} where open_id = ${openid}
   </update>
+
     <update id="updateLoginTime" parameterType="com.zk.kfcloud.Entity.web.WeChat">
     update tb2_wechat set login_time = #{loginTime} where open_id = #{openId}
   </update>

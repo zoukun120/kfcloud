@@ -33,4 +33,5 @@ public interface WeChatMapper {
 
     void updateLoginTime(WeChat weChat);
 
+    void updateWecharname(WeChat weChat);
 }

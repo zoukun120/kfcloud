@@ -98,7 +98,7 @@ public class FactoryServiceImpl implements FactoryService {
 	@Override
 	public Map<String, Object> anlAlarmLogic(String tableName) {
 		tableName = tableName.substring(0,6)+"_ana_sec";
-		return factoryMapper.getData(tableName,"*");//测试取getData1为降序，实用取getData为升序//!!!!!!!!!!!!!
+		return factoryMapper.getData(tableName,"*");//测试取getData1为升序，实用取getData为降序//!!!!!!!!!!!!!
 	}
 
 

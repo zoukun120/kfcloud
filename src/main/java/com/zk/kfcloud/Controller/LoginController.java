@@ -6,7 +6,9 @@ import com.zk.kfcloud.Service.FactoryService;
 import com.zk.kfcloud.Service.UserService;
 import com.zk.kfcloud.Service.WeChatService;
 import com.zk.kfcloud.Utils.Tools;
+import com.zk.kfcloud.Utils.wechat.Authorization;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +37,7 @@ public class LoginController {
      */
     @GetMapping(value = {"/", "/login"})
     public void login(HttpServletResponse response) throws IOException {
-        response.sendRedirect("/code");
+        response.sendRedirect("/code");//转到code页面
     }
 
     /**
@@ -49,10 +51,11 @@ public class LoginController {
      * @throws UserNotFoundException
      */
     @PostMapping("/index")
-    public String toIndex(String username, String password, String openid, Model model, HttpServletRequest request) throws UserNotFoundException {
-//        1.将参数openid返回给login和index页面
+    public String toIndex(String username, String password, String openid,String access_token ,Model model, HttpServletRequest request) throws UserNotFoundException {
+//        1.将参数openid返回给index页面
         model.addAttribute("openid", openid);
-        log.info("username:" + username + ",password:" + password + ",openid:" + openid);
+        model.addAttribute("access_token", access_token);
+        log.info("username:" + username + ",password:" + password + ",openid:" + openid );
         log.info("username:" + username + ",password:" + Tools.md5(password) + ",openid:" + openid);
 //        2.获取登陆表单提交的三个参数，并查询数据库，
         Integer userid = userService.selectByNameAndPwd(new User(username, Tools.md5(password)));
@@ -76,9 +79,15 @@ public class LoginController {
                 }
             }
             if (flag) {
+                //从用户信息中提取用户名称
+                String userInfo = Authorization.getUserInfo( access_token,openid);
+                JSONObject userinfo = JSONObject.fromObject(userInfo);
+//                String nickname= userinfo.getString("nickname");
+                String nickname=Authorization.filterEmoji(userinfo.getString("nickname"));//过滤掉emoji表情符，统一用*代替
                 WeChat wx = new WeChat();
                 wx.setUserId(userid);
                 wx.setOpenId(openid);
+                wx.setName(nickname);
                 weChatService.insert(wx);
             }
 //            4 获取当前用户拥有的所有菜单，并传值到index页面.根据用户Id查询tb2_user_menu表中所有menuId,再查询当前Menu和该menuId下的所有子菜单

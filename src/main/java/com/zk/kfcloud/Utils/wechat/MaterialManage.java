@@ -9,16 +9,20 @@ import net.sf.json.JSONObject;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Slf4j
 public class MaterialManage {
-
+    public static long time = 0;
+    public static AccessToken token = new AccessToken();
     //    正式上线
-    public static final String DOMAIN = "http://www.zoukunzk.cn";
+    public static final String DOMAIN = "http://wx.kongfenyun.com";
     public static final String APPID = "wx7aa9af01712b950a";
     public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
     //    本地调试
-//    public static final String DOMAIN = "http://hqwimg.natappfree.cc";
+//    public static final String DOMAIN = "http://jjcs8u.natappfree.cc";
 //    public static final String APPID = "wx659f521d004e0415";
 //    public static final String APPSECRET = "c5826cbeada6a49452000ae174ad31e6";
 
@@ -26,23 +30,30 @@ public class MaterialManage {
     public static final String UploadUrl = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
     /**
      * get AccessToken
-     *
      * @return
      */
-    public static AccessToken getAccessToken() {
-        AccessToken token = new AccessToken();
-        JSONObject jsonObj = JSONObject.fromObject(RequestMethod.doGet(AccessTokenUrl));
-        if (jsonObj != null) {
-            token.setAccess_token(jsonObj.getString("access_token"));
-            token.setExpires_in(jsonObj.getInt("expires_in"));
-        }
+    public static AccessToken getAccessToken() throws ParseException {
+//        AccessToken token = new AccessToken();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String datetime = dateFormat.format(new Date());
+        Long now = dateFormat.parse(datetime).getTime();
+        log.info("time:" + time);
+        log.info("nowtime:" + now);
+        if((now-time)>=(60*1000*60)){
+            time = now;
+            log.info(" 超过一小时重新获取AccessToken，当前时间为"+datetime);
+            JSONObject jsonObj = JSONObject.fromObject(RequestMethod.doGet(AccessTokenUrl));
+//            System.err.println(jsonObj);
+            if (jsonObj != null) {
+                token.setAccess_token(jsonObj.getString("access_token"));
+                token.setExpires_in(jsonObj.getInt("expires_in"));
+            } };
         log.info("AccessToken:" + token);
         return token;
     }
 
     /**
      * upload media material
-     *
      * @param filePath
      * @param accessToken
      * @param type

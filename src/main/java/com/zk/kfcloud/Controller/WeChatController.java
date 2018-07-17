@@ -3,10 +3,7 @@ package com.zk.kfcloud.Controller;
 import com.zk.kfcloud.Exception.AccessException;
 import com.zk.kfcloud.Exception.MenuCreateException;
 import com.zk.kfcloud.Utils.JsonResult;
-import com.zk.kfcloud.Utils.wechat.AccessGuide;
-import com.zk.kfcloud.Utils.wechat.Authorization;
-import com.zk.kfcloud.Utils.wechat.CustomerMenu;
-import com.zk.kfcloud.Utils.wechat.MsgManage;
+import com.zk.kfcloud.Utils.wechat.*;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -106,13 +103,24 @@ public class WeChatController {
 //            通过access_token和openid拉取用户信息
             JSONObject jobj = JSONObject.fromObject(tokenAndOpenId);
             String openid = jobj.getString("openid");
-            String userInfo = Authorization.getUserInfo(openid, jobj.getString("access_token"));
-//            日志
+            String access_token = jobj.getString("access_token");
+            //从用户信息中提取用户名称
+//            String userInfo = Authorization.getUserInfo( access_token,openid);
+//            JSONObject userinfo = JSONObject.fromObject(userInfo);
+//            String nickname= userinfo.getString("nickname");
+//            //获取该公众号的所有open_id
+//            String OpenIDInfo = Authorization.OpenID_URL(MaterialManage.getAccessToken().getAccess_token());
+//            JSONObject OpenIDinfo = JSONObject.fromObject(OpenIDInfo);
+//            JSONObject OpenID= OpenIDinfo.getJSONObject("data");
+//            System.err.println("OpenID;"+OpenID);
+
+
+            // 日志
             log.info("code:" + code);
             log.info(tokenAndOpenId);
-            log.info("userInfo:" + userInfo);
-            log.info("/isBrother?id=" + openid);
-            response.sendRedirect("/isBrother?openid=" + openid);
+//            log.info("userInfo:" + userInfo);
+            log.info("/isBrother?openid="+openid+"&access_token="+ access_token);
+            response.sendRedirect("/isBrother?openid=" + openid + "&access_token=" + access_token);
             return JsonResult.ok("User Authorization Successfully");
         } catch (Exception e) {
             new AccessException("用户授权失败！");

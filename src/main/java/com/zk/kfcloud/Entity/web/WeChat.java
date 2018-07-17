@@ -7,6 +7,8 @@ public class WeChat {
 
     private String openId;
 
+    private String userName;
+
     private Integer userId;
 
     private Integer loginStatus;
@@ -27,6 +29,14 @@ public class WeChat {
 
     public void setOpenId(String openId) {
         this.openId = openId == null ? null : openId.trim();
+    }
+
+    public void setName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getName() {
+        return userName;
     }
 
     public Integer getUserId() {
@@ -59,6 +69,7 @@ public class WeChat {
                 "id=" + id +
                 ", openId='" + openId + '\'' +
                 ", userId=" + userId +
+                ", userName='" + userName + '\''+
                 ", loginStatus=" + loginStatus +
                 ", loginTime=" + loginTime +
                 '}';

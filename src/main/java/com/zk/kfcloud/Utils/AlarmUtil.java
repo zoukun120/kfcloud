@@ -141,14 +141,14 @@ public static String alarmLogic2(String tableName, Map<String, Object> historySt
         String alarmName = alarmNameList.get(i);
         double value = Value.get(i);
             if((!one1)&&two1){
-                String content  = "当前N2质量状态指数为"+value+",超过阈值100!" ;
+                String content  = "当前N2质量状态指标为"+value+",超过预警阈值100，请警惕产品出口浓度变化。" ;
                 log.info(factoryName+"：报警位"+alarmName+",报警内容content:"+content);
-              AlarmUtil.sendAlarmMsg( factoryName, alarmTime, content, Openids);
+              AlarmUtil.sendAlarmMsg1( factoryName, alarmTime, content, Openids);
             }
         if((!one2)&&two2){
-            String content  = "当前N2质量状态指数为"+value+",超过阈值110!" ;
+            String content  = "当前N2质量状态指标为"+value+",超过预警阈值110，产品出口浓度将上升，建议降低产量。" ;
             log.info(factoryName+"：报警位"+alarmName+",报警内容content:"+content);
-            AlarmUtil.sendAlarmMsg( factoryName, alarmTime, content, Openids);
+            AlarmUtil.sendAlarmMsg1( factoryName, alarmTime, content, Openids);
         }
     }
     return null;
@@ -157,14 +157,22 @@ public static String alarmLogic2(String tableName, Map<String, Object> historySt
     /**
      * 调用微信接口，实现推送逻辑(模板消息)
      */
-    public static String sendAlarmMsg(String factoryName,String alarmTime,String content,List<String> Openids) {
+    //故障通报推送
+    public static String sendAlarmMsg(String factoryName,String alarmTime,String content,List<String> Openids) throws ParseException {
         String res = null;
         for (int i = 0; i < Openids.size(); i++) {
             res = Template.send(Openids.get(i),factoryName,alarmTime,content);
         }
         return  res;
     }
-
+//预警提醒推送
+    public static String sendAlarmMsg1(String factoryName,String alarmTime,String content,List<String> Openids) throws ParseException {
+        String res = null;
+        for (int i = 0; i < Openids.size(); i++) {
+            res = Template.send1(Openids.get(i),factoryName,alarmTime,content);
+        }
+        return  res;
+    }
 
     /**
      * 用报警字段，拼接报警内容字段

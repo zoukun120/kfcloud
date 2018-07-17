@@ -63,6 +63,11 @@ public class WeChatServiceImpl implements WeChatService {
     }
 
     @Override
+    public void updateWecharname(WeChat weChat) {
+        weChatMapper.updateWecharname(weChat);
+    }
+
+    @Override
     public void updateByopenId(Boolean state, String openid) {
        if(state==true) {
            weChatMapper.updatealarm_authTure(openid);

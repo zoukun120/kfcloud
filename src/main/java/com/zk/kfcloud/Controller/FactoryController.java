@@ -424,7 +424,7 @@ public class FactoryController {
      * @return
      */
     @GetMapping("/setIndustry")
-    public @ResponseBody String setIndustry(){
+    public @ResponseBody String setIndustry() throws ParseException {
         String s = Template.setIndustry();
         System.err.println(s);
         return s;
@@ -432,28 +432,28 @@ public class FactoryController {
 
 
     @GetMapping("/getIndustry")
-    public @ResponseBody String getIndustry(){
+    public @ResponseBody String getIndustry() throws ParseException {
         String s = Template.getIndustry();
         System.err.println(s);
         return s;
     }
 
     @GetMapping("/api_add_template")
-    public @ResponseBody String api_add_template(){
+    public @ResponseBody String api_add_template() throws ParseException {
         String s = Template.api_add_template();
         System.err.println(s);
         return s;
     }
 
     @GetMapping("/get_all_private_template")
-    public @ResponseBody String get_all_private_template(){
+    public @ResponseBody String get_all_private_template() throws ParseException {
         String s = Template.get_all_private_template();
         System.err.println(s);
         return s;
     }
 
     @GetMapping("/send")
-    public @ResponseBody String send(){
+    public @ResponseBody String send() throws ParseException {
         String s = Template.send("osAgr1Eoe3jZu74qEve0b1_d6e7Y","factoryName","alarmTime","fucking");
         System.err.println(s);
         return s;
