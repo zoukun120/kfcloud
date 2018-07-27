@@ -116,19 +116,13 @@ public class LoginController {
         weChat.setLoginTime(new Date());
         weChatService.updateLoginTime(weChat);
 //        向頁面傳值
+//        System.err.println("userid;"+userid+"   openid; "+openid);
+//        System.err.println("factoryService.commonCode(userid);"+factoryService.commonCode(userid));
         model.addAttribute("openid", openid);
         model.addAttribute("menus", factoryService.commonCode(userid));
-        model.addAttribute("stateValue", factoryService.AlarmIndex(openid));
+//      model.addAttribute("stateValue", factoryService.AlarmIndex(openid));
         return "index";
     }
 
-    //接收前端开关的请求存入数据库
-    @PostMapping("/state")
-    public @ResponseBody Map<String, Object> insetalarm_auth(@RequestBody Map<String, Object> map) {
-        Boolean state = (Boolean) map.get("state");
-        String Openid = String.valueOf(map.get("openid"));
-        weChatService.updateByopenId(state, Openid); //将值写入数据库
-        return map;
-    }
 
 }

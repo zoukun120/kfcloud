@@ -20,7 +20,9 @@ public interface WeChatService {
 
     int updateByPrimaryKey(WeChat record);
 
-    void updateByopenId(Boolean state, String openid);
+    void updatestateByopenId(Boolean state, String openid);
+
+    void updateAlarmtimeonByopenId(String alarmtimeon, String openid);
 
     void updateWecharname(WeChat weChat);
 

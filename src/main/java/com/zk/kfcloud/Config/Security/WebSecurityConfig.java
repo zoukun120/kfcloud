@@ -45,12 +45,13 @@ public  class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/jquery/**",
                             "/bootstrap-3.3.7-dist/**",
                             "/layui/**",
-                            "/webjars/**"
+                            "/webjars/**",
+                            "/settings/**"
                     ).permitAll()
                     //允许微信发送的请求
-                    .antMatchers("/access","/code","/redirect_uri","/isBrother","/createMenu","/state").permitAll()
+                    .antMatchers("/access","/code","/redirect_uri","/isBrother","/createMenu","/state","/alarmtimeon").permitAll()
                     .antMatchers("/","/login","/index").permitAll()
-                    .antMatchers("/subMenu","/current","/history","/anal/**").permitAll()
+                    .antMatchers("/subMenu","/current","/history","/anal/**","/settings/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .logout()

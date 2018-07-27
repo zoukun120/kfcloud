@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import com.zk.kfcloud.Service.FactoryService;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +27,8 @@ public class UserController {
     @Autowired
     private WeChatService weChatService;
 
+    @Autowired
+    private FactoryService factoryService;
     /**
      * 根据openid的值判断该微信用户是否为自己人，
      * 如果是就将改用户session记录起来，再根据权限，展现相应的index内容
@@ -74,4 +76,37 @@ public class UserController {
         res.put("data", JSONArray.fromObject(users));
         return res;
     }
+
+   /*
+   向settings页面传openid和开关状态，并打开settings页面
+    */
+    @GetMapping("/settings/{openid}")
+    public String sendPage( @PathVariable("openid") String openid, Model model) {
+        model.addAttribute("openid", openid);   //将openid保存settings页面中
+        model.addAttribute("stateValue", factoryService.AlarmIndex(openid));
+        //从openid获取报警时间段
+        String alarmtimeon=factoryService.getAlarmtimeonByopenId(openid);
+            if(alarmtimeon==null)  {alarmtimeon="未设置";}
+        model.addAttribute("alarmtimeon", alarmtimeon);
+        return "settings";
+    }
+    //接收前端报警开关的请求存入数据库
+    @PostMapping("/state")
+    public @ResponseBody Map<String, Object> insetalarm_auth(@RequestBody Map<String, Object> map) {
+        Boolean state = (Boolean) map.get("state");
+        String Openid = String.valueOf(map.get("openid"));
+        weChatService.updatestateByopenId(state, Openid); //将值写入数据库
+        return map;
+    }
+
+    //接收前端报警开关的请求存入数据库
+    @PostMapping("/alarmtimeon")
+    public @ResponseBody Map<String, Object> insetalarmtimeon(@RequestBody Map<String, Object> map) {
+        String alarmtimeon = String.valueOf(map.get("alarmtimeon"));
+        String Openid = String.valueOf(map.get("openid"));
+        log.info("更改报警时间段："+alarmtimeon+";    openid:"+Openid);
+        weChatService.updateAlarmtimeonByopenId(alarmtimeon, Openid); //将报警时间段值写入数据库
+        return map;
+    }
+
 }

@@ -68,7 +68,7 @@ public class WeChatServiceImpl implements WeChatService {
     }
 
     @Override
-    public void updateByopenId(Boolean state, String openid) {
+    public void updatestateByopenId(Boolean state, String openid) {
        if(state==true) {
            weChatMapper.updatealarm_authTure(openid);
        }
@@ -77,6 +77,12 @@ public class WeChatServiceImpl implements WeChatService {
        }
     }
 
+    @Override
+    public void updateAlarmtimeonByopenId(String alarmtimeon, String openid) {
+            openid = "\'"+openid+"\'";
+        alarmtimeon = "\'"+alarmtimeon+"\'";
+            weChatMapper.updateAlarmtimeonByopenId(alarmtimeon,openid);
+    }
 
     @Override
     public List<WebWeChat>  findAllUser() {

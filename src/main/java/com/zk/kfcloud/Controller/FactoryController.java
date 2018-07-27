@@ -32,14 +32,18 @@ public class FactoryController {
     @Autowired
     private FactoryService factoryService;
 
-
+/*
+    从url中获取factoryId加入到页面中
+ */
     @GetMapping("/subMenu/{pagename}/{factoryId}")
     public String sendPage(@PathVariable("pagename") String pagename, @PathVariable("factoryId") String factoryId, Model model) {
         model.addAttribute("factoryId", factoryId);
         //        去掉后缀'.html'
         System.err.println(pagename);
+        log.info(pagename);
         return pagename;
     }
+
 
     @GetMapping("/sys")
     public String sys() {
@@ -170,6 +174,7 @@ public class FactoryController {
     @GetMapping("/anal/{pageName}/{factoryId}")
     public String toAnalysisPage(@PathVariable("pageName") String name,@PathVariable("factoryId") Integer id,Model model){
         System.err.println("页面"+name+"的factoryId是 "+id);
+        log.info("页面"+name+"的factoryId是 "+id);
         model.addAttribute("factoryId", id);
         return name;
     }
@@ -391,28 +396,59 @@ public class FactoryController {
 
     @PostMapping("/anal/OperateCondition/board")
     public @ResponseBody Map<String, Object> dashBoard(@RequestBody Analysis analysis) throws ParseException {
-//      1 获取表名
-        String boardTableName = factoryService.getDashBoardTableName(analysis.getFactoryId());
-        String KFFields = "TIME,out01";
-        log.info("boardTableName:"+boardTableName+",KFFields:"+KFFields);
-//      3 获取最新数据
-        Map<String, Object> data = factoryService.getData(boardTableName, KFFields);
+//      1 、从表tb2_wechat_analysis中获取信息
+        Map<String, Object> Data = factoryService.getallDatabyFactoryId("tb2_wechat_analysis", analysis.getFactoryId());
+
+        String KFFields1 = "TIME,"+String.valueOf(Data.get("para_no1_context"));
         DateFormat df= new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-        for (Map.Entry<String,Object> map :data.entrySet()) {
+        Map<String, Object> data=new HashMap<String , Object>();
+
+        Map<String, Object> data1 = factoryService.getData(String.valueOf(Data.get("para_no1_sheet")), KFFields1);
+        for (Map.Entry<String,Object> map :data1.entrySet()) {
             String key = map.getKey();
-            switch (key){
-                case "TIME":
-                    data.put(key,df.format(map.getValue()));break;
-                case "out01":
-                    Double value = Double.valueOf(String.valueOf(map.getValue()));
-                    if (value>=150.0){
-                        data.put(key,150);break;
-                    }
-                    if (value<=0.0){
-                        data.put(key,0);break;
-                    }
-            }
+            if(key.equals("TIME"))
+                data.putIfAbsent("TIME",df.format(map.getValue()));
+            if(key.equals(String.valueOf(Data.get("para_no1_context")))) {
+                data.put("out1", Double.valueOf(String.valueOf(map.getValue())));}
+                data.put("out1_name", String.valueOf(Data.get("para_no1_name")));
+                data.put("out1_warn", Double.valueOf(String.valueOf(Data.get("para_no1_warn"))));
+                data.put("out1_alarm", Double.valueOf(String.valueOf(Data.get("para_no1_alarm"))));
+                data.put("out1_upper", Double.valueOf(String.valueOf(Data.get("para_no1_upper"))));
         }
+
+        Map<String, Object> data2 = factoryService.getData(String.valueOf(Data.get("para_no2_sheet")), String.valueOf(Data.get("para_no2_context")));
+        for (Map.Entry<String,Object> map :data2.entrySet()) {
+            String key = map.getKey();
+            if(key.equals(String.valueOf(Data.get("para_no2_context")))) {
+                data.put("out2", Double.valueOf(String.valueOf(map.getValue()))); }
+                data.put("out2_name", String.valueOf(Data.get("para_no2_name")));
+                data.put("out2_warn", Double.valueOf(String.valueOf(Data.get("para_no2_warn"))));
+                data.put("out2_alarm", Double.valueOf(String.valueOf(Data.get("para_no2_alarm"))));
+                data.put("out2_upper", Double.valueOf(String.valueOf(Data.get("para_no2_upper"))));
+        }
+
+        Map<String, Object> data3 = factoryService.getData(String.valueOf(Data.get("para_no3_sheet")), String.valueOf(Data.get("para_no3_context")));
+        for (Map.Entry<String,Object> map :data3.entrySet()) {
+            String key = map.getKey();
+            if(key.equals(String.valueOf(Data.get("para_no3_context")))) {
+                data.put("out3", Double.valueOf(String.valueOf(map.getValue())));}
+                data.put("out3_name", String.valueOf(Data.get("para_no3_name")));
+                data.put("out3_warn", Double.valueOf(String.valueOf(Data.get("para_no3_warn"))));
+                data.put("out3_alarm", Double.valueOf(String.valueOf(Data.get("para_no3_alarm"))));
+                data.put("out3_upper", Double.valueOf(String.valueOf(Data.get("para_no3_upper"))));
+        }
+
+        Map<String, Object> data4 = factoryService.getData(String.valueOf(Data.get("para_no4_sheet")), String.valueOf(Data.get("para_no4_context")));
+        for (Map.Entry<String,Object> map :data4.entrySet()) {
+            String key = map.getKey();
+            if(key.equals(String.valueOf(Data.get("para_no4_context")))) {
+                data.put("out4", Double.valueOf(String.valueOf(map.getValue())));}
+                data.put("out4_name", String.valueOf(Data.get("para_no4_name")));
+                data.put("out4_warn", Double.valueOf(String.valueOf(Data.get("para_no4_warn"))));
+                data.put("out4_alarm", Double.valueOf(String.valueOf(Data.get("para_no4_alarm"))));
+                data.put("out4_upper", Double.valueOf(String.valueOf(Data.get("para_no4_upper"))));
+        }
+
         for (Map.Entry<String,Object> map :data.entrySet()) {
             log.info("key:"+map.getKey()+",value:"+map.getValue());
         }

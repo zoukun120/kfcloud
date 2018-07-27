@@ -57,7 +57,7 @@ public class AlarmUtil {
                             Long past  = dateFormat.parse(realALARMTIME).getTime();//java.text.ParseException: Unparseable date: "报警时间不详!"
                             Long now = dateFormat.parse(alarmTime).getTime();
                             // 日志输出
-                            log.info("时间间隔"+(now - past)/1000+"s");
+//                            log.info("时间间隔"+(now - past)/1000+"s");
                             // 指定时间间隔 发送报警信息
                             if ((now - past)!=0 && ((now - past) % (1000 * 60 * 2) == 0)){
                                 String contentName = getContentName(alarmName,alarmInfo);

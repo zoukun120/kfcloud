@@ -48,6 +48,7 @@ public class ScheduledTasks {
      */
     @Scheduled(fixedRate = 1000*60*60*6)
     public void test() throws ParseException {
+
         String access_token = MaterialManage.getAccessToken().getAccess_token();
         List<String> userOpenids=Authorization.getallopenId( access_token,"");
         List user_list = new ArrayList<Map>();
@@ -89,7 +90,7 @@ public class ScheduledTasks {
      * 生产数据监控
      * @throws ParseException
      */
-    @Scheduled(fixedRate = 1000*10)
+    @Scheduled(fixedRate = 1000*5)
     public void reportAlarmStatus() throws ParseException {
         for (int i=0; i<alarmTableList.size();i++){
             if (historyStatusList1.size() == i){
@@ -98,21 +99,22 @@ public class ScheduledTasks {
         }
         // 3、分别查询出当前数据表的最新数据，判断是否需要报警
         List<String> factoryNames = factoryService.returnfactoryNames(alarmTableList);//获得厂名
-        log.info("factoryNames:"+factoryNames);
+//        log.info("factoryNames:"+factoryNames);
         for (int i=0; i<alarmTableList.size();i++){
             Map<String, Object> historyStatus = historyStatusList1.get(i);//获取历史报警信息
             Map<String, Object> currentStatus = factoryService.monitor(alarmTableList.get(i));//获取当前的报警信息
             String tableName = alarmTableList.get(i);
             // 初始化 alarmNameList、ff、sf 数组、alarmTime、reference
             AlarmUtil.initReference1(tableName, historyStatus, currentStatus);
-            log.info("报警reference里："+reference1);//报警信息
+//            log.info("报警reference里："+reference1);//报警信息
             // 获取关注该厂的所有微信用户
             Map<String, Object> alarmInfo = factoryService.getAlarmInfoByAlarmUrl(tableName.substring(0,6));
             List<String> realOpenIds = factoryService.getOpenids(tableName);
-            log.info("生产报警发送openid:"+realOpenIds);
+//            log.info("生产报警发送openid:"+realOpenIds);
             // 报警逻辑部分
             String factoryName = factoryNames.get(i);
             AlarmUtil.alarmLogic1(tableName,historyStatus,currentStatus,realOpenIds,factoryName,alarmInfo);
+
         }
         // 4、清空一下historyStatusList，并将currentStatus复制给historyStatus（historyStatusList.get(i)）
             historyStatusList1.clear();
@@ -127,7 +129,7 @@ public class ScheduledTasks {
      * 分析数据监控
      * @throws ParseException
      */
-    @Scheduled(fixedRate = 1000*10)
+    @Scheduled(fixedRate = 1000*5)
     public void reportAlarmStatus2() throws ParseException {
         // 1、查出数据表对应的工厂名称
         List<String> factoryNames = factoryService.returnfactoryNames(alarmTableList);
@@ -142,16 +144,12 @@ public class ScheduledTasks {
             String tableName = alarmTableList.get(i);
             String factoryName = factoryNames.get(i);
             Map<String, Object> currentStatus = factoryService.anlAlarmLogic(tableName);//获取当前数据
-            log.info(factoryName+"当前指标报警数据:"+currentStatus);
+//            log.info(factoryName+"当前指标报警数据:"+currentStatus);
             Map<String, Object> historyStatus = historyStatusList2.get(i);//获取历史报警信息
-            log.info(factoryName+"前一时刻指标报警数据:"+historyStatus);
+//            log.info(factoryName+"前一时刻指标报警数据:"+historyStatus);
             Map<String, Object> alarmInfo = factoryService.anlAlarmLogic(tableName.substring(0,6));
             List<String> realOpenIds = factoryService.getOpenids(tableName);
-//            List<String> realOpenIds = new ArrayList();
-//            realOpenIds.add("osAgr1Eoe3jZu74qEve0b1_d6e7Y");
-
-            log.info("指标报警发送openid:"+realOpenIds);
-
+//            log.info("指标报警发送openid:"+realOpenIds);
             // 2.2 主逻辑部分
             AlarmUtil.alarmLogic2(tableName,historyStatus,currentStatus,realOpenIds,factoryName,alarmInfo);
         }

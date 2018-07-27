@@ -2,6 +2,8 @@ package com.zk.kfcloud.ServerImpl;
 
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 //import com.zk.kfcloud.Config.Quartz.AlarmJob;
@@ -44,17 +46,71 @@ public class FactoryServiceImpl implements FactoryService {
 			Menu menu = menuService.getMenuById(menuId);
 			List<String> openIds = factoryMapper.getOpenIdsByMenuId(menuId);
 			for (int j = 0; j < openIds.size(); j++) {
-				if(factoryMapper.getalarm_authByOpenId(openIds.get(j))==null)
+				if((factoryMapper.getalarm_authByOpenId(openIds.get(j))==null)||(factoryMapper.getalarm_authByOpenId(openIds.get(j))==1))
 				{
-					openIDS.add(openIds.get(j));
-				}
-				else if (factoryMapper.getalarm_authByOpenId(openIds.get(j))==1) {
-					openIDS.add(openIds.get(j));
+					try {
+						if(judgeAlarmtimeon(openIds.get(j)))
+							openIDS.add(openIds.get(j));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
 		return openIDS;
 	}
+	/*
+	判断是否当前时间是否在该时间段内
+	 */
+	public Boolean judgeAlarmtimeon(String openIds) throws ParseException {
+        String Alarmtimeon=getAlarmtimeonByopenId(openIds);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String now = String.valueOf(df.parse(df.format(new Date())));
+		Integer nowhour = Integer.valueOf(now.substring(11, 13));
+		Integer nowminute = Integer.valueOf(now.substring(14, 16));
+		/*
+		判断时间beginTime和endTime大小关系
+		 */
+		Boolean symbol=true;
+	  if(Alarmtimeon==null)//时间未设置或者相等时默认开
+        {
+          return true; }
+         else {
+				String beginTime =Alarmtimeon.substring(0,5);
+				String endTime  =Alarmtimeon.substring(7,12);
+				Integer beginhour = Integer.valueOf(beginTime.substring(0,2));
+				Integer beginminute = Integer.valueOf(beginTime.substring(3,5));
+				Integer endhour = Integer.valueOf(endTime.substring(0,2));
+				Integer endminute = Integer.valueOf(endTime.substring(3,5));
+			if(beginTime.equals(endTime))
+			  {
+				return true;}
+				else{
+				 if ((beginhour < endhour) || (beginhour == endhour && beginminute <= endminute))
+			       { symbol = true; }
+			        else
+			       { symbol = false; }
+			       if (symbol)  // 开始时间小于结束时间
+					{if ((nowhour > beginhour || (nowhour == beginhour && nowminute >= beginminute)) && (nowhour < endhour || (nowhour == endhour && nowminute <= endminute)))
+				      {
+				 	    return true; }
+				        else
+				       { return false; }
+			        }
+			      else   // 开始时间大于结束时间, 跨天的情况
+					{ if ((nowhour > beginhour || (nowhour == beginhour && nowminute >= beginminute)) || (nowhour < endhour || (nowhour == endhour && nowminute <= endminute)))
+				 		{
+				 		return true; }
+						else
+				 		{ return false; } }
+		            }
+	  }
+	}
+
+    public String getAlarmtimeonByopenId(String openIds){
+        String Alarmtimeon=factoryMapper.getAlarmtimeonByOpenId(openIds);
+        return Alarmtimeon;
+    }
 
 	@Override
 	public List<String> getFactoryNames(String tableName) {
@@ -98,7 +154,7 @@ public class FactoryServiceImpl implements FactoryService {
 	@Override
 	public Map<String, Object> anlAlarmLogic(String tableName) {
 		tableName = tableName.substring(0,6)+"_ana_sec";
-		return factoryMapper.getData(tableName,"*");//测试取getData1为升序，实用取getData为降序//!!!!!!!!!!!!!
+		return factoryMapper.getData(tableName,"*");//测试取getData1为降序，实用取getData为升序//!!!!!!!!!!!!!
 	}
 
 
@@ -110,6 +166,11 @@ public class FactoryServiceImpl implements FactoryService {
 
 	public Map<String, Object> getData(String KFTable, String SqlFields) {
 		return this.factoryMapper.getData(KFTable, SqlFields);
+	}
+
+	@Override
+	public Map<String, Object> getallDatabyFactoryId(String TableName, Integer FactoryId) {
+		return this.factoryMapper.getallDatabyFactoryId(TableName,FactoryId);
 	}
 
 	public Map<String, Object> getAlarmInfoByAlarmId(Integer alarmId) {

@@ -38,6 +38,10 @@
 		select ${SqlFields} from ${KFTable} order by TIME Desc limit 1
 	</select>
 
+	<select id="getallDatabyFactoryId" resultType="java.util.LinkedHashMap" statementType="STATEMENT">
+		select * from ${TableName} WHERE factory_id = ${FactoryId}
+	</select>
+
 	<select id="getData1" resultType="java.util.LinkedHashMap" statementType="STATEMENT">
 			select ${SqlFields} from ${KFTable} order by TIME ASC limit 1
 	</select>
@@ -67,6 +71,10 @@
 
 	<select id="getalarm_authByOpenId" resultType="Integer" parameterType="String">
 		SELECT alarm_auth FROM tb2_wechat  WHERE open_id = #{openId}
+	</select>
+
+	<select id="getAlarmtimeonByOpenId" resultType="String" parameterType="String">
+		SELECT alarm_timeon FROM tb2_wechat  WHERE open_id = #{openId}
 	</select>
 
 	<select id="getParaNum" parameterType="java.util.HashMap"
