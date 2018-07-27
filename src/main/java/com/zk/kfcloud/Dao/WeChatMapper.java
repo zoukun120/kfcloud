@@ -29,6 +29,8 @@ public interface WeChatMapper {
 
     void updateLoginStatus(@Param("openid") String openid,@Param("loginStatus") Boolean loginStatus);
 
+    void updateAlarmtimeonByopenId(@Param("alarmtimeon") String alarmtimeon,@Param("openid") String openid);
+
     List<WebWeChat>  findAllUser();
 
     void updateLoginTime(WeChat weChat);

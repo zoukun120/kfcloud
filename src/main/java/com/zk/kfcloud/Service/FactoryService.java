@@ -4,6 +4,7 @@ import com.zk.kfcloud.Entity.web.Factory;
 import com.zk.kfcloud.Entity.web.Menu;
 import org.quartz.SchedulerException;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,8 @@ public abstract interface FactoryService {
 	public abstract List<String> listAllSystemNameByFactoryId(Integer paramInteger);
 
 	public abstract Map<String, Object> getData(String paramString1, String paramString2);
+
+	public abstract Map<String, Object> getallDatabyFactoryId(String TableName, Integer FactoryId);
 
 	public abstract Map<String, Object> getAlarmInfoByAlarmId(Integer paramInteger);
 
@@ -54,6 +57,10 @@ public abstract interface FactoryService {
 	Map<String, Object> monitor(String tableName);
 
 	List<String> getOpenids(String tableName);
+
+	Boolean judgeAlarmtimeon(String openIds) throws ParseException;
+
+	String getAlarmtimeonByopenId( String openId);
 
 	List<String> getFactoryNames(String tableName);
 

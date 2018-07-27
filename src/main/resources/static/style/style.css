@@ -1,3 +1,4 @@
+
 body {
     font-size: 12px;
     line-height: 22px;
@@ -10,56 +11,6 @@ body {
     background-size: cover;
     padding-top: 37px;
     -webkit-font-smoothing: antialiased;
-}
-/*按钮模块的大小*/
-/*关的背景颜色*/
-.btn:not(:disabled):not(.disabled) {
-    cursor: pointer;
-}
-/*关的状态字体颜色*/
-.toggle-off {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    right: 0;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    background-color: #aaa;
-    border-color: #212529;
-    color: #212529;
-    padding-left: 16px;
-}
-/*开的状态*/
-.toggle-on {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 50%;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    background-color: #28a745;
-    border-color: #212529;
-    padding-right: 15px;
-}
-
-.toggle-handle {
-    position: relative;
-    margin: 0 auto;
-    padding-top: 0;
-    padding-bottom: 0;
-    height: 100%;
-    width: 0;
-    border-width: 0 1px;
-    background-color: #f8f9fa;
-}
-/*开的字体的颜色*/
-.btn-primary:hover {
-    background-color: #007bff;
-    border-color: #222;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -835,7 +786,24 @@ header .header-data .hdata em {
     box-shadow: inset 0px 1px 1px #fff;
 }
 
-.sidebar #nav > li > a:hover, .sidebar #nav > li > a.open, .sidebar #nav > li > a.subdrop {
+.sidebar #nav > li > a.open {
+     display: inline-block;
+     vertical-align: top;
+     width: 60%;
+ }
+
+.sidebar #nav > li > a.settings {
+    display: inline-block;
+    float:right;
+    width: 40%;
+    height: 100%;
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    /*padding-left: 10px*/
+}
+
+.sidebar #nav > li > a:hover, .sidebar #nav > li > a.open, .sidebar #nav > li > a.settings, .sidebar #nav > li > a.subdrop {
     /*color: #e9e9e9;*/
     color: transparent;
     border-bottom: 1px solid #167cac;
@@ -852,7 +820,25 @@ header .header-data .hdata em {
     font-weight: bold;
 }
 
-.sidebar #nav > li > a:hover i, .sidebar #nav > li > a.open i, .sidebar #nav > li > a.subdrop i {
+.sidebar #nav > li.first{
+    /*color: #e9e9e9;*/
+    color: transparent;
+    border-bottom: 1px solid #167cac;
+    border-top: 1px solid #2094ca;
+    background-color: #0993d3;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1aaef3), to(#0993d3));
+    background: -webkit-linear-gradient(top, #1aaef3, #0993d3);
+    background: -moz-linear-gradient(top, #1aaef3, #0993d3);
+    background: -ms-linear-gradient(top, #1aaef3, #0993d3);
+    background: -o-linear-gradient(top, #1aaef3, #0993d3);
+    background: linear-gradient(top, #1aaef3, #0993d3);
+    box-shadow: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.sidebar #nav > li > a:hover i, .sidebar #nav > li > a.open i,.sidebar #nav > li > a.settings i,.sidebar #nav > li > a.subdrop i {
     color: #fff;
     background-color: #167cac !important;
     border: 1px solid #167cac;

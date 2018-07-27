@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>用户设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" th:href="@{/js/settings/mobiscroll-2.13.2.full.min.css}">-->
+    <!--<link rel="stylesheet" th:href="@{/js/settings/mobiscroll.custom-3.0.0-beta2.min.css}">-->
+    <link rel="stylesheet" th:href="@{/js/history/mobiscroll.custom.min.css}"/>
+    <link rel="stylesheet" th:href="@{/js/settings/style.css}">
+    <link rel="stylesheet" th:href="@{/style/font-awesome.css}">
+</head>
+<body>
+<div class="content">
+    <p id="stateValue" th:text="${stateValue}" style="visibility:hidden"></p>
+    <div class="sidebar">
+        <div class="sidebar-dropdown"><a href="#">导航</a></div>
+        <ul id="nav">
+            <li class="first">
+                <a class="open"><span > 设置 </span>
+                </a>
+            </li>
+            <li  class="has_sub">
+                <a href="#">
+                    <i class="icon-bell-alt" style="font-size:18px;"></i>
+                    <span style="margin-top: 7px;"th:text="报警通知设置">一级子菜单</span>
+                    <span class="pull-right">
+                            <i class="icon-chevron-down"></i>
+                        </span>
+                </a>
+                <ul>
+                    <li >
+                        <a >
+                            <i class="icon-off"style="font-size:18px;"></i>
+                            <span  th:text="报警通知开关设置">二级子菜单</span>
+                            <label style="float: right; margin-bottom: 6px">
+                                <style>
+                                    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px;}
+                                    .toggle.ios .toggle-handle { border-radius: 20px;}
+                                </style>
+                                <input  id="toggle-trigger" type="checkbox" checked data-toggle="toggle"  data-on="开" data-off="关" data-size="mini" data-width="45" data-height="35" data-style="ios">
+                            </label>
+                        </a>
+                    </li>
+                    <li >
+                        <a>
+                        <div class="mbsc-form-group">
+                            <label style="margin-bottom:0rem;display: block;">
+                                <i class="icon-time"style="font-size:20px;"></i>
+                                <span th:text="报警通知时间设置">二级子菜单</span>
+                                <input id="demo"  style="text-align: right;max-width:105px;float: right;margin-top: 7.8px;font-size: 14px;background:rgba(255,255,255,0.1);border: 0px;" />
+                            </label>
+                        </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--<li  class="has_sub">-->
+                <!--<a href="#">-->
+                    <!--<i class="icon-wrench"style="font-size:18px;"></i>-->
+                    <!--<span  th:text="其他设置">一级子菜单</span>-->
+                    <!--<span class="pull-right">-->
+                            <!--<i class="icon-chevron-down"></i>-->
+                        <!--</span>-->
+                <!--</a>-->
+                <!--<ul>-->
+                    <!--<li >-->
+                        <!--<a >-->
+                            <!--<i class="icon-bar-chart"></i>-->
+                            <!--<span style="margin-top: 7px;" th:text="其他设置">二级子菜单</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+
+                <!--</ul>-->
+            <!--</li>-->
+        </ul>
+
+    </div>
+    <p id="openid" th:text="${openid}" style="visibility:hidden"></p>
+    <p id="alarmtimeon" th:text="${alarmtimeon}" style="visibility:hidden"></p>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<!--<script th:src="@{/js/settings/mobiscroll-2.13.2.full.min.js}" ></script>-->
+<!--<script th:src="@{/js/settings/mobiscroll.custom-3.0.0-beta2.min.js}" ></script>-->
+<script src="https://cdn.bootcss.com/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script th:src="@{/js/settings/main.js}"></script>
+<script th:src="@{/js/history/mobiscroll.custom.min.js}"></script>
+
+</body>
+</html>

@@ -16,6 +16,8 @@ public interface FactoryMapper{
   
   public abstract Map<String, Object> getData(@Param("KFTable") String paramString1, @Param("SqlFields") String paramString2);
 
+  public abstract Map<String, Object> getallDatabyFactoryId(@Param("TableName") String TableName, @Param("FactoryId") Integer FactoryId);
+
   public abstract Map<String, Object> getData1(@Param("KFTable") String paramString1, @Param("SqlFields") String paramString2);
 
   public abstract Map<String, Object> getAlarmInfoByAlarmId(Integer paramInteger);
@@ -53,5 +55,7 @@ public interface FactoryMapper{
   public abstract List<String> getOpenIdsByMenuId(Integer menuId);
 
   public abstract Integer getalarm_authByOpenId(String openId);
+
+  public abstract String getAlarmtimeonByOpenId(String openId);
 
 }

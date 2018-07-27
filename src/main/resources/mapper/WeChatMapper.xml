@@ -96,6 +96,10 @@
     update tb2_wechat set login_status = ${loginStatus} where open_id = ${openid}
   </update>
 
+    <update id="updateAlarmtimeonByopenId" statementType="STATEMENT">
+    update tb2_wechat set alarm_timeon = ${alarmtimeon} where open_id = ${openid}
+  </update>
+
     <update id="updateLoginTime" parameterType="com.zk.kfcloud.Entity.web.WeChat">
     update tb2_wechat set login_time = #{loginTime} where open_id = #{openId}
   </update>

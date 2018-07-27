@@ -29,60 +29,60 @@
             color:#fff;
         }
     </style>
+
 </head>
 <body>
 
-    <div class="container">
-        <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
+<div class="container">
+    <div id="factoryId" th:text="${factoryId}" style="visibility:hidden"></div>
 
-        <ul id="anal" class="nav nav-pills ">
+    <ul id="anal" class="nav nav-pills ">
 
-            <li id="xxx" role="presentation" class="active">
-                <a>工况分析</a>
-                <!--<a href="javascript:getHtml('dashBoard')">工况分析</a>-->
-            </li>
+        <li id="xxx" role="presentation" class="active">
+            <a>工况分析</a>
+            <!--<a href="javascript:getHtml('dashBoard')">工况分析</a>-->
+        </li>
 
-            <!--<li id="dailyReport" role="presentation">-->
-                <!--<a href="javascript:getHtml('dailyReport')">每日报表</a>-->
-            <!--</li>-->
-        </ul>
-        <!-- 将页面加载到这里 -->
-        <div id="iframeContent">
-
-        </div>
+        <!--<li id="dailyReport" role="presentation">-->
+        <!--<a href="javascript:getHtml('dailyReport')">每日报表</a>-->
+        <!--</li>-->
+    </ul>
+    <!-- 将页面加载到这里 -->
+    <div id="iframeContent">
 
     </div>
 
-    <!-- js引入 -->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/echarts/4.1.0/echarts.min.js"></script>
-    <script>
-        <!-- 模拟自动点击a标签-->
-        $(function(){
-            //全局定时器变量
-            // var intervalTime;
-            // 默认加载 仪表盘页面 dailyReport/dashBoard
-            getHtml('dashBoard');
-        })
+</div>
+
+<!-- js引入 -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/4.1.0/echarts.min.js"></script>
+<script>
+    <!-- 模拟自动点击a标签-->
+    $(function(){
+        //全局定时器变量
+        // var intervalTime;
+        // 默认加载 仪表盘页面 dailyReport/dashBoard
+        getHtml('dashBoard');
+    })
 
 
-       function getHtml(page) {
-           // 1 先清空
-           if (page=='dashBoard') {
-               $("#iframeContent").empty();
-           }
-           var url = '/anal/'+page+'/'+$("#factoryId").html();
-           $.ajax({
-               url:url,
-               type:'get',
-               dataType:'html',
-               success:function (data) {
-                   $("#iframeContent").html(data);
-               }
-           });
-       }
-    </script>
-
+    function getHtml(page) {
+        // 1 先清空
+        if (page=='dashBoard') {
+            $("#iframeContent").empty();
+        }
+        var url = '/anal/'+page+'/'+$("#factoryId").html();
+        $.ajax({
+            url:url,
+            type:'get',
+            dataType:'html',
+            success:function (data) {
+                $("#iframeContent").html(data);
+            }
+        });
+    }
+</script>
 </body>
 </html>
