@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 
     $("#nav > li > a").on('click',function(e){
@@ -21,16 +22,26 @@ $(document).ready(function(){
         }
 
     });
-
     // 将数据库的报警参数读到前端
     if($("#stateValue").html()==="0"){
         $('#toggle-trigger').bootstrapToggle('off');
+        $('#demo').mobiscroll().scroller({disabled:true,});//时间设置滚轴不显示
+        $('#demo').css('color','#DEDCDC');
     }else{
         $('#toggle-trigger').bootstrapToggle('on');
-    }
+         mobiscroll ();//时间设置滚轴显示
+        $('#demo').css('color','#0a0a0a');
+}
     //将前端的开关状态发送请求传给数据库
     $('#toggle-trigger').change(function() {
         var state = $(this).prop('checked');
+      if(state==true)
+        {   mobiscroll ();//时间设置滚轴显示
+            $('#demo').css('color','#0a0a0a');}
+        else{
+            $('#demo').mobiscroll().scroller({disabled:true,});//时间设置滚轴不显示
+            $('#demo').css('color','#DEDCDC');
+      }
 
         var jsonObj = {
             "state" : state,
@@ -115,7 +126,7 @@ $(document).ready(function(){
 /*
     时间段选择器的设置适用于mobiscroll.custom.min.js
  */
-$(function () {
+function mobiscroll ( ) {
     var hour=[];
         for(var i=0;i<24;i++){
             var c=i<10?"0"+i+"时":i+"时";
@@ -132,15 +143,15 @@ $(function () {
         [{values:hour,label:"结束时间"}],
         [{values:minute,label:""}]
         ];
-    var i=wheels[0][0].values[6];
-    var j=wheels[1][0].values[12];
-    var k=wheels[2][0].values[3];
-    var l=wheels[3][0].values[5];
+    // var i=wheels[0][0].values[6];
+    // var j=wheels[1][0].values[12];
+    // var k=wheels[2][0].values[3];
+    // var l=wheels[3][0].values[5];
 
     console.log( $("#alarmtimeon").html());
 
-    $('#demo').mobiscroll('setValue', [[i], [j],[k],[l]],true);
-    $('#demo').mobiscroll('setValue', $("#alarmtimeon").html(),true);
+    // $('#demo').mobiscroll('setValue', [[i], [j],[k],[l]],true);
+    // $('#demo').mobiscroll('setValue', $("#alarmtimeon").html(),true);
 
     $('#demo').mobiscroll().scroller({
         theme:'ios',
@@ -150,13 +161,14 @@ $(function () {
         rows:5,
         wheels:wheels,
         minWidth: 30,
+        disabled:false,
         // defaultValue:j+k+j+k,
         formatValue: function (data) {
             return data[0].replace("时",":") + data[1].replace("分","")+'--'+data[2].replace("时",":")+data[3].replace("分","")
         },
     });
     triggerCurve();
-    })
+    }
 
 /*
 将修改的报警时间传值到后端存入数据库

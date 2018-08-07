@@ -22,7 +22,7 @@ public class MaterialManage {
     public static final String APPID = "wx7aa9af01712b950a";
     public static final String APPSECRET = "ce51a61eb1cda2c839031df91c18fea1";
     //    本地调试
-//    public static final String DOMAIN = "http://9te3hg.natappfree.cc";
+//    public static final String DOMAIN = "http://sctuf9.natappfree.cc";
 //    public static final String APPID = "wx659f521d004e0415";
 //    public static final String APPSECRET = "c5826cbeada6a49452000ae174ad31e6";
 
